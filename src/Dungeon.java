@@ -7,7 +7,8 @@ import java.awt.image.BufferedImage;
 
 public class Dungeon {
     // Don't touch, this is for testing - might use a different method to design levels
-    //Seth
+    // Comment everything below this out with /* */ if you want to set up your own process please
+    // Seth
     public void graphics
     {
         public void drawString(String text, String artChar, Settings settings) {
