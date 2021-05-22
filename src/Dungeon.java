@@ -1,15 +1,19 @@
+import com.sun.istack.internal.Nullable;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.PrintStream;
+import java.sql.Array;
 
 
 public class Dungeon {
     // Don't touch, this is for testing - might use a different method to design levels
     // Comment everything below this out with /* */ if you want to set up your own process please
     // Seth
-    public void graphics
+    /*public void graphics
     {
         public void drawString(String text, String artChar, Settings settings) {
         BufferedImage image = getImageIntegerMode(settings.width, settings.height);
@@ -59,5 +63,112 @@ public class Dungeon {
                 this.height = height;
             }
         }
+    }*/
+    static String nextLine = System.getProperty("line.separator");
+
+    static String maps[] = new String[8];
+
+    public static void initializeMapDesigns() {
+        String design1 = "*****";
+        String design1Door = "**" + "O" + "**";
+        String design1Character = "**" + "C" + "**";
+
+        String design2 = ".....";
+        String design2Door = ".." + "O" + "..";
+        String design2Character = ".." + "C" + "..";
+
+        String design3 = "=====";
+        String design3Door = "==" + "O" + "==";
+        String design3Character = "==" + "C" + "==";
+
+        for (int i = 0; i < maps.length; i++) {
+            maps[0] = design1
+                    + nextLine
+                    + design2
+                    + nextLine
+                    + design3;
+
+            maps[1] = design1
+                    + nextLine
+                    + design1
+                    + nextLine
+                    + design1;
+
+            maps[2] = design2
+                    + nextLine
+                    + design2
+                    + nextLine
+                    + design2;
+
+            maps[3] = design3
+                    + nextLine
+                    + design3
+                    + nextLine
+                    + design3;
+
+            maps[4] = design1Character;
+
+            maps[5] = design1Door;
+
+            maps[6] = design2Character;
+
+            maps[7] = design3Door;
+
+        }
+    }
+    public static void printArray() {
+        for (int i = 0; i < 8; i++) {
+            System.out.println(maps[i]);
+        }
+    }
+
+    public static boolean canMove(int[] map) {
+        boolean flag = false;
+        int testVar = 0;
+
+        if (testVar == 1) {
+            flag = true;
+        }
+        else if (testVar == 2) {
+            flag = true;
+        }
+        else if (testVar == 3) {
+            flag = true;
+        }
+        else if (testVar == 4) {
+            flag = true;
+        }
+        else if (testVar == 5) {
+            flag = true;
+        }
+        else if (testVar == 6) {
+            flag = true;
+        }
+        else if (testVar == 7) {
+            flag = true;
+        }
+        else if (testVar == 8) {
+            flag = true;
+        }
+        else {
+            return false;
+        }
+        return false;
+    }
+
+    public static boolean move(int[] map, int position) {
+        return true;
+    }
+
+
+    public static void main(String[] args) {
+        /* String[] stringArray1 = new String[8];
+
+        stringArray1[0] = design1+design1;
+        stringArray1[1] = design2+design2;
+        stringArray1[2] = design3+design3;
+        stringArray1[3] = methodTwo(design1);design1+"\n"+design1+"\n"+design1;*/
+        initializeMapDesigns();
+        printArray();
     }
 }
