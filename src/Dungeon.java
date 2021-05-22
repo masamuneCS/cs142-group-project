@@ -70,15 +70,21 @@ public class Dungeon {
 
     public static void initializeMapDesigns() {
         String design1 = "*****";
+        String design1Vert = "*" + nextLine + "*" + nextLine + "*" + nextLine + "*" + nextLine + "*";
         String design1Door = "**" + "O" + "**";
+        String design1DoorVert = "*" + nextLine + "*" + nextLine + "O" + nextLine + "*" + nextLine + "*";
         String design1Character = "**" + "C" + "**";
 
         String design2 = ".....";
+        String design2Vert = "." + nextLine + "." + nextLine + "." + nextLine + "." + nextLine + ".";
         String design2Door = ".." + "O" + "..";
+        String design2DoorVert = "." + nextLine + "." + nextLine + "O" + nextLine + "." + nextLine + ".";
         String design2Character = ".." + "C" + "..";
 
         String design3 = "=====";
+        String design3Vert = "||" + nextLine + "||" + nextLine + "||";
         String design3Door = "==" + "O" + "==";
+        String design3DoorVert = "||" + nextLine + "O" + nextLine + "||";
         String design3Character = "==" + "C" + "==";
 
         for (int i = 0; i < maps.length; i++) {
@@ -162,12 +168,6 @@ public class Dungeon {
 
 
     public static void main(String[] args) {
-        /* String[] stringArray1 = new String[8];
-
-        stringArray1[0] = design1+design1;
-        stringArray1[1] = design2+design2;
-        stringArray1[2] = design3+design3;
-        stringArray1[3] = methodTwo(design1);design1+"\n"+design1+"\n"+design1;*/
         initializeMapDesigns();
         printArray();
     }
