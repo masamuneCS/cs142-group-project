@@ -1,9 +1,21 @@
+import java.util.Scanner;
+
 public class NPC {
     int phoneAFriend = 0;
 
-    public static void NPCinteraction(){
+    public static void NPCinteraction(Scanner userInput, int helpPoint, int phoneAFriend){
+        // insert index for all phone a friend conversations
+        String[] hints;
         //needs to call "phoningFriend" with current "hintPoint" and "phoneAFriend" values when
         // "phoningFriend" or "phone a friend" is typed into console
+        String[] validInput;
+        validInput = new String[3];
+
+
+
+        if(userInput == validInput){
+
+        }
 
     }
     public static void steveHarvyDiolouge(boolean miniGame, int miniGameTriggered){ // steeveHary needs to
@@ -27,7 +39,7 @@ public class NPC {
 
         return riddelHint[1];
     }
-    public static void phoningFriend(int i, int helpPoint, int phoneAFriend){
+    public static void phoningFriend(int helpPoint, int phoneAFriend){
         //the following controls everything that happens when you type "phone a friend" in the console
         if(helpPoint == 1) {
             if(phoneAFriend == 0){
