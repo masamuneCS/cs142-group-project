@@ -13,7 +13,7 @@ public class NPC {
 
 
 
-        if(userInput == validInput){
+        if(userInput == validInput){ //what is your plan to implement this?
 
         }
 
@@ -21,7 +21,7 @@ public class NPC {
     public static void steveHarvyDiolouge(boolean miniGame, int miniGameTriggered){ // steeveHary needs to
                                                                             // activate whenever the minigame
                                                                                 // is triggered
-        if(miniGame = true){
+        if(miniGame){
             //the following is text that comes up when the mini-game starts
            if(miniGameTriggered > 0){
                //text plays if this isn't your first time on the show
@@ -34,10 +34,10 @@ public class NPC {
     }
     public static String hints(){
         //insert array containing the hints for ALL of the riddles
-        String[] riddelHint;
-        riddelHint = new String[]{"hello", "please don't use this in final version"};
+        String[] riddleHint;
+        riddleHint = new String[]{"hello", "please don't use this in final version"};
 
-        return riddelHint[1];
+        return riddleHint[1];
     }
     public static void phoningFriend(int helpPoint, int phoneAFriend){
         //the following controls everything that happens when you type "phone a friend" in the console
