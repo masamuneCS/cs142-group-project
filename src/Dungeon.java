@@ -1,129 +1,381 @@
-import com.sun.istack.internal.Nullable;
-
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.PrintStream;
 import java.sql.Array;
 
 
 public class Dungeon {
-    // Don't touch, this is for testing - might use a different method to design levels
-    // Comment everything below this out with /* */ if you want to set up your own process please
-    // Seth
-    /*public void graphics
-    {
-        public void drawString(String text, String artChar, Settings settings) {
-        BufferedImage image = getImageIntegerMode(settings.width, settings.height);
 
-        Graphics2D graphics2D = getGraphics(image.getGraphics(), settings);
-        graphics2D.drawString(text, 6, ((int) (settings.height * 0.67)));
-
-        for (int y = 0; y < settings.height; y++) {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            for (int x = 0; x < settings.width; x++) {
-                stringBuilder.append(image.getRGB(x, y) == -16777216 ? " " : artChar);
-            }
-
-            if (stringBuilder.toString()
-                    .trim()
-                    .isEmpty()) {
-                continue;
-            }
-
-            System.out.println(stringBuilder);
-        }
-
-    }
-
-        private BufferedImage getImageIntegerMode(int width, int height) {
-        return new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-    }
-
-        private Graphics2D getGraphics2D(Graphics graphics, Settings settings) {
-        graphics.setFont(settings.font);
-
-        Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-        return graphics2D;
-    }
-
-        public class Settings {
-            public Font font;
-            public int width;
-            public int height;
-
-            public Settings(Font font, int width, int height) {
-                this.font = font;
-                this.width = width;
-                this.height = height;
-            }
-        }
-    }*/
     static String nextLine = System.getProperty("line.separator");
 
-    static String maps[] = new String[8];
+    //array number arbitrary until we finalize number of floors + size of floors relative to time
+    static String maps[] = new String[32];
 
     public static void initializeMapDesigns() {
-        String design1 = "*****";
-        String design1Vert = "*" + nextLine + "*" + nextLine + "*" + nextLine + "*" + nextLine + "*";
-        String design1Door = "**" + "O" + "**";
-        String design1DoorVert = "*" + nextLine + "*" + nextLine + "O" + nextLine + "*" + nextLine + "*";
-        String design1Character = "**" + "C" + "**";
+        //separation is intentional for visual clarity
 
-        String design2 = ".....";
-        String design2Vert = "." + nextLine + "." + nextLine + "." + nextLine + "." + nextLine + ".";
-        String design2Door = ".." + "O" + "..";
-        String design2DoorVert = "." + nextLine + "." + nextLine + "O" + nextLine + "." + nextLine + ".";
-        String design2Character = ".." + "C" + "..";
+        String design1 = "*******";
+        String design1Single = "*";
+        String design1HorizontalDoor = "***" + "O" + "***";
+        String design1Character = "***" + "C" + "***";
 
-        String design3 = "=====";
-        String design3Vert = "||" + nextLine + "||" + nextLine + "||";
-        String design3Door = "==" + "O" + "==";
-        String design3DoorVert = "||" + nextLine + "O" + nextLine + "||";
-        String design3Character = "==" + "C" + "==";
+        String design2 = ".......";
+        String design2Single = ".";
+        String design2HorizontalDoor = "..." + "O" + "...";
+        String design2Character = "..." + "C" + "...";
+
+        String design3 = "=======";
+        String design3Single = "=";
+        String design3HorizontalDoor = "===" + "O" + "===";
+        String design3Character = "===" + "C" + "===";
 
         for (int i = 0; i < maps.length; i++) {
-            maps[0] = design1
-                    + nextLine
-                    + design2
-                    + nextLine
-                    + design3;
-
-            maps[1] = design1
-                    + nextLine
+            maps[0] = design1Single
                     + design1
+                    + design1Single
                     + nextLine
-                    + design1;
-
-            maps[2] = design2
-                    + nextLine
+                    + design1Single
                     + design2
+                    + design1Single
                     + nextLine
-                    + design2;
+                    + design1Single
+                    + design2Character
+                    + "O"
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design1
+                    + design1Single;
 
-            maps[3] = design3
+            maps[1] = design1Single
+                    + design1HorizontalDoor
+                    + design1Single
                     + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    +"O"
+                    + design2Character
+                    +"O"
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3HorizontalDoor
+                    + design3Single;
+
+            maps[2] = design1Single
+                    + design1HorizontalDoor
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2Character
+                    + "O"
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design1HorizontalDoor
+                    + design1Single;
+
+            maps[3] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2Character
+                    + "O"
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design1HorizontalDoor
+                    + design1Single;
+
+            maps[4] = design1Single
+                    + design1HorizontalDoor
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + "O"
+                    + design2Character
+                    + "O"
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design1
+                    + design1Single;
+
+            maps[5] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
                     + design3
+                    + design3Single;
+
+            maps[6] = design1Single
+                    + design1
+                    + design1Single
                     + nextLine
-                    + design3;
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
 
-            maps[4] = design1Character;
+            maps[7] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
 
-            maps[5] = design1Door;
+            maps[8] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
 
-            maps[6] = design2Character;
+            maps[9] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
 
-            maps[7] = design3Door;
+            maps[10] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
+
+            maps[11] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
+
+            maps[12] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
+
+            maps[13] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
+
+            maps[14] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
+
+            maps[15] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
+
+            maps[16] = design1Single
+                    + design1
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design1Single
+                    + design2
+                    + design1Single
+                    + nextLine
+                    + design3Single
+                    + design3
+                    + design3Single;
 
         }
     }
     public static void printArray() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 6; i++) {
             System.out.println(maps[i]);
         }
     }
