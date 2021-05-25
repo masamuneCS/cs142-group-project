@@ -1,4 +1,5 @@
 public class Item {
+    // choice 1-3 represents which potion the player is drinking
     public static int healingPotions (int choice, int currentPlayerHP, int maxHP) {
         // healing potion that adds 3 HP back
         if (choice == 1) {
@@ -28,15 +29,16 @@ public class Item {
     }
 
     // spell that reduces mob-inflicted damage by half for 2 turns (rounded up)
-    public static void mobDamageReducerSpell(double mobDamage) {
-        int i = 1;
-        while (i <= 2) {
-            mobDamage = (int) Math.ceil(mobDamage / 2.0);
-            i++;
+    public static double mobDamageReducerSpell(double mobDamage) {
+        int turn = 1;
+        while (turn <= 2) {
+            mobDamage = mobDamage / 2.0;
+            turn++;
         }
+        return mobDamage;
     }
 
-    // armor item that reduces mob-inflicted damage by 20%
+    // armor item that reduces mob-inflicted damage by 20% forever
     public static double armorItem(double mobDamage) {
         return mobDamage * 0.8;
     }
