@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Scanner;
 
 public class Character {
@@ -11,11 +13,16 @@ public class Character {
     protected int maxMana;
     protected Item[] inventory = new Item[4]; //Character can carry max four items
 
-    public void atkChar(int dmg){
+    public void dmgChar(int dmg){
         //TODO make method to reduce HP until character death
     }
-    public void healChar(int heals){
-        //TODO - make method to increase HP until max
+    public void healChar(int heals, @NotNull Character player){
+        if (player.hp + heals <= player.maxHP ){
+            player.hp += heals;
+        }
+        else {
+            player.hp = player.maxHP;
+        }
     }
     public void accessInventory(Scanner userInput){
         //TODO - make method to access inventory and use item or return
