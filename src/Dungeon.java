@@ -223,6 +223,7 @@ public class Dungeon {
     }
     // figuring out user entry + how to integrate it alongside maps
     // or should this be done in Game.java?
+    //Maybe create a method that can be called based on input from Game? - Zac
     public static boolean canMove(int[] maps) {
         boolean moveOkay = false;
         String e = userEntry.next();
