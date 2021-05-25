@@ -3,9 +3,10 @@ import java.util.Scanner;
 public class NPC {
     int phoneAFriend = 0;
 
-    public static String NPCinteraction(Scanner userInput, int helpPoint, int phoneAFriend){
+    public static String NPCinteraction(Scanner userInput, int helpPoint, int phoneAFriend,
+                                        String numberKeyOptions, boolean Steeve, boolean miniGameTriggered){
 
-        String output;
+        String output = new String("please use the number keys!(if that's what we're using)");
         //needs to call "phoningFriend" with current "hintPoint" and "phoneAFriend" values when
         // "phoningFriend" or "phone a friend" is typed into console
         String input = userInput.toString();
@@ -14,38 +15,31 @@ public class NPC {
                             // that is accepted and will prompt an NPC interaction depending on
                             // what is typed and if the player is talking to anyone.
 
-        validInput = new String[]{"call Sodi","phone a friend","need help please"};
-                                    // what would some valid inputs be? should we add some EasterEggs?
+        validInput = numberKeyOptions.split(",");
+        if(Steeve == true){
+            steveHarvyDiolouge(miniGameTriggered, validInput);
 
-
-        for(int j = 0; j < validInput.length; j++) {
-            if (input == validInput[j]) { //what is your plan to implement this?
-
-                //output will be different depending on the input,
-                // will take time to program, but will probably be worth.
-                output = (" ");
-                return output;
-            }
         }
-        output =("remember to capitalize names and don't end with a period" +
-                "always use the name of the NPC you want to talk to unless its the 'phone a friend command" +
-                " try again: ");
+        for(int i = 0; i < validInput.length; i++) {
+            if (input.equals(validInput[i])) {
+                phoningFriend(helpPoint, phoneAFriend, validInput.length);
+            } //what is your plan to implement this?
+        }
         return output;
     }
-    public static void steveHarvyDiolouge(boolean miniGame, int miniGameTriggered){ // steeveHary needs to
+    public static void steveHarvyDiolouge(boolean miniGameTriggered, String[] userCouldInput){ // steeveHary needs to
                                                                             // activate whenever the minigame
                                                                                 // is triggered
-        if(miniGame){
-            //the following is text that comes up when the mini-game starts
-           if(miniGameTriggered > 0){
+           if(miniGameTriggered == true){
                //text plays if this isn't your first time on the show
            }
            else{
                //this text plays if it IS your first time on the show
+
+               miniGameTriggered = true;
            }
         }
 
-    }
     public static String hints(int indexForRiddle){
         //insert array containing the hints for ALL of the riddles
         // cant really finish till we have a set amount of riddles
@@ -54,23 +48,26 @@ public class NPC {
 
         return riddleHint[indexForRiddle];
     }
-    public static void phoningFriend(int helpPoint, int phoneAFriend, int index){
+    public static String phoningFriend(int helpPoint, int phoneAFriend, int index){
         //the following controls everything that happens when you type "phone a friend" in the console
-        if(helpPoint == 1) {
+        String responce = new String("sodi: dude... i cant give you any more hints, stop bothering me.");
+        if(helpPoint >= 1) {
             if(phoneAFriend == 0){
                 // first time phoningFriend is called
-                System.out.println("sodi: so, you actually need help huh? great give me a sec.");
+                responce = ("sodi: so, you actually need help huh? great give me a sec...");
+
             }
             else{
                 //every other time "phoningFriend" is called
-                System.out.println("sodi: need me again? fine i have time");
+                responce = ("sodi: need me again? fine i have time");
+
             }
             //this will be what calls and types the hint in the console
-            System.out.println("alright, heres the hint; and pay attention, im not saying this twice!");
-            System.out.println(hints(index));
+            responce = responce + ("alreight, pay attention, you're only getting this once; ") + hints(index);
 
             helpPoint = helpPoint - 1;
+            return responce;
         }
-
-    }
+        return responce;
+}
 }
