@@ -9,8 +9,8 @@ public class Character {
     protected String playerName;
     protected int hp;
     protected int mana;
-    protected int maxHP;
-    protected int maxMana;
+    private final int maxHP;
+    private final int maxMana;
     protected Item[] inventory = new Item[4]; //Character can carry max four items
 
     public void dmgChar(int dmg){
