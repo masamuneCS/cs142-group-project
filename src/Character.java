@@ -13,9 +13,27 @@ public class Character {
     private final int maxMana;
     protected Item[] inventory = new Item[4]; //Character can carry max four items
 
-    public void dmgChar(int dmg){
-        //TODO make method to reduce HP until character death
+    /**
+     * method to reduce players hp and kill the player.
+     * @param dmg how much to lower player hp
+     * @param player player character
+     * @param userInput
+     * @throws GameOverException ends the gane
+     */
+    public void dmgChar(int dmg, Character player, Scanner userInput) throws GameOverException{
+        if (player.hp - dmg > 0){
+            player.hp -= dmg;
+        }
+        else{
+            Game.gameOver(player, userInput);
+        }
     }
+
+    /**
+     * method to increase player HP
+     * @param heals how much to increase HP
+     * @param player player character
+     */
     public void healChar(int heals, @NotNull Character player){
         if (player.hp + heals <= player.maxHP ){
             player.hp += heals;
@@ -24,18 +42,17 @@ public class Character {
             player.hp = player.maxHP;
         }
     }
-    public void accessInventory(Scanner userInput){
+    public void accessInventory(Scanner userInput, Character player){
         //TODO - make method to access inventory and use item or return
     }
-    public void alterInventory(Scanner userInput){
+    public void alterInventory(Scanner userInput, Character player){
         //TODO - make method to add items to inventory and allow player to drop/replace items
     }
 
     private Character(String playerName, int maxHP, int maxMana) {
-        this.maxHP = maxHP;
-        hp = maxHP;
-        this.maxMana = maxMana;
-        mana = maxMana;
+        this.playerName = playerName;
+        hp = this.maxHP = maxHP;
+        mana = this.maxMana = maxMana;
     }
 
     public static Character buildRogue(String playerName){
