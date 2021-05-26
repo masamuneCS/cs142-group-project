@@ -18,9 +18,9 @@ public class Character {
      * @param dmg how much to lower player hp
      * @param player player character
      * @param userInput
-     * @throws GameOverException ends the gane
+     * @throws GameOverException ends the game
      */
-    public void dmgChar(int dmg, Character player, Scanner userInput) throws GameOverException{
+    public void dmg(int dmg, Character player, Scanner userInput) throws GameOverException{
         if (player.hp - dmg > 0){
             player.hp -= dmg;
         }
@@ -34,7 +34,7 @@ public class Character {
      * @param heals how much to increase HP
      * @param player player character
      */
-    public void healChar(int heals, @NotNull Character player){
+    public void heal(int heals, @NotNull Character player){
         if (player.hp + heals <= player.maxHP ){
             player.hp += heals;
         }
