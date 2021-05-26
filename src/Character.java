@@ -42,6 +42,23 @@ public class Character {
             player.hp = player.maxHP;
         }
     }
+
+    /**
+     * method to increase or decrease players mana pool
+     * @param manas positive increases mana, negative decreases mana
+     * @param player player character
+     */
+    public void changeMana(int manas, @NotNull Character player){
+        if (player.mana + manas <= player.maxMana && player.mana + manas > 0){
+            player.mana += manas;
+        }
+        else if(player.mana + manas > player.maxMana){
+            player.mana = player.maxMana;
+        }
+        else{
+            player.mana = 0;
+        }
+    }
     public void accessInventory(Scanner userInput, Character player){
         //TODO - make method to access inventory and use item or return
     }
