@@ -1,20 +1,13 @@
 import org.jetbrains.annotations.NotNull;
 
-public class Mob {
+public class Mob extends Entity {
     protected String mobType;
-    protected int hp;
-    protected int mana;
-    protected int atkStr;
-    protected int atkSize;
-    private final int maxHP;
-    private final int maxMana;
 
-    private Mob(String mobType, int maxHP, int maxMana, int atkDice, int atkSize){
+
+    private Mob(String mobType, int maxHP, int maxMana, int atkStr, int atkSize){
+        super(maxHP, maxMana, atkStr, atkSize );
         this.mobType = mobType;
-        hp = this.maxHP = maxHP;
-        mana = this.maxMana = maxMana;
-        this.atkStr = atkDice;
-        this.atkSize = atkSize;
+
     }
 
         public static Mob grunt(){
@@ -44,50 +37,5 @@ public class Mob {
             return new Mob(mobType, maxHP, maxMana, atkDice, atkSize);
         }
 
-    // Stat effecting methods === === === === === === === === === === === === === === === === === === === ===
-
-    /**
-     * method to reduce players hp and kill the player.
-     * @param dmg how much to lower player hp
-     * @param enemy enemy mob
-     */
-    public void dmg(int dmg, Mob enemy){
-        if (enemy.hp - dmg > 0){
-            enemy.hp -= dmg;
-        }
-        else{
-            enemy.mobType = "dead";
-        }
-    }
-
-    /**
-     * method to increase enemy HP
-     * @param heals how much to increase HP
-     * @param enemy enemy mob
-     */
-    public void heal(int heals, @NotNull Mob enemy){
-        if (enemy.hp + heals <= enemy.maxHP ){
-            enemy.hp += heals;
-        }
-        else {
-            enemy.hp = enemy.maxHP;
-        }
-    }
-
-    /**
-     * method to increase or decrease enemy mana pool
-     * @param manas positive increases mana, negative decreases mana
-     * @param enemy enemy mob
-     */
-    public void changeMana(int manas, @NotNull Mob enemy){
-        if (enemy.mana + manas <= enemy.maxMana && enemy.mana + manas > 0){
-            enemy.mana += manas;
-        }
-        else if(enemy.mana + manas > enemy.maxMana){
-            enemy.mana = enemy.maxMana;
-        }
-        else{
-            enemy.mana = 0;
-        }
-    }
+//call entity methods to effect mob stats
 }
