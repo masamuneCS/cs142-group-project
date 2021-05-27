@@ -1,6 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Scanner;
 
 public class Entity {
     //players and mobs are entities. Call entity methods when you need to do Stuff.
@@ -22,23 +19,22 @@ public class Entity {
     /**
      * method to reduce entity hp and kill entity.
      * @param dmg how much to lower hp
-     * @param target character or mob to damage
      * @throws GameOverException ends the game
      */
-    public void dmg(int dmg, Entity target, Scanner userInput) throws GameOverException{
-        if (target instanceof Character){
-            if (target.hp - (dmg - ((Character) target).resist) > 0){
-                target.hp -= (dmg - ((Character) target).resist);
+    public void dmg(int dmg) throws GameOverException{
+        if (this instanceof Character){
+            if (this.hp - (dmg - ((Character) this).resist) > 0){
+                this.hp -= (dmg - ((Character) this).resist);
             }
             else{
-                Game.gameOver((Character) target, userInput);
+                Game.gameOver((Character) this);
             }
         }
-        else if (target.hp - dmg > 0){
-            target.hp -= dmg;
+        else if (this.hp - dmg > 0){
+            this.hp -= dmg;
         }
         else{
-            ((Mob)target).mobType = "dead";
+            ((Mob)this).mobType = "dead";
         }
 
     }
@@ -46,31 +42,70 @@ public class Entity {
     /**
      * method to increase player HP
      * @param heals how much to increase HP
-     * @param target target entity
      */
-    public void heal(int heals, @NotNull Entity target){
-        if (target.hp + heals <= target.maxHP ){
-            target.hp += heals;
+    public void heal(int heals){
+        if (this.hp + heals <= this.maxHP ){
+            this.hp += heals;
         }
         else {
-            target.hp = target.maxHP;
+            this.hp = this.maxHP;
         }
     }
 
     /**
      * method to increase or decrease players mana pool
      * @param manas positive increases mana, negative decreases mana
-     * @param target character or mob
      */
-    public void changeMana(int manas, @NotNull Entity target){
-        if (target.mana + manas <= target.maxMana && target.mana + manas > 0){
-            target.mana += manas;
+    public void changeMana(int manas){
+        if (this.mana + manas <= this.maxMana && this.mana + manas > 0){
+            this.mana += manas;
         }
-        else if(target.mana + manas > target.maxMana){
-            target.mana = target.maxMana;
+        else if(this.mana + manas > this.maxMana){
+            this.mana = this.maxMana;
         }
         else{
-            target.mana = 0;
+            this.mana = 0;
         }
     }
+
+    //Ability methods === === === === === === === === === === === === === === === === === === === === === === === === ===
+
+    public void basicAttack(Entity target, int atkStr, int atkSize) throws GameOverException{
+        //damages an enemy target based on entity atk stats
+        int dmg = Game.diceRoll(atkSize, atkStr);
+        target.dmg(dmg);
+    }
+
+    public void healAlly(Entity target, Entity caster) throws IllegalArgumentException{
+        //shaman only, heals an ally target for 2 d3 heals for 5 mana
+        int manaCost = 5;
+        if (caster instanceof Mob){
+            if (((Mob)caster).mobType.equals("shaman") && caster.mana > manaCost){
+                int heals = Game.diceRoll(2, 3);
+                target.heal(heals);
+                caster.changeMana(-manaCost);
+            }
+        }
+        else{
+            throw new IllegalArgumentException();
+        }
+
+    }
+
+    public void fireball(Entity target, Entity caster) throws GameOverException, IllegalArgumentException {
+        //mage only, deals 2 d6 damage
+        int manaCost = 5;
+        if (caster instanceof Character){
+            if (((Character) caster).classType.equals("mage")){
+                int dmg = Game.diceRoll(2, 6);
+                target.dmg(dmg);
+                caster.changeMana(-manaCost);
+            }
+        }
+        else{
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }
