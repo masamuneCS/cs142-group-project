@@ -24,7 +24,7 @@ public class Character extends Entity {
             int maxHP = 20;
             int maxMana = 15;
             int passiveResist = 0;
-            int atkStr = 6;
+            int atkStr = 3;
             int atkSize = 2;
             return new Character(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize);
         }
@@ -34,7 +34,7 @@ public class Character extends Entity {
             int maxHP = 25;
             int maxMana = 10;
             int passiveResist = 1;
-            int atkStr = 6;
+            int atkStr = 4;
             int atkSize = 2;
             return new Character(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize);
         }
@@ -44,14 +44,12 @@ public class Character extends Entity {
             int maxHP = 15;
             int maxMana = 20;
             int passiveResist = 0;
-            int atkStr = 6;
+            int atkStr = 3;
             int atkSize = 2;
             return new Character(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize);
         }
 
     // Stat effecting methods === === === === === === === === === === === === === === === === === === === ===
-
-
 
     public void changeResist(int resists){
         if (this.resist + resists > this.passiveResist && this.resist + resists < maxResist){
