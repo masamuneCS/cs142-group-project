@@ -3,8 +3,9 @@ import java.util.Scanner;
 public class Game {
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
+        int gameStage = 1;
         while(true) { //game loop. All game processes should be inside this loop.
-            try {
+            try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
                 Character player;
                 System.out.println("What kind of hero are you? Type a number and press enter.\n" +
                         "1: Warrior. Can take a lot of hits.\n" +
@@ -50,7 +51,7 @@ public class Game {
     }
 
     /**
-     * The end of the game
+     * the player lost, the end of the game.
      * @param player the player character
      * @param userInput scanner input
      * @throws GameOverException end the game
