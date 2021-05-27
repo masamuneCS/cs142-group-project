@@ -7,11 +7,49 @@ public class Character {
      * Character class defines the player character stats and methods for adjusting stats and inventory
      */
     protected String playerName;
+    protected String classType;
     protected int hp;
     protected int mana;
+    protected int resist;
     private final int maxHP;
     private final int maxMana;
+    private final int passiveResist;
+    private static final int maxResist = 4;
     protected Item[] inventory = new Item[4]; //Character can carry max four items
+
+    private Character(String playerName, int maxHP, int maxMana, int passiveResist, String classType) {
+        this.playerName = playerName;
+        hp = this.maxHP = maxHP;
+        mana = this.maxMana = maxMana;
+        resist = this.passiveResist = passiveResist;
+        this.classType = classType;
+    }
+
+        public static Character buildRogue(String playerName){
+            String classType = "rogue";
+            int maxHP = 20;
+            int maxMana = 15;
+            int passiveResist = 0;
+            return new Character(playerName, maxHP, maxMana, passiveResist, classType);
+        }
+
+        public static Character buildWarrior(String playerName){
+            String classType = "warrior";
+            int maxHP = 25;
+            int maxMana = 10;
+            int passiveResist = 1;
+            return new Character(playerName, maxHP, maxMana, passiveResist, classType);
+        }
+
+        public static Character buildMage(String playerName){
+            String classType = "mage";
+            int maxHP = 15;
+            int maxMana = 20;
+            int passiveResist = 0;
+            return new Character(playerName, maxHP, maxMana, passiveResist, classType);
+        }
+
+    // Stat effecting methods === === === === === === === === === === === === === === === === === === === ===
 
     /**
      * method to reduce players hp and kill the player.
@@ -21,8 +59,8 @@ public class Character {
      * @throws GameOverException ends the game
      */
     public void dmg(int dmg, Character player, Scanner userInput) throws GameOverException{
-        if (player.hp - dmg > 0){
-            player.hp -= dmg;
+        if (player.hp - (dmg - player.resist) > 0){
+            player.hp -= (dmg - player.resist);
         }
         else{
             Game.gameOver(player, userInput);
@@ -59,6 +97,18 @@ public class Character {
             player.mana = 0;
         }
     }
+
+    public void changeResist(int resists, @NotNull Character player){
+        if (player.resist + resists > player.passiveResist && player.resist + resists < maxResist){
+            player.resist += resists;
+        }
+        else if (player.resist + resists < player.passiveResist){
+            player.resist = player.passiveResist;
+        }
+        else if (player.resist + resists > maxResist){
+            player.resist = maxResist;
+        }
+    }
     public void accessInventory(Scanner userInput, Character player){
         //TODO - make method to access inventory and use item or return
     }
@@ -66,62 +116,13 @@ public class Character {
         //TODO - make method to add items to inventory and allow player to drop/replace items
     }
 
-    private Character(String playerName, int maxHP, int maxMana) {
-        this.playerName = playerName;
-        hp = this.maxHP = maxHP;
-        mana = this.maxMana = maxMana;
+  //Ability Methods
+
+    public void basicAttack(Mob enemy){
+
     }
 
-    public static Character buildRogue(String playerName){
-        int maxHP = 15;
-        int maxMana = 15;
-        return new Character(playerName, maxHP, maxMana);
-    }
-
-    public static Character buildWarrior(String playerName){
-        int maxHP = 20;
-        int maxMana = 10;
-        return new Character(playerName, maxHP, maxMana);
-    }
-
-    public static Character buildMage(String playerName){
-        int maxHP = 10;
-        int maxMana = 20;
-        return new Character(playerName, maxHP, maxMana);
-    }
 }
 
-/*class Rogue extends Character{
 
-    public Rogue(String playerName) {
-        super(playerName);
-        this.playerName = playerName;
-        maxHP = 15;
-        hp = maxHP;
-        maxMana = 15;
-        mana = maxMana;
-    }
-}
-
-class Warrior extends Character{
-    public Warrior(String playerName) {
-        super(playerName);
-        this.playerName = playerName;
-        maxHP = 20;
-        hp = maxHP;
-        maxMana = 10;
-        mana = maxMana;
-    }
-}
-
-class Mage extends Character{
-    public Mage(String playerName) {
-        super(playerName);
-        this.playerName = playerName;
-        maxHP = 10;
-        hp = maxHP;
-        maxMana = 20;
-        mana = maxMana;
-    }
-}*/
 
