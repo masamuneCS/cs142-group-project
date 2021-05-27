@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Scanner;
 
 public class Character extends Entity {
@@ -55,15 +53,15 @@ public class Character extends Entity {
 
 
 
-    public void changeResist(int resists, @NotNull Character player){
-        if (player.resist + resists > player.passiveResist && player.resist + resists < maxResist){
-            player.resist += resists;
+    public void changeResist(int resists){
+        if (this.resist + resists > this.passiveResist && this.resist + resists < maxResist){
+            this.resist += resists;
         }
-        else if (player.resist + resists < player.passiveResist){
-            player.resist = player.passiveResist;
+        else if (this.resist + resists < this.passiveResist){
+            this.resist = this.passiveResist;
         }
-        else if (player.resist + resists > maxResist){
-            player.resist = maxResist;
+        else if (this.resist + resists > maxResist){
+            this.resist = maxResist;
         }
     }
     public void accessInventory(Scanner userInput, Character player){
