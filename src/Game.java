@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -62,6 +63,21 @@ public class Game {
         boolean playAgain = !userInput.next().equalsIgnoreCase("n");
         throw new GameOverException(playAgain);
 
+    }
+
+    private static Random rand = new Random(); //for getting nice random numbers without the weird math.random formula
+    /**
+     * rolls dice!
+     * @param numDice how many dice to roll
+     * @param dSize how big of a die are you rolling
+     * @return what did you roll
+     */
+    public static int diceRoll (int numDice, int dSize){
+        int roll = 0;
+        for (int i = 0; i < numDice; i++){
+            roll += rand.nextInt(dSize + 1);
+        }
+        return roll;
     }
 
 }
