@@ -2,8 +2,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
+    public static Scanner userInput = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner userInput = new Scanner(System.in);
         int gameStage = 1;
         while(true) { //game loop. All game processes should be inside this loop.
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
@@ -40,7 +41,7 @@ public class Game {
                     break; //breaks loop
                 }
                 //TODO - Ya know, the rest of the game.
-                gameOver(player, userInput);
+                gameOver(player);
             }
             catch (GameOverException exception) { //either closes program or restarts game based on player choice in GameOverException.
                 if (exception.playAgain){
@@ -54,10 +55,9 @@ public class Game {
     /**
      * the player lost, the end of the game.
      * @param player the player character
-     * @param userInput scanner input
      * @throws GameOverException end the game
      */
-    public static void gameOver (Character player, Scanner userInput) throws GameOverException {
+    public static void gameOver (Character player) throws GameOverException {
         System.out.println(player.playerName + " died. How sad.\nG A M E  O V E R");
         System.out.println("Do you want to play again Y/n?");
         boolean playAgain = !userInput.next().equalsIgnoreCase("n");
