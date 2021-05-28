@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Entity {
     //players and mobs are entities. Call entity methods when you need to do Stuff.
@@ -7,12 +8,73 @@ public class Entity {
     protected final int maxMana;
     protected int atkStr;
     protected int atkSize;
+    protected int initiative;
 
     public Entity(int maxHP, int maxMana, int atkStr, int atkSize) {
         hp = this.maxHP = maxHP;
         mana = this.maxMana = maxMana;
         this.atkStr = atkStr;
         this.atkSize = atkSize;
+        this.initiative = 0; //default initiative is always zero, gets rolled at top of encounter
+    }
+
+    //Player Character factory methods === === === === === === === === === === === === === === === === === === === ===
+    public static Character buildRogue(String playerName){
+        String classType = "rogue";
+        int maxHP = 20;
+        int maxMana = 15;
+        int passiveResist = 0;
+        int atkStr = 3;
+        int atkSize = 2;
+        return new Character(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize);
+    }
+
+    public static Character buildWarrior(String playerName){
+        String classType = "warrior";
+        int maxHP = 25;
+        int maxMana = 10;
+        int passiveResist = 1;
+        int atkStr = 4;
+        int atkSize = 2;
+        return new Character(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize);
+    }
+
+    public static Character buildMage(String playerName){
+        String classType = "mage";
+        int maxHP = 15;
+        int maxMana = 20;
+        int passiveResist = 0;
+        int atkStr = 3;
+        int atkSize = 2;
+        return new Character(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize);
+    }
+
+//Mob Factory Methods === === === === === === === === === === === === === === === === === === === ===
+    public static Mob grunt(){
+        String mobType = "grunt";
+        int maxHP = 10;
+        int maxMana = 10;
+        int atkDice = 1;
+        int atkSize = 4;
+        return new Mob(mobType, maxHP, maxMana, atkDice, atkSize);
+    }
+
+    public static Mob brute(){
+        String mobType = "brute";
+        int maxHP = 20;
+        int maxMana = 10;
+        int atkDice = 2;
+        int atkSize = 4;
+        return new Mob(mobType, maxHP, maxMana, atkDice, atkSize);
+    }
+
+    public static Mob shaman(){
+        String mobType = "shaman";
+        int maxHP = 10;
+        int maxMana = 15;
+        int atkDice = 1;
+        int atkSize = 4;
+        return new Mob(mobType, maxHP, maxMana, atkDice, atkSize);
     }
 
 // Stat effecting methods === === === === === === === === === === === === === === === === === === === ===
@@ -108,4 +170,115 @@ public class Entity {
     }
 
 
+}
+
+
+class Character extends Entity {
+    /**
+     * Character class defines the player character stats and methods for adjusting stats and inventory
+     */
+    protected String playerName;
+    protected String classType;
+    protected int resist;
+    private final int passiveResist;
+    private static final int maxResist = 4;
+    protected Item[] inventory = new Item[4]; //Character can carry max four items
+
+    protected Character(String playerName, int maxHP, int maxMana, int passiveResist, String classType, int atkStr, int atkSize) {
+        super(maxHP, maxMana, atkStr, atkSize);
+        this.playerName = playerName;
+        resist = this.passiveResist = passiveResist;
+        this.classType = classType;
+    }
+
+/*    public static Character buildRogue(String playerName){
+        String classType = "rogue";
+        int maxHP = 20;
+        int maxMana = 15;
+        int passiveResist = 0;
+        int atkStr = 3;
+        int atkSize = 2;
+        return new Character(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize);
+    }
+
+    public static Character buildWarrior(String playerName){
+        String classType = "warrior";
+        int maxHP = 25;
+        int maxMana = 10;
+        int passiveResist = 1;
+        int atkStr = 4;
+        int atkSize = 2;
+        return new Character(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize);
+    }
+
+    public static Character buildMage(String playerName){
+        String classType = "mage";
+        int maxHP = 15;
+        int maxMana = 20;
+        int passiveResist = 0;
+        int atkStr = 3;
+        int atkSize = 2;
+        return new Character(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize);
+    }*/
+
+    // Stat effecting methods === === === === === === === === === === === === === === === === === === === ===
+
+    public void changeResist(int resists){
+        if (this.resist + resists > this.passiveResist && this.resist + resists < maxResist){
+            this.resist += resists;
+        }
+        else if (this.resist + resists < this.passiveResist){
+            this.resist = this.passiveResist;
+        }
+        else if (this.resist + resists > maxResist){
+            this.resist = maxResist;
+        }
+    }
+    public void accessInventory(Scanner userInput, Character player){
+        //TODO - make method to access inventory and use item or return
+    }
+    public void alterInventory(Scanner userInput, Character player){
+        //TODO - make method to add items to inventory and allow player to drop/replace items
+    }
+
+}
+
+class Mob extends Entity {
+    protected String mobType;
+
+
+    protected Mob(String mobType, int maxHP, int maxMana, int atkStr, int atkSize){
+        super(maxHP, maxMana, atkStr, atkSize );
+        this.mobType = mobType;
+
+    }
+
+/*    public static Mob grunt(){
+        String mobType = "grunt";
+        int maxHP = 10;
+        int maxMana = 10;
+        int atkDice = 1;
+        int atkSize = 4;
+        return new Mob(mobType, maxHP, maxMana, atkDice, atkSize);
+    }
+
+    public static Mob brute(){
+        String mobType = "brute";
+        int maxHP = 20;
+        int maxMana = 10;
+        int atkDice = 2;
+        int atkSize = 4;
+        return new Mob(mobType, maxHP, maxMana, atkDice, atkSize);
+    }
+
+    public static Mob shaman(){
+        String mobType = "shaman";
+        int maxHP = 10;
+        int maxMana = 15;
+        int atkDice = 1;
+        int atkSize = 4;
+        return new Mob(mobType, maxHP, maxMana, atkDice, atkSize);
+    }*/
+
+//call entity methods to effect mob stats
 }
