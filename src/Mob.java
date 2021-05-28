@@ -1,6 +1,6 @@
 import org.jetbrains.annotations.NotNull;
 
-public class Mob extends Entity {
+/*public class Mob extends Entity {
     protected String mobType;
 
 
@@ -38,4 +38,4 @@ public class Mob extends Entity {
         }
 
 //call entity methods to effect mob stats
-}
+}*/
