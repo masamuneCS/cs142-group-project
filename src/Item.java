@@ -42,11 +42,4 @@ public class Item {
     public static double armorItem(double mobDamage) {
         return mobDamage * 0.8;
     }
-
-    // I wanted this to be like "if you take this, you can move 2 spaces instead of just one for a turn"
-    // but it may be a little too involved cuz we'd prbly have to rewrite canMove, move, and moveVisual
-    public static int[] bunnyPotion(int position) {
-        int[] filler = {1, 2, 3};
-        return filler;
-    }
 }
