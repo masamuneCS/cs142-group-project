@@ -1,45 +1,58 @@
 public class Item {
-    // choice 1-3 represents which potion the player is drinking
-    public static int healingPotions (int choice, int currentPlayerHP, int maxHP) {
-        // healing potion that adds 3 HP back
-        if (choice == 1) {
-            if (currentPlayerHP + 3 <= maxHP) {
-                currentPlayerHP = currentPlayerHP + 3;
-            }
-            else {
-                System.out.println("You may not drink this potion right now because your HP is too high.");
-            }
-        }
+    public int heals;
+    public int damage;
+    public int resist;
+    public String name;
 
-        // healing potion that restores half of what's been lost (rounded down)
-        if (choice == 2) {
-            if (currentPlayerHP + ((maxHP - currentPlayerHP) / 2) <= maxHP) {
-                currentPlayerHP = currentPlayerHP + ((maxHP - currentPlayerHP) / 2);
-            }
-            else {
-                System.out.println("You may not drink this potion right now because your HP is too high.");
-            }
-        }
-
-        // frickin super ninja ultra max healing potion that resets you back to 10
-        if (choice == 3) {
-            currentPlayerHP = maxHP;
-        }
-        return currentPlayerHP;
+    public Item(int heals, int damage, int resist, String name){
+        this.heals = heals;
+        this.damage = damage;
+        this.resist = resist;
+        this.name = name;
     }
 
-    // spell that reduces mob-inflicted damage by half for 2 turns (rounded up)
-    public static double mobDamageReducerSpell(double mobDamage) {
-        int turn = 1;
-        while (turn <= 2) {
-            mobDamage = mobDamage / 2.0;
-            turn++;
-        }
-        return mobDamage;
+    // healing potion that adds 3 HP back
+    public static Item healing3Potion () {
+        int heals = 3;
+        int damage = 0;
+        int resist = 0;
+        String name = "Plus 3 HP Healing potion";
+        return new Item(heals, damage, resist, name);
     }
 
-    // armor item that reduces mob-inflicted damage by 20% forever
-    public static double armorItem(double mobDamage) {
-        return mobDamage * 0.8;
+    // healing potion that restores half of what's been lost (rounded down)
+    public static Item healingHalfPotion (PlayerCharacter target) {
+        int heals = (target.maxHP - target.hp) / 2;
+        int damage = 0;
+        int resist = 0;
+        String name = "Plus half of what was lost Healing potion";
+        return new Item(heals, damage, resist, name);
+    }
+
+    // frickin super ninja ultra max healing potion that resets you back to 10
+    public static Item healingMaxPotion (PlayerCharacter target) {
+        int heals = target.maxHP;
+        int damage = 0;
+        int resist = 0;
+        String name = "Frickin super ninja ultra max healing potion that resets you back to full HP";
+        return new Item(heals, damage, resist, name);
+    }
+
+    // spell that reduces mob-inflicted damage by 1
+    public static Item mobDamageReducerSpell(PlayerCharacter target) {
+        int heals = 0;
+        int damage = 0;
+        int resist = 1;
+        String name = "Mob damage reducer spell";
+        return new Item(heals, damage, resist, name);
+    }
+
+    // armor item that reduces mob-inflicted damage by.....
+    public static Item armorItem(PlayerCharacter target) {
+        int heals = 0;
+        int damage = 0;
+        int resist = 0; // figure out later
+        String name = "Armor";
+        return new Item(heals, damage, resist, name);
     }
 }
