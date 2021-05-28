@@ -2,23 +2,32 @@ import java.util.Scanner;
 
 public class NPC {
 
-        public static String[] harveyDio(int goodPoints){   // good points is how well you're doing
+    public String[] general(){
+
+        String[] generalInfo = new String[]{""};
+        return null;
+    }
+
+
+        public static String harveyDio(int goodPoints){   // good points is how well you're doing
                                                             // in the mini-game.
                                                             // 100 is a stand-in and can be
                                                             // replaced with anything else
 
+            int index = 1; // stand-in number
         //string of dialogue for Steve harvey to choose from
-           String[] DIO;
+           String DIO;
             if(goodPoints >= 100){
+
                 //dialogue to encourage the player and congratulate them on being good at the game
                 String[] goodDio = new String[]{" ya did good kid ", " hey! look at that! good work"};
-                DIO = goodDio;
+                DIO = goodDio[index];
             }
             else{
                 //dialogue to make fun of the player because they arent good at simple tasks
                 String[] badDio = new String[]{" wow... i can not 'believe' that was your answer ",
                         " alright, now you know why i said not to do that hmmm? "};
-                DIO = badDio;
+                DIO = badDio[index];
             }
                 return DIO;
         }
@@ -45,7 +54,7 @@ public class NPC {
             }
             else{
                 //every other time "phoningFriend" is called
-                responce = ("sodi: need me again? fine i have time\n");
+                responce = ("sodi: need me again? fine, i have time\n");
 
             }
             //this will be what calls and types the hint in the console
