@@ -1,7 +1,7 @@
 // potentially re-include these so the game can be seen and played in a standalone window akin to StarsAndStripes
 // otherwise the game currently will be played in the console itself
 
-/*import java.awt.Font;
+/*
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -10,20 +10,25 @@ import java.sql.Array;
 import java.lang.reflect.Array;*/
 
 import java.util.Scanner;
+import java.awt.Font;
+import java.text.AttributedString;
+import java.awt.font.TextAttribute;
 
 public class Dungeon {
 
-    static String nextLine = System.getProperty("line.separator");
+    public static String nextLine = System.getProperty("line.separator");
 
-    static Scanner userEntry = new Scanner(System.in);
+    public static Scanner userEntry = new Scanner(System.in);
 
     //array number arbitrary until we finalize number of floors + size of floors relative to time
-    static String[] maps = new String[32];
+    public static String[] maps = new String[32];
 
-    static int[] playerPosition = new int[32];
+    public static int[] playerPosition = new int[32];
 
     public static void initializeMapDesigns() {
         //separation is intentional for visual clarity
+
+        Font plainFont = new Font("Times New Roman", Font.PLAIN, 24);
 
         String design1 = "*******";
         String design1Single = "*";
@@ -39,6 +44,20 @@ public class Dungeon {
         String design3Single = "=";
         String design3HorizontalDoor = "===" + "O" + "===";
         String design3Character = "===" + "C" + "===";
+
+        String designChest = "m";
+
+        //map[7] has a shrine
+        String designShrine = "S";
+
+        AttributedString aa = new AttributedString(designChest);
+        aa.addAttribute(TextAttribute.FONT, plainFont);
+        aa.addAttribute(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON, 1,
+                15);
+        AttributedString ab = new AttributedString(designShrine);
+        ab.addAttribute(TextAttribute.FONT, plainFont);
+        ab.addAttribute(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON, 1,
+                15);
 
         for (int i = 0; i < maps.length; i++) {
             maps[0] = design1Single + design1 + design1Single
@@ -91,21 +110,21 @@ public class Dungeon {
                     + nextLine
                     + design1Single + design1 + design1Single;
 
-            maps[5] = design1Single + design1 + design1Single
+            maps[5] = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
+                    + "O" + design2Character + "O"
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design3Single + design3 + design3Single;
+                    + design3Single + design3HorizontalDoor + design3Single;
 
             maps[6] = design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
+                    + "O" + design2Character + "O"
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -113,19 +132,19 @@ public class Dungeon {
 
             maps[7] = design1Single + design1 + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
+                    + design1Single + design2Single + design2Single + design2Single + designShrine + design2Single + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
+                    + "O" + design2Character + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
                     + design3Single + design3 + design3Single;
 
-            maps[8] = design1Single + design1 + design1Single
+            maps[8] = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
+                    + design1Single + design2 + "O"
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -135,17 +154,17 @@ public class Dungeon {
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
+                    + "O" + design2Character + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design3Single + design3 + design3Single;
+                    + design3Single + design3HorizontalDoor + design3Single;
 
             maps[10] = design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
+                    + "O" + design2Character + "O"
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -155,57 +174,57 @@ public class Dungeon {
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
+                    + "O" + design2Character + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design3Single + design3 + design3Single;
+                    + design3Single + design3HorizontalDoor + design3Single;
 
-            maps[12]= design1Single + design1 + design1Single
+            maps[12]= design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
+                    + design1Single + design2Character + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design3Single + design3 + design3Single;
+                    + design3Single + design3HorizontalDoor + design3Single;
 
-            maps[13]= design1Single + design1 + design1Single
+            maps[13]= design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
+                    + design1Single + design2Character + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design3Single + design3 + design3Single;
+                    + design3Single + design3HorizontalDoor + design3Single;
 
             maps[14]= design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
+                    + "O" + design2Character + design1Single
+                    + nextLine
                     + design1Single + design2 + design1Single
+                    + nextLine
+                    + design3Single + design3HorizontalDoor + design3Single;
+
+            maps[15]= design1Single + design1HorizontalDoor + design1Single
+                    + nextLine
+                    + design1Single + design2 + design1Single
+                    + nextLine
+                    + design1Single + design2Character + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
                     + design3Single + design3 + design3Single;
 
-            maps[15]= design1Single + design1 + design1Single
+            maps[16]= design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
-                    + design1Single + design2 + design1Single
-                    + nextLine
-                    + design1Single + design2 + design1Single
-                    + nextLine
-                    + design3Single + design3 + design3Single;
-
-            maps[16]= design1Single + design1 + design1Single
-                    + nextLine
-                    + design1Single + design2 + design1Single
-                    + nextLine
-                    + design1Single + design2 + design1Single
+                    + design1Single + design2Character + "O"
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -226,59 +245,48 @@ public class Dungeon {
     //Maybe create a method that can be called based on input from Game? - Zac
     public static boolean canMove(int[] maps) {
         boolean moveOkay = false;
-        String e = userEntry.next();
+        String input = Game.userInput.nextLine();
         //int x = (int) Array.get(maps, Integer.parseInt(i));
 
-            if (e.equals("right")) {
+        switch (input) {
+            case "right" : {
+                System.out.println("arbitrary");
                 for (int i = 0; i < maps.length; i++) {
                     if (i < maps.length - 1 && maps[i] == 1 || maps[i] == 3) {
-                        if (maps[i] == 0) {
-                            moveOkay = true;
-                            break;
-                        }
+                        moveOkay = true;
+                        break;
                     }
                 }
             }
-            if (e.equals("down")) {
+            case "up" : {
+                System.out.println("arbitrary");
                 for (int i = 0; i < maps.length; i++) {
                     if (i < maps.length - 1 && maps[i] == 1 || maps[i] == 3) {
-                        if (maps[i + 1] == 0) {
-                            moveOkay = true;
-                            break;
-                        }
+                        moveOkay = true;
+                        break;
                     }
                 }
             }
-            if (e.equals("left")) {
+            case "left" : {
+                System.out.println("arbitrary");
                 for (int i = 0; i < maps.length; i++) {
                     if (i < maps.length - 1 && maps[i] == 1 || maps[i] == 3) {
-                        if (maps[i + 1] == 0) {
-                            moveOkay = true;
-                            break;
-                        }
+                        moveOkay = true;
+                        break;
                     }
                 }
             }
-            if (e.equals("up")) {
+            case "down" : {
+                System.out.println("arbitrary");
                 for (int i = 0; i < maps.length; i++) {
                     if (i < maps.length - 1 && maps[i] == 1 || maps[i] == 3) {
-                        if (maps[i + 1] == 0) {
-                            moveOkay = true;
-                            break;
-                        }
+                        moveOkay = true;
+                        break;
                     }
                 }
             }
-            if (e.equals("use")) {
-                for (int i = 0; i < maps.length; i++) {
-                    if (i < maps.length - 1 && maps[i] == 1 || maps[i] == 3) {
-                        if (maps[i + 1] == 0) {
-                            moveOkay = true;
-                            break;
-                        }
-                    }
-                }
-            }
+
+        }
         return moveOkay;
 
     }
@@ -376,7 +384,7 @@ public class Dungeon {
     }
 
     // currently only for printing map designs to the console
-    public static void main(String[] args) {
+ /*   public static void main(String[] args) {
         initializeMapDesigns();
         printArray();
 
@@ -384,8 +392,5 @@ public class Dungeon {
         String prompt = "Please enter your next move.\nAcceptable inputs are: \"up\", \"down\", \"left\", \"right\", \"use\"";
         String entry = s.nextLine();
 
-
-
-
-    }
+    }*/
 }
