@@ -1,13 +1,12 @@
 import java.util.Scanner;
 
-public class Character extends Entity {
-    /**
+/*public class Character extends Entity {
+    *//**
      * Character class defines the player character stats and methods for adjusting stats and inventory
-     */
+     *//*
     protected String playerName;
     protected String classType;
     protected int resist;
-
     private final int passiveResist;
     private static final int maxResist = 4;
     protected Item[] inventory = new Item[4]; //Character can carry max four items
@@ -69,7 +68,7 @@ public class Character extends Entity {
         //TODO - make method to add items to inventory and allow player to drop/replace items
     }
 
-}
+}*/
 
 
 
