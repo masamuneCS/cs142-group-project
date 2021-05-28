@@ -8,7 +8,7 @@ public class Game {
         int gameStage = 1;
         while(true) { //game loop. All game processes should be inside this loop.
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
-                Character player;
+                PlayerCharacter player;
                 System.out.println("What kind of hero are you? Type a number and press enter.\n" +
                         "1: Warrior. Can take a lot of hits.\n" +
                         "2: Rogue. Everything balanced, as it should be.\n" +
@@ -18,19 +18,19 @@ public class Game {
                         case "1" : {
                             System.out.println("What should I call you, warrior? Type a name and press enter.");
                             String name = userInput.nextLine();
-                            player = Character.buildWarrior(name);
+                            player = PlayerCharacter.buildWarrior(name);
                             break;
                         }
                         case "2" : {
                             System.out.println("What should I call you, rogue?");
                             String name = userInput.nextLine();
-                            player = Character.buildRogue(name);
+                            player = PlayerCharacter.buildRogue(name);
                             break;
                         }
                         case "3" : {
                             System.out.println("What should I call you, mage?");
                             String name = userInput.nextLine();
-                            player = Character.buildMage(name);
+                            player = PlayerCharacter.buildMage(name);
                             break;
                         }
                         default : {
@@ -40,6 +40,10 @@ public class Game {
                     }
                     break; //breaks loop
                 }
+
+                Item newItem = Item.healing3Potion();
+                player.alterInventory(newItem);
+                player.accessInventory();
                 //TODO - Ya know, the rest of the game.
                 gameOver(player);
             }
@@ -57,7 +61,7 @@ public class Game {
      * @param player the player character
      * @throws GameOverException end the game
      */
-    public static void gameOver (Character player) throws GameOverException {
+    public static void gameOver (PlayerCharacter player) throws GameOverException {
         System.out.println(player.playerName + " died. How sad.\nG A M E  O V E R");
         System.out.println("Do you want to play again Y/n?");
         boolean playAgain = !userInput.next().equalsIgnoreCase("n");
