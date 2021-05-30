@@ -1,10 +1,11 @@
 public class MiniGame {
-    public static int triviaGame() {
+    public static Item triviaGame() {
 
         String[] name = new String[]{"Do doubles or ints have decimals?",
                 "What year did America gain its independence?",
                 "What do you have to put at the top of your code when utilizing a Scanner?",
-                "What's the difference between while loops and for loops?", " "};
+                "What's the difference between while loops and for loops?",
+                "Do you have to create a constructor when coding an object class?"};
         int i = Game.diceRoll(name.length, 5);
         String question = name[i];
         System.out.println(question);
@@ -32,7 +33,6 @@ public class MiniGame {
                     }
                     default: {
                         System.out.println("Enter 1, 2, 3 or 4 to choose.");
-                        continue;
                     }
                 }
 
@@ -61,7 +61,6 @@ public class MiniGame {
                     }
                     default: {
                         System.out.println("Enter 1, 2, 3 or 4 to choose.");
-                        continue;
                     }
                 }
 
@@ -91,7 +90,6 @@ public class MiniGame {
                     }
                     default: {
                         System.out.println("Enter 1, 2, 3 or 4 to choose.");
-                        continue;
                     }
                 }
             }
@@ -122,11 +120,40 @@ public class MiniGame {
                     }
                     default: {
                         System.out.println("Enter 1, 2, 3 or 4 to choose.");
-                        continue;
                     }
                 }
             }
         }
-        return 1;
+        if (i == 5) {
+            System.out.println("Choose your answer; \n" + "1) Well duh \n" +
+                    "2) Yes, you need several \n" +
+                    "3) Yes, but just 1\n" +
+                    "4) Well not necessarily because there's a default constructor");
+            System.out.print("Enter your answer here; ");
+            while (true) {
+                switch (Game.userInput.nextLine()) {
+                    case "1": {
+                        System.out.println("a;sdlfkjie");
+                        break;
+                    }
+                    case "2": {
+                        System.out.println("Nice try");
+                        break;
+                    }
+                    case "3": {
+                        System.out.println("I can't believe they even allowed you to play");
+                        break;
+                    }
+                    case "4": {
+                        System.out.println("Yes... yEs... YES!!!");
+                        break;
+                    }
+                    default: {
+                        System.out.println("Enter 1, 2, 3 or 4 to choose.");
+                    }
+                }
+            }
+        }
+            return Item.healing3Potion();
     }
 }
