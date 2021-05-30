@@ -311,4 +311,9 @@ public class MiniGame {
         }
         return Item.mobDamageReducerSpell();
     }
+
+    // will start when we have our group coding sesh
+    public static Item blackJack () {
+        return Item.healing3Potion();
+    }
 }
