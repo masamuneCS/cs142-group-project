@@ -39,7 +39,7 @@ public class Item {
     }
 
     // spell that reduces mob-inflicted damage by 1
-    public static Item mobDamageReducerSpell(PlayerCharacter target) {
+    public static Item mobDamageReducerSpell() {
         int heals = 0;
         int damage = 0;
         int resist = 1;
