@@ -84,6 +84,26 @@ public class Game {
         return roll;
     }
 
+    public static int inputValidation (int ceiling){
+        while (true){
+            if (userInput.hasNextInt()){
+                int input = userInput.nextInt();
+                if (input < ceiling && input > 0){
+                    return input;
+                }
+                else{
+                    userInput.nextLine();
+                    System.out.println("Enter a number between 1 and " + ceiling + " to choose.");
+                }
+
+            }
+            else{
+                System.out.println("Enter a number between 1 and " + ceiling + " to choose.");
+            }
+        }
+
+    }
+
 }
 
 /**
