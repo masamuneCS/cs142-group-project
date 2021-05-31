@@ -154,7 +154,7 @@ public class MiniGame {
                 }
             }
         }
-            return false;
+        return false;
     }
 
     public static boolean priceIsRightGame() {
@@ -177,7 +177,7 @@ public class MiniGame {
         if (j == 1) {
            int mobAnswer = Game.diceRoll(1, 215000);
             // initializing variables
-           int userInput = 0;
+           int userInput;
            // loop to validate user's input
             while (true) {
                 System.out.print(priceGamePrompt);
@@ -223,7 +223,7 @@ public class MiniGame {
         if (j == 2) {
             int mobAnswer = Game.diceRoll(1, 165000000);
             // initializing variables
-            int userInput = 0;
+            int userInput;
             // loop to validate user's input
             while (true) {
                 System.out.print(priceGamePrompt);
@@ -268,7 +268,7 @@ public class MiniGame {
         if (j == 3) {
             int mobAnswer = Game.diceRoll(1, 15);
             // initializing variables
-            int userInput = 0;
+            int userInput;
             // loop to validate user's input
             while (true) {
                 System.out.print(priceGamePrompt);
@@ -313,7 +313,7 @@ public class MiniGame {
         if (j == 4) {
             int mobAnswer = Game.diceRoll(1, 1100);
             // initializing variables
-            int userInput = 0;
+            int userInput;
             // loop to validate user's input
             while (true) {
                 System.out.print(priceGamePrompt);
@@ -357,7 +357,7 @@ public class MiniGame {
         }
         if (j == 5) {
             int mobAnswer = Game.diceRoll(1, 630);
-            int userInput = 0;
+            int userInput;
             // validating player's input
             while (true) {
                 System.out.print(priceGamePrompt);
