@@ -86,6 +86,16 @@ public class Entity {
         return new Mob(classType, maxHP, maxMana, atkDice, atkSize, initBuff);
     }
 
+    public static Mob buildDead(){//build a dead mob to replaced later with an alive mob.
+        String classType = "dead";
+        int maxHP = 0;
+        int maxMana = 0;
+        int atkDice = 0;
+        int atkSize = 0;
+        int initBuff = 0;
+        return new Mob(classType, maxHP, maxMana, atkDice, atkSize, initBuff);
+    }
+
 // Stat effecting methods === === === === === === === === === === === === === === === === === === === ===
     /**
      * method to reduce entity hp and kill entity.
@@ -105,7 +115,7 @@ public class Entity {
             this.hp -= dmg;
         }
         else{
-            ((Mob)this).mobType = "dead";
+            ((Mob)this).classType = "dead";
         }
 
     }
@@ -294,7 +304,6 @@ class PlayerCharacter extends Entity {
 }
 
 class Mob extends Entity {
-    protected String mobType;
 
 
     protected Mob(String classType, int maxHP, int maxMana, int atkStr, int atkSize, int initBuff){
