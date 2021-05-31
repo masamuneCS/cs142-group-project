@@ -115,7 +115,7 @@ public class Entity {
             this.hp -= dmg;
         }
         else{
-            ((Mob)this).classType = "dead";
+            (this).classType = "dead";
         }
 
     }
