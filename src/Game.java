@@ -41,7 +41,7 @@ public class Game {
                     break; //breaks loop
                 }
 
-                Item newItem = Item.healingPotion(player);
+                Item newItem = Item.smallHealingPotion();
                 player.alterInventory(newItem);
                 player.accessInventory();
                 //TODO - Ya know, the rest of the game.
