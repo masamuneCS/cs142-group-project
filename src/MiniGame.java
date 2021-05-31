@@ -1,12 +1,12 @@
 public class MiniGame {
-    public static Item triviaGame() {
+    public static boolean triviaGame() {
 
         String[] triviaGameQuestions = new String[]{"Do doubles or ints have decimals?",
                 "What year did America gain its independence?",
                 "What do you have to put at the top of your code when utilizing a Scanner?",
                 "What's the difference between while loops and for loops?",
                 "Do you have to create a constructor when coding an object class?"};
-        int i = Game.diceRoll(triviaGameQuestions.length, 5);
+        int i = Game.diceRoll(1, 5);
         String question = triviaGameQuestions[i];
         System.out.println(question);
 
@@ -17,7 +17,7 @@ public class MiniGame {
                 switch (Game.userInput.nextLine()) {
                     case "1": {
                         System.out.println("Correct!");
-                        break;
+                        return true;
                     }
                     case "2": {
                         System.out.println("Wait... you actually thought an integer had decimals? It's a whole number!");
@@ -53,7 +53,7 @@ public class MiniGame {
                     }
                     case "3": {
                         System.out.println("Oh my gawd, well look atchu, aren't you just the smartest person in the room");
-                        break;
+                        return true;
                     }
                     case "4": {
                         System.out.println("Haha, nice try...");
@@ -78,7 +78,7 @@ public class MiniGame {
                     }
                     case "2": {
                         System.out.println("Yes! Finally! A half-decently smart person.");
-                        break;
+                        return true;
                     }
                     case "3": {
                         System.out.println("I'm done....");
@@ -112,7 +112,7 @@ public class MiniGame {
                     }
                     case "3": {
                         System.out.println("DING DING DING, we have a winner!");
-                        break;
+                        return true;
                     }
                     case "4": {
                         System.out.println("Just leave bruh");
@@ -146,7 +146,7 @@ public class MiniGame {
                     }
                     case "4": {
                         System.out.println("Yes... yEs... YES!!!");
-                        break;
+                        return true;
                     }
                     default: {
                         System.out.println("Enter 1, 2, 3 or 4 to choose.");
@@ -154,162 +154,216 @@ public class MiniGame {
                 }
             }
         }
-            return Item.healing3Potion();
+            return false;
     }
 
-    public static Item priceIsRightGame() {
+    public static boolean priceIsRightGame() {
 
         String[] priceIsRightQuestions = new String[]{"How much is the cheapest Ferrari on the market right now?",
                 "How much does the most expensive house in Beverly Hills cost?",
                 "How much does a bag of rice cost?",
                 "How much does the cheapest Louis Vuitton bag cost?",
                 "How much does a Gucci bag cost?"};
-        int j = Game.diceRoll(priceIsRightQuestions.length, 5);
+        int j = Game.diceRoll(1, 5);
         String printOut = priceIsRightQuestions[j];
         System.out.println(printOut);
 
         if (j == 1) {
-            System.out.println("Choose your answer: \n" + "1) $215,000 \n" + "2) $300,500 \n" + "3) $150,000\n"
-                    + "4) $350,850");
-            System.out.print("Enter your answer here; ");
+           int mobAnswer = Game.diceRoll(1, 215000);
+            // initializing variables
+           int userInput = 0;
+           // loop to validate user's input
             while (true) {
-                switch (Game.userInput.nextLine()) {
-                    case "1": {
-                        System.out.println("Ok, ok, I see you ballin' out here with that supercar knowledge");
-                        break;
+                System.out.print("Please enter a price (no decimals and disregarding the $ sign): ");
+                String inputChecker = Game.userInput.nextLine();
+                // seeing if string is an int and if string contains just one int
+                try {
+                    userInput = Integer.parseInt(inputChecker);
+                    if ((userInput >= 1 && userInput <= 215000)) {
+                        if (215000 - userInput < 215000 - mobAnswer) {
+                            return true;
+                        }
+                        if (215000 - userInput == 215000 - mobAnswer) {
+                            System.out.println("Your answer and the mob's answer were equally close to the real price. Please enter another answer.");
+                            mobAnswer = Game.diceRoll(1, 215000);
+                            continue;
+                        }
+                        if (215000 - userInput > 215000 - mobAnswer) {
+                            break;
+                        }
                     }
-                    case "2": {
-                        System.out.println("Looks like someone ain't in the market for a 'rari...");
-                        break;
+                    // telling user that their input was invalid because their input was out of bounds
+                    if (userInput < 1) {
+                        System.out.println("Your answer is invalid. Please try again.");
                     }
-                    case "3": {
-                        System.out.println("Haha you're funny");
+                    if (userInput > 215000) {
+                        System.out.println("Sometimes ya win, and sometimes ya lose. This time, ya lost big time.");
                         break;
-                    }
-                    case "4": {
-                        System.out.println("Haha, nice try...");
-                        break;
-                    }
-                    default: {
-                        System.out.println("Enter 1, 2, 3 or 4 to choose.");
                     }
                 }
-
+                // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
+                catch (NumberFormatException e) {
+                    System.out.println("That was not a valid answer! Please try again.");
+                    continue;
+                }
             }
         }
         if (j == 2) {
-            System.out.println("Choose your answer: \n" + "1) $75 million \n" + "2) $165 million \n" + "3) $200 million\n"
-                    + "4) $120 million");
-            System.out.print("Enter your answer here; ");
+            int mobAnswer = Game.diceRoll(1, 165000000);
+            // initializing variables
+            int userInput = 0;
+            // loop to validate user's input
             while (true) {
-                switch (Game.userInput.nextLine()) {
-                    case "1": {
-                        System.out.println("Have you ever seen Bling Empire? Actually wait, I know the answer to that...");
+                System.out.print("Please enter a price (no decimals and disregarding the $ sign): ");
+                String inputChecker = Game.userInput.nextLine();
+                // seeing if string is an int and if string contains just one int
+                try {
+                    userInput = Integer.parseInt(inputChecker);
+                    if ((userInput >= 1 && userInput <= 165000000)) {
+                        if (165000000 - userInput < 165000000 - mobAnswer) {
+                            return true;
+                        }
+                        if (165000000 - userInput == 165000000 - mobAnswer) {
+                            System.out.println("Your answer and the mob's answer were equally close to the real price. Please enter another answer.");
+                            continue;
+                        }
+                        if (165000000 - userInput > 165000000 - mobAnswer){
+                            break;
+                        }
                     }
-                    case "2": {
-                        System.out.println("Heck yeah! Let's go baby!");
+                    // telling user that their input was invalid because their input was out of bounds
+                    if (userInput < 1) {
+                        System.out.println("Your answer is invalid. Please try again.");
+                    }
+                    if (userInput > 165000000) {
+                        System.out.println("Sometimes ya win, and sometimes ya lose. This time, ya lost big time.");
                         break;
-                    }
-                    case "3": {
-                        System.out.println("Oh my gawd, why are you even here");
-                        break;
-                    }
-                    case "4": {
-                        System.out.println("~shake my head~");
-                        break;
-                    }
-                    default: {
-                        System.out.println("Enter 1, 2, 3 or 4 to choose.");
                     }
                 }
-
+                // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
+                catch (NumberFormatException e) {
+                    System.out.println("That was not a valid answer. Please try again.");
+                    continue;
+                }
             }
         }
         if (j == 3) {
-            System.out.println("Choose your answer: \n" + "1) $5.99 \n" + "2) $12.99 \n" +
-                    "3) $9.99\n" + "4) $14.99");
-            System.out.print("Enter your answer here; ");
+            int mobAnswer = Game.diceRoll(1, 15);
+            // initializing variables
+            int userInput = 0;
+            // loop to validate user's input
             while (true) {
-                switch (Game.userInput.nextLine()) {
-                    case "1": {
-                        System.out.println("Uncultured swine");
+                System.out.print("Please enter a price (no decimals and disregarding the $ sign): ");
+                String inputChecker = Game.userInput.nextLine();
+                // seeing if string is an int and if string contains just one int
+                try {
+                    userInput = Integer.parseInt(inputChecker);
+                    if ((userInput >= 1 && userInput <= 15)) {
+                        if (15 - userInput < 15 - mobAnswer) {
+                            return true;
+                        }
+                        if (15 - userInput == 15 - mobAnswer) {
+                            System.out.println("Your answer and the mob's answer were equal. Please enter another answer.");
+                            continue;
+                        }
+                        if (15 - userInput > 15 - mobAnswer) {
+                            break;
+                        }
+                    }
+                    // telling user that their input was invalid because their input was out of bounds
+                    if (userInput < 1) {
+                        System.out.println("Your answer is invalid. Please try again.");
+                    }
+                    if (userInput > 15) {
+                        System.out.println("Sometimes ya win, and sometimes ya lose. This time, ya lost big time.");
                         break;
                     }
-                    case "2": {
-                        System.out.println("I'm personally offended for all my Asian borthers and sisters out there");
-                        break;
-                    }
-                    case "3": {
-                        System.out.println("I'm done....");
-                        break;
-                    }
-                    case "4": {
-                        System.out.println("Well aren't you just a worldly human being");
-                        break;
-                    }
-                    default: {
-                        System.out.println("Enter 1, 2, 3 or 4 to choose.");
-                    }
+                }
+                // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
+                catch (NumberFormatException e) {
+                    System.out.println("That was not a valid answer. Please try again.");
+                    continue;
                 }
             }
         }
         if (j == 4) {
-            System.out.println("Choose your answer: \n" + "1) $2,000 \n" + "2) $1,500 \n" + "3) $1,100\n" +
-                    "4) $2,500");
-            System.out.print("Enter your answer here; ");
+            int mobAnswer = Game.diceRoll(1, 1100);
+            // initializing variables
+            int userInput = 0;
+            // loop to validate user's input
             while (true) {
-                switch (Game.userInput.nextLine()) {
-                    case "1": {
-                        System.out.println("~drops cards and walks out~");
+                System.out.print("Please enter a price (no decimals and disregarding the $ sign): ");
+                String inputChecker = Game.userInput.nextLine();
+                // seeing if string is an int and if string contains just one int
+                try {
+                    userInput = Integer.parseInt(inputChecker);
+                    if ((userInput >= 1 && userInput <= 1100)) {
+                        if (1100 - userInput < 1100 - mobAnswer) {
+                            return true;
+                        }
+                        if (1100 - userInput == 1100 - mobAnswer) {
+                            System.out.println("Your answer and the mob's answer were equal. Please enter another answer.");
+                            continue;
+                        }
+                        if (1100 - userInput > 1100 - mobAnswer) {
+                            break;
+                        }
+                    }
+                    // telling user that their input was invalid because their input was out of bounds
+                    if (userInput < 1) {
+                        System.out.println("Your answer is invalid. Please try again.");
+                    }
+                    if (userInput > 1100) {
+                        System.out.println("Sometimes ya win, and sometimes ya lose. This time, ya lost big time.");
                         break;
                     }
-                    case "2": {
-                        System.out.println("Why did I say yes to this job");
-                        break;
-                    }
-                    case "3": {
-                        System.out.println("You just got lucky");
-                        break;
-                    }
-                    case "4": {
-                        System.out.println("~curses under breath~");
-                        break;
-                    }
-                    default: {
-                        System.out.println("Enter 1, 2, 3 or 4 to choose.");
-                    }
+                }
+                // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
+                catch (NumberFormatException e) {
+                    System.out.println("That was not a valid answer. Please try again.");
+                    continue;
                 }
             }
         }
         if (j == 5) {
-            System.out.println("Choose your answer: \n" + "1) $500 \n" + "2) $630 \n" + "3) $1,000\n" +
-                    "4) $750");
-            System.out.print("Enter your answer here; ");
+            int mobAnswer = Game.diceRoll(1, 630);
+            int userInput = 0;
+            // validating player's input
             while (true) {
-                switch (Game.userInput.nextLine()) {
-                    case "1": {
-                        System.out.println("five hunnid dollas....  FIVE HUNNID DOLLAS??? ARE YOU KIDDING ME");
+                System.out.print("Please enter a price (no decimals and disregarding the $ sign): ");
+                String inputChecker = Game.userInput.nextLine();
+                // seeing if input is an int and if input is more than just one int
+                try {
+                    userInput = Integer.parseInt(inputChecker);
+                    if ((userInput >= 1 && userInput <= 630)) {
+                        if (630 - userInput < 630 - mobAnswer) {
+                            return true;
+                        }
+                        if (630 - userInput == 630 - mobAnswer) {
+                            System.out.println("Your answer and the mob's answer were equal. Please enter another answer.");
+                            continue;
+                        }
+                        if (630 - userInput > 630 - mobAnswer) {
+                            break;
+                        }
+                    }
+                    // telling user that their input was invalid because their input was out of bounds
+                    if (userInput < 1) {
+                        System.out.println("Your answer is invalid. Please try again.");
+                    }
+                    if (userInput > 630) {
+                        System.out.println("Sometimes ya win, and sometimes ya lose. This time, ya lost big time.");
                         break;
                     }
-                    case "2": {
-                        System.out.println("Now this is why you're my favorite contestant");
-                        break;
-                    }
-                    case "3": {
-                        System.out.println("Good guess... but NOPE");
-                        break;
-                    }
-                    case "4": {
-                        System.out.println("~drops dead on floor~ OMG!! Your stupidity killed Steve!!");
-                        break;
-                    }
-                    default: {
-                        System.out.println("Enter 1, 2, 3 or 4 to choose.");
-                    }
+                }
+                // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
+                catch (NumberFormatException e) {
+                    System.out.println("That was not a valid answer. Please try again.");
+                    continue;
                 }
             }
         }
-        return Item.mobDamageReducerSpell();
+        return false;
     }
 
     // will start when we have our group coding sesh
