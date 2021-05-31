@@ -167,6 +167,12 @@ public class MiniGame {
         int j = Game.diceRoll(1, 5);
         String printOut = priceIsRightQuestions[j];
         System.out.println(printOut);
+        String priceGamePrompt = "Please enter a price (no decimals, commas, or $ sign): ";
+        String rareEqualsCase = "Your answer and the mob's answer were equally close to the real price. Please enter another answer.";
+        String losingPhrase = "Sometimes ya win, and sometimes ya lose. This time, ya lost big time.";
+        String freePhrase = "Nothin' in life is free bruh.";
+        String negativePhrase = "What? You think they're gonna pay YOU to buy their product???";
+        String invalidInput = "That was not a valid answer. Please try again.";
 
         if (j == 1) {
            int mobAnswer = Game.diceRoll(1, 215000);
@@ -174,36 +180,42 @@ public class MiniGame {
            int userInput = 0;
            // loop to validate user's input
             while (true) {
-                System.out.print("Please enter a price (no decimals and disregarding the $ sign): ");
-                String inputChecker = Game.userInput.nextLine();
+                System.out.print(priceGamePrompt);
+                String inputHolder = Game.userInput.nextLine();
                 // seeing if string is an int and if string contains just one int
                 try {
-                    userInput = Integer.parseInt(inputChecker);
+                    userInput = Integer.parseInt(inputHolder);
                     if ((userInput >= 1 && userInput <= 215000)) {
                         if (215000 - userInput < 215000 - mobAnswer) {
                             return true;
                         }
                         if (215000 - userInput == 215000 - mobAnswer) {
-                            System.out.println("Your answer and the mob's answer were equally close to the real price. Please enter another answer.");
+                            System.out.println(rareEqualsCase);
                             mobAnswer = Game.diceRoll(1, 215000);
                             continue;
                         }
                         if (215000 - userInput > 215000 - mobAnswer) {
+                            System.out.println(losingPhrase);
                             break;
                         }
                     }
                     // telling user that their input was invalid because their input was out of bounds
-                    if (userInput < 1) {
-                        System.out.println("Your answer is invalid. Please try again.");
+                    if (userInput == 0) {
+                        System.out.println(freePhrase);
+                        continue;
+                    }
+                    if (userInput < 0) {
+                        System.out.println(negativePhrase);
+                        continue;
                     }
                     if (userInput > 215000) {
-                        System.out.println("Sometimes ya win, and sometimes ya lose. This time, ya lost big time.");
+                        System.out.println(losingPhrase);
                         break;
                     }
                 }
                 // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
                 catch (NumberFormatException e) {
-                    System.out.println("That was not a valid answer! Please try again.");
+                    System.out.println(invalidInput);
                     continue;
                 }
             }
@@ -214,7 +226,7 @@ public class MiniGame {
             int userInput = 0;
             // loop to validate user's input
             while (true) {
-                System.out.print("Please enter a price (no decimals and disregarding the $ sign): ");
+                System.out.print(priceGamePrompt);
                 String inputChecker = Game.userInput.nextLine();
                 // seeing if string is an int and if string contains just one int
                 try {
@@ -224,25 +236,31 @@ public class MiniGame {
                             return true;
                         }
                         if (165000000 - userInput == 165000000 - mobAnswer) {
-                            System.out.println("Your answer and the mob's answer were equally close to the real price. Please enter another answer.");
+                            System.out.println(rareEqualsCase);
                             continue;
                         }
                         if (165000000 - userInput > 165000000 - mobAnswer){
+                            System.out.println(losingPhrase);
                             break;
                         }
                     }
                     // telling user that their input was invalid because their input was out of bounds
-                    if (userInput < 1) {
-                        System.out.println("Your answer is invalid. Please try again.");
+                    if (userInput == 0) {
+                        System.out.println(freePhrase);
+                        continue;
+                    }
+                    if (userInput < 0) {
+                        System.out.println(negativePhrase);
+                        continue;
                     }
                     if (userInput > 165000000) {
-                        System.out.println("Sometimes ya win, and sometimes ya lose. This time, ya lost big time.");
+                        System.out.println(losingPhrase);
                         break;
                     }
                 }
                 // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
                 catch (NumberFormatException e) {
-                    System.out.println("That was not a valid answer. Please try again.");
+                    System.out.println(invalidInput);
                     continue;
                 }
             }
@@ -253,7 +271,7 @@ public class MiniGame {
             int userInput = 0;
             // loop to validate user's input
             while (true) {
-                System.out.print("Please enter a price (no decimals and disregarding the $ sign): ");
+                System.out.print(priceGamePrompt);
                 String inputChecker = Game.userInput.nextLine();
                 // seeing if string is an int and if string contains just one int
                 try {
@@ -263,25 +281,31 @@ public class MiniGame {
                             return true;
                         }
                         if (15 - userInput == 15 - mobAnswer) {
-                            System.out.println("Your answer and the mob's answer were equal. Please enter another answer.");
+                            System.out.println(rareEqualsCase);
                             continue;
                         }
                         if (15 - userInput > 15 - mobAnswer) {
+                            System.out.println(losingPhrase);
                             break;
                         }
                     }
                     // telling user that their input was invalid because their input was out of bounds
-                    if (userInput < 1) {
-                        System.out.println("Your answer is invalid. Please try again.");
+                    if (userInput == 0) {
+                        System.out.println(freePhrase);
+                        continue;
+                    }
+                    if (userInput < 0) {
+                        System.out.println(negativePhrase);
+                        continue;
                     }
                     if (userInput > 15) {
-                        System.out.println("Sometimes ya win, and sometimes ya lose. This time, ya lost big time.");
+                        System.out.println(losingPhrase);
                         break;
                     }
                 }
                 // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
                 catch (NumberFormatException e) {
-                    System.out.println("That was not a valid answer. Please try again.");
+                    System.out.println(invalidInput);
                     continue;
                 }
             }
@@ -292,7 +316,7 @@ public class MiniGame {
             int userInput = 0;
             // loop to validate user's input
             while (true) {
-                System.out.print("Please enter a price (no decimals and disregarding the $ sign): ");
+                System.out.print(priceGamePrompt);
                 String inputChecker = Game.userInput.nextLine();
                 // seeing if string is an int and if string contains just one int
                 try {
@@ -302,25 +326,31 @@ public class MiniGame {
                             return true;
                         }
                         if (1100 - userInput == 1100 - mobAnswer) {
-                            System.out.println("Your answer and the mob's answer were equal. Please enter another answer.");
+                            System.out.println(rareEqualsCase);
                             continue;
                         }
                         if (1100 - userInput > 1100 - mobAnswer) {
+                            System.out.println(losingPhrase);
                             break;
                         }
                     }
                     // telling user that their input was invalid because their input was out of bounds
-                    if (userInput < 1) {
-                        System.out.println("Your answer is invalid. Please try again.");
+                    if (userInput == 0) {
+                        System.out.println(freePhrase);
+                        continue;
+                    }
+                    if (userInput < 0) {
+                        System.out.println(negativePhrase);
+                        continue;
                     }
                     if (userInput > 1100) {
-                        System.out.println("Sometimes ya win, and sometimes ya lose. This time, ya lost big time.");
+                        System.out.println(losingPhrase);
                         break;
                     }
                 }
                 // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
                 catch (NumberFormatException e) {
-                    System.out.println("That was not a valid answer. Please try again.");
+                    System.out.println(invalidInput);
                     continue;
                 }
             }
@@ -330,7 +360,7 @@ public class MiniGame {
             int userInput = 0;
             // validating player's input
             while (true) {
-                System.out.print("Please enter a price (no decimals and disregarding the $ sign): ");
+                System.out.print(priceGamePrompt);
                 String inputChecker = Game.userInput.nextLine();
                 // seeing if input is an int and if input is more than just one int
                 try {
@@ -340,25 +370,31 @@ public class MiniGame {
                             return true;
                         }
                         if (630 - userInput == 630 - mobAnswer) {
-                            System.out.println("Your answer and the mob's answer were equal. Please enter another answer.");
+                            System.out.println(rareEqualsCase);
                             continue;
                         }
                         if (630 - userInput > 630 - mobAnswer) {
+                            System.out.println(losingPhrase);
                             break;
                         }
                     }
                     // telling user that their input was invalid because their input was out of bounds
-                    if (userInput < 1) {
-                        System.out.println("Your answer is invalid. Please try again.");
+                    if (userInput == 0) {
+                        System.out.println(freePhrase);
+                        continue;
+                    }
+                    if (userInput < 0) {
+                        System.out.println(negativePhrase);
+                        continue;
                     }
                     if (userInput > 630) {
-                        System.out.println("Sometimes ya win, and sometimes ya lose. This time, ya lost big time.");
+                        System.out.println(losingPhrase);
                         break;
                     }
                 }
                 // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
                 catch (NumberFormatException e) {
-                    System.out.println("That was not a valid answer. Please try again.");
+                    System.out.println(invalidInput);
                     continue;
                 }
             }
@@ -367,7 +403,7 @@ public class MiniGame {
     }
 
     // will start when we have our group coding sesh
-    public static Item blackJack () {
-        return Item.healing3Potion();
+    public static boolean blackJack () {
+        return false;
     }
 }
