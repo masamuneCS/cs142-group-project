@@ -9,21 +9,146 @@ import java.awt.image.BufferedImage;
 import java.sql.Array;
 import java.lang.reflect.Array;*/
 
-import java.util.Scanner;
-import java.awt.Font;
-import java.text.AttributedString;
-import java.awt.font.TextAttribute;
+import java.util.*;
 
 public class Dungeon {
 
-    public static String nextLine = System.getProperty("line.separator");
-
     public static Scanner userEntry = new Scanner(System.in);
 
-    //array number arbitrary until we finalize number of floors + size of floors relative to time
-    public static String[] maps = new String[32];
+    private String description;
+    private final Map<Integer, Map<Integer, Room>> map = new HashMap<Integer, Map<Integer, Room>>();
+    public Room currentRoom;
+    private int currentX = 0;
+    private int currentY = 0;
 
-    public static int[] playerPosition = new int[32];
+    private Room getRoom(int x, int y) {
+        return map.get(x).get(y);
+    }
+
+    public void putRoom(int x, int y) {
+        if (!map.containsKey(x)) {
+            map.put(x, new HashMap<Integer, Room>());
+        }
+        map.get(x).put(y, currentRoom);
+    }
+
+    private boolean roomExists(int x, int y) {
+        if (!map.containsKey(x)) {
+            return false;
+        }
+        return map.get(x).containsKey(y);
+    }
+    public Room currentRoom(int x, int y) {
+        return currentRoom = getRoom(currentX, currentY);
+    }
+
+    public String movePlayer() {
+        boolean northPossible = roomExists(currentX, currentY + 1);
+        boolean southPossible = roomExists(currentX, currentY - 1);
+        boolean eastPossible = roomExists(currentX + 1, currentY);
+        boolean westPossible = roomExists(currentX - 1, currentY);
+        System.out.print("Where would you like to go :");
+        if (northPossible) {
+            if (currentRoom(1, 0) || currentRoom(1, 1) || currentRoom(1, -1) || currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(3, 1)
+                    || currentRoom(4, 0) || currentRoom(3, -1)) {
+                System.out.print(" North (n)");
+            }
+        }
+            if (eastPossible) {
+                if (currentRoom(1, 2) || currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(4, 2) || currentRoom(1, 1) || currentRoom(3, 1) || currentRoom(1, 0)
+                        || currentRoom(2, 0) || currentRoom(1, -1)) {
+                    System.out.print(" East (e)");
+                }
+            }
+            if (southPossible) {
+                if (currentRoom(1, 2) || currentRoom(3, 2) || currentRoom(1, 1) || currentRoom(4, 1) || currentRoom(1, 0) || currentRoom(3, 0) || currentRoom(4, 0)
+                || currentRoom(1, -1) || currentRoom(2,-1)) {
+                    System.out.print(" South (s)");
+                }
+            }
+            if (westPossible) {
+                if (currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(4, 2) || currentRoom(2, 1) || currentRoom(4, 1) || currentRoom(1, 0) || currentRoom(2, 0) || currentRoom(3, 0)
+                        || currentRoom(2, -1)) {
+                    System.out.print(" West (w)");
+                }
+            }*/
+            System.out.print(" ? ");
+
+            String error = "Invalid input.";
+
+            while (true) {
+                switch (Game.userInput.nextLine()) {
+                    case "n": {
+                        if (northPossible) {
+                            currentY++;
+                            currentRoom = getRoom(currentX, currentY);
+                            break;
+                        } else {
+                            return error;
+                        }
+                    }
+                    case "s": {
+                        if (southPossible) {
+                            currentY--;
+                            currentRoom = getRoom(currentX, currentY);
+                            break;
+                        } else {
+                            return error;
+                        }
+                    }
+                    case "e": {
+                        if (eastPossible) {
+                            currentX--;
+                            currentRoom = getRoom(currentX, currentY);
+                            break;
+                        } else {
+                            return error;
+                        }
+                    }
+                    case "w": {
+                        if (westPossible) {
+                            currentX++;
+                            currentRoom = getRoom(currentX, currentY);
+                            break;
+                        } else {
+                            return error;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        public static Dungeon newInstance() {
+            Dungeon dungeon = new Dungeon();
+            dungeon.putRoom(0, 0);
+            dungeon.putRoom(1, 0);
+            dungeon.putRoom(1, -1);
+            dungeon.putRoom(1, 1);
+            dungeon.putRoom(1, 2);
+            dungeon.putRoom(2, 2);
+            dungeon.putRoom(2, 1);
+            dungeon.putRoom(2, 0);
+            dungeon.putRoom(2, -1);
+            dungeon.putRoom(3, -1);
+            dungeon.putRoom(3, 0);
+            dungeon.putRoom(3, 1);
+            dungeon.putRoom(3, 2);
+            dungeon.putRoom(4, 2);
+            dungeon.putRoom(4, 1);
+            dungeon.putRoom(4, 0);
+            dungeon.currentRoom = dungeon.getRoom(0, 0);
+            return dungeon;
+
+        }
+    }
+
+
+
+
+
+
+    /* static String nextLine = System.getProperty("line.separator");
 
     public static void initializeMapDesigns() {
         //separation is intentional for visual clarity
@@ -47,7 +172,7 @@ public class Dungeon {
 
         String designChest = "m";
 
-        //map[7] has a shrine
+        //map8 has a shrine
         String designShrine = "S";
 
         AttributedString aa = new AttributedString(designChest);
@@ -59,8 +184,25 @@ public class Dungeon {
         ab.addAttribute(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON, 1,
                 15);
 
-        for (int i = 0; i < maps.length; i++) {
-            maps[0] = design1Single + design1 + design1Single
+        String mapStart = new String();
+        String map2 = new String();
+        String map3 = new String();
+        String map4 = new String();
+        String map5 = new String();
+        String map6 = new String();
+        String map7 = new String();
+        String map8 = new String();
+        String map9 = new String();
+        String map10 = new String();
+        String map11 = new String();
+        String map12 = new String();
+        String map13 = new String();
+        String map14 = new String();
+        String map15 = new String();
+        String map16 = new String();
+        String map17 = new String();
+
+            mapStart    = design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -70,7 +212,7 @@ public class Dungeon {
                     + nextLine
                     + design1Single + design1 + design1Single;
 
-            maps[1] = design1Single + design1HorizontalDoor + design1Single
+            map2 = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -80,7 +222,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3HorizontalDoor + design3Single;
 
-            maps[2] = design1Single + design1HorizontalDoor + design1Single
+            map3 = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -90,7 +232,7 @@ public class Dungeon {
                     + nextLine
                     + design1Single + design1HorizontalDoor + design1Single;
 
-            maps[3] = design1Single + design1 + design1Single
+            map4 = design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -100,7 +242,7 @@ public class Dungeon {
                     + nextLine
                     + design1Single + design1HorizontalDoor + design1Single;
 
-            maps[4] = design1Single + design1HorizontalDoor + design1Single
+            map5 = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -110,7 +252,7 @@ public class Dungeon {
                     + nextLine
                     + design1Single + design1 + design1Single;
 
-            maps[5] = design1Single + design1HorizontalDoor + design1Single
+            map6 = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -120,7 +262,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3HorizontalDoor + design3Single;
 
-            maps[6] = design1Single + design1 + design1Single
+            map7 = design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -130,7 +272,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3 + design3Single;
 
-            maps[7] = design1Single + design1 + design1Single
+            map8 = design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2Single + design2Single + design2Single + designShrine + design2Single + design1Single
                     + nextLine
@@ -140,7 +282,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3 + design3Single;
 
-            maps[8] = design1Single + design1HorizontalDoor + design1Single
+            map9 = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -150,7 +292,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3 + design3Single;
 
-            maps[9] = design1Single + design1 + design1Single
+            map10 = design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -160,7 +302,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3HorizontalDoor + design3Single;
 
-            maps[10] = design1Single + design1 + design1Single
+            map11 = design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -170,7 +312,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3 + design3Single;
 
-            maps[11] = design1Single + design1 + design1Single
+            map12 = design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -180,7 +322,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3HorizontalDoor + design3Single;
 
-            maps[12]= design1Single + design1HorizontalDoor + design1Single
+            map13 = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -190,7 +332,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3HorizontalDoor + design3Single;
 
-            maps[13]= design1Single + design1HorizontalDoor + design1Single
+            map14 = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -200,7 +342,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3HorizontalDoor + design3Single;
 
-            maps[14]= design1Single + design1 + design1Single
+            map15 = design1Single + design1 + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -210,7 +352,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3HorizontalDoor + design3Single;
 
-            maps[15]= design1Single + design1HorizontalDoor + design1Single
+            map16 = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -220,7 +362,7 @@ public class Dungeon {
                     + nextLine
                     + design3Single + design3 + design3Single;
 
-            maps[16]= design1Single + design1HorizontalDoor + design1Single
+            map17 = design1Single + design1HorizontalDoor + design1Single
                     + nextLine
                     + design1Single + design2 + design1Single
                     + nextLine
@@ -233,13 +375,6 @@ public class Dungeon {
         }
     }
 
-    // temporary method to print map designs into console to see them, replace i<6 with a higher number
-    // every time a new map is designed
-    public static void printArray() {
-        for (int i = 0; i < 6; i++) {
-            System.out.println(maps[i]);
-        }
-    }
     // figuring out user entry + how to integrate it alongside maps
     // or should this be done in Game.java?
     //Maybe create a method that can be called based on input from Game? - Zac
@@ -326,35 +461,6 @@ public class Dungeon {
         return false;
     }
 
-    // stub for moving the character through the dungeon
-    // move character visually towards destination? e.g.  C..   .C.   ..C
-    public static boolean moveVisual(int position) {
-        //position 0 will be "centered"
-        playerPosition[0] = 0;
-
-        //1 + 2 will be "walking Up"
-        playerPosition[1] = 1;
-        playerPosition[2] = 2;
-
-        //3 + 4 will be "walking Right"
-        playerPosition[3] = 3;
-        playerPosition[4] = 4;
-
-        //5 + 6 will be "walking Down"
-        playerPosition[5] = 5;
-        playerPosition[6] = 6;
-
-        //7 + 8 will be "walking Left"
-        playerPosition[7] = 7;
-        playerPosition[8] = 8;
-
-        return true;
-    }
-
-    // stub for moving character from one map to the next
-    public static boolean move(int[] map, int position) {
-        return true;
-    }
 
     public static String promptUserEntry(Scanner s, String prompt, String max) {
         String input = "";
@@ -380,17 +486,4 @@ public class Dungeon {
                 System.out.print(error);
             }
         }
-        return input;
-    }
-
-    // currently only for printing map designs to the console
- /*   public static void main(String[] args) {
-        initializeMapDesigns();
-        printArray();
-
-        Scanner s = new Scanner(System.in);
-        String prompt = "Please enter your next move.\nAcceptable inputs are: \"up\", \"down\", \"left\", \"right\", \"use\"";
-        String entry = s.nextLine();
-
-    }*/
-}
+        return input;*/
