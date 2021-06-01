@@ -114,6 +114,10 @@ public class MiniGame {
                         return true;
                     }
                 }
+                default: {
+                    System.out.println("That ain't even an answer. Try again.");
+                    continue;
+                }
             }
             break;
         }
