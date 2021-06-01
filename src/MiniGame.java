@@ -1,22 +1,10 @@
 public class MiniGame {
-    public static boolean triviaGame() {
+    public static boolean triviaGame() throws InterruptedException {
 
-        String[] triviaGameQuestions = new String[]{"Do doubles or ints have decimals?",
-                "What year did America gain its independence?",
-                "What do you have to put at the top of your code when utilizing a Scanner?",
-                "What's the difference between while loops and for loops?",
-                "Do you have to create a constructor when coding an object class?"};
-        String[] triviaGameAnswers = new String[]{"Choose your answer: \n" + "1) Doubles \n" + "2) Ints \n" + "3) Both\n" + "4) Neither",
-                "Choose your answer: \n" + "1) 1492 \n" + "2) 1861 \n" + "3) 1776\n" + "4) 2021",
-                "Choose your answer: \n" + "1) Your name \n" + "2) An import statement \n" + "3) Class name\n" + "4) Main method",
-                "Choose your answer: \n" + "1) One compares things and one performs loops \n" + "2) Nothing, they're the same \n" +
-                        "3) Really just looks since you can rewrite a while loop to resemble a for loop and vice versa\n" +
-                        "4) One's a type and one's a method call",
-                "Choose your answer: \n" + "1) Well duh \n" + "2) Yes, you need several \n" + "3) Yes, but just 1\n" +
-                        "4) Well not necessarily because there's a default constructor"};
-        int i = Game.diceRoll(1, 5);
-        String question = triviaGameQuestions[i - 1];
-        String answers = triviaGameAnswers[i - 1];
+        int q = Game.diceRoll(1, 5);
+        String[] gamePiece = NPC.triviaGameQuestionsAndAnswers(q);
+        String question = gamePiece[0];
+        String answers = gamePiece[1];
         System.out.println(question);
         System.out.println(answers);
         System.out.print("Enter your answer here; ");
@@ -304,7 +292,179 @@ public class MiniGame {
     }
 
     // will start when we have our group coding sesh
-    public static boolean blackJack () {
-        return false;
+    public static boolean blackJack() {
+        int characterSwitcher = 1;
+        int playerHandValue = Game.diceRoll(1, 12);
+        int hiddenCard;
+        int dealerHandValue = hiddenCard = Game.diceRoll(1, 12);
+        int drawnCard = 0;
+        int[] drawnHand = new int[53];
+        int i = 0;
+        int cardOccurrences = 0;
+
+        while (true) {
+            if (characterSwitcher == 1) {
+                System.out.println("Your current hand's value is: " + playerHandValue + ".");
+                System.out.print("Would you like to hit or stand? (1 - hit, 2 - stand): ");
+                if (Game.inputValidation(2) == 1) {
+                    while (true) {
+                        drawnCard = Game.diceRoll(1, 12);
+                        for (int key : drawnHand) {
+                            if (drawnCard == key) {
+                                cardOccurrences++;
+                            }
+                        }
+                        if (cardOccurrences > 3) {
+                            continue;
+                        }
+                        drawnHand[i] = drawnCard;
+                        i++;
+                        characterSwitcher = 2;
+                        playerHandValue += drawnCard;
+                        if (playerHandValue > 21) {
+                            System.out.println("Too bad, so sad.");
+                            return false;
+                        }
+                        break;
+                    }
+                } else {
+                    System.out.println("Dealer's current hand's value is: " + dealerHandValue + ".");
+                    while (true) {
+                        drawnCard = Game.diceRoll(1, 12);
+                        for (int key : drawnHand) {
+                            if (drawnCard == key) {
+                                cardOccurrences++;
+                            }
+                        }
+                        if (cardOccurrences > 3) {
+                            continue;
+                        }
+                        drawnHand[i] = drawnCard;
+                        i++;
+                        dealerHandValue += drawnCard;
+                        if (playerHandValue > dealerHandValue) {
+                            System.out.println("Wow, you really frickin' did it. Who knew you had it in you.");
+                            return true;
+                        }
+                        if (playerHandValue < dealerHandValue) {
+                            System.out.println("Too bad, so sad.");
+                            return false;
+                        }
+                        if (21 - playerHandValue == 21 - dealerHandValue) {
+                            System.out.println("You lucky son of a gun");
+                            return true;
+                        }
+                        break;
+                    }
+                }
+            }
+            if (characterSwitcher == 2) {
+                System.out.println("Dealer's current hand's value is: " + dealerHandValue + ".");
+                if (dealerHandValue < 17) {
+                    while (true) {
+                        drawnCard = Game.diceRoll(1, 12);
+                        for (int key : drawnHand) {
+                            if (drawnCard == key) {
+                                cardOccurrences++;
+                            }
+                        }
+                        if (cardOccurrences > 3) {
+                            continue;
+                        }
+                        drawnHand[i] = drawnCard;
+                        i++;
+                        characterSwitcher = 1;
+                        dealerHandValue += drawnCard;
+                        if (dealerHandValue > 21) {
+                            System.out.println("Wow, you really frickin' did it. Who knew you had it in you.");
+                            return true;
+                        }
+                        break;
+                    }
+                }
+                else if (dealerHandValue >= 17) {
+                    System.out.println("Your current hand's value is: " + playerHandValue + ".");
+                    while (true) {
+                        drawnCard = Game.diceRoll(1, 12);
+                        for (int key : drawnHand) {
+                            if (drawnCard == key) {
+                                cardOccurrences++;
+                            }
+                        }
+                        if (cardOccurrences > 3) {
+                            continue;
+                        }
+                        drawnHand[i] = drawnCard;
+                        i++;
+                        playerHandValue += drawnCard;
+                        if (playerHandValue > dealerHandValue) {
+                            System.out.println("Wow, you really frickin' did it. Who knew you had it in you.");
+                            return true;
+                        }
+                        if (playerHandValue < dealerHandValue) {
+                            System.out.println("Too bad, so sad.");
+                            return false;
+                        }
+                        if (21 - playerHandValue == 21 - dealerHandValue) {
+                            System.out.println("You lucky son of a gun");
+                            return true;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
+
+//        while (characterSwitcher == 2) {
+//            dealerHandValue = Game.diceRoll(1,12);
+//            System.out.println("Dealer's current hand value is: " + dealerHandValue + ".");
+//            if (dealerHandValue < 17){
+//                dealerHandValue += Game.diceRoll(1,12);
+//                while(i < drawnHand.length) {
+//                    drawnHand[i] = Game.diceRoll
+//                    i++;
+//                }
+//                continue;
+//            }
+//            else if (dealerHandValue >= 17) {
+//                // code here
+//                characterSwitcher = 1;
+//                break;
+//            }
+//        }
+
+//    public static void standIn(int input){
+//
+//        boolean userContin = true;
+//        int userHand = 0;
+//        int DealerHand;
+//        int drawnCard = 0;
+//
+//        while(true){
+//            if(userContin == true){
+//
+//
+//            drawnCard = Game.diceRoll(1,12);
+//                if(input == 1){
+//
+//                }
+//                else{
+//                    userContin = false;
+//            }
+//            if(DealerHand < 17){
+//
+//            roll
+//                DealerHand++;
+//            }
+//            if(userContin == false && DealerHand >= 17){
+//
+//
+//                break;
+//            }
+//
+//        }
+//
+//
+//    }
