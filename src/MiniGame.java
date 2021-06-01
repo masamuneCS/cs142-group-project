@@ -28,7 +28,7 @@ public class MiniGame {
                         break;
                     }
                     case "4": {
-                        System.out.println("Haha, nice try...");
+                        System.out.println("Haha, you're funny...");
                         break;
                     }
                     default: {
@@ -133,7 +133,7 @@ public class MiniGame {
             while (true) {
                 switch (Game.userInput.nextLine()) {
                     case "1": {
-                        System.out.println("a;sdlfkjie");
+                        System.out.println("~shakes bald head~");
                         break;
                     }
                     case "2": {
@@ -216,7 +216,6 @@ public class MiniGame {
                 // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
                 catch (NumberFormatException e) {
                     System.out.println(invalidInput);
-                    continue;
                 }
             }
         }
@@ -261,7 +260,6 @@ public class MiniGame {
                 // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
                 catch (NumberFormatException e) {
                     System.out.println(invalidInput);
-                    continue;
                 }
             }
         }
@@ -306,7 +304,6 @@ public class MiniGame {
                 // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
                 catch (NumberFormatException e) {
                     System.out.println(invalidInput);
-                    continue;
                 }
             }
         }
@@ -351,7 +348,6 @@ public class MiniGame {
                 // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
                 catch (NumberFormatException e) {
                     System.out.println(invalidInput);
-                    continue;
                 }
             }
         }
@@ -395,7 +391,6 @@ public class MiniGame {
                 // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above
                 catch (NumberFormatException e) {
                     System.out.println(invalidInput);
-                    continue;
                 }
             }
         }
