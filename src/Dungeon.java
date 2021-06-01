@@ -38,8 +38,9 @@ public class Dungeon {
         }
         return map.get(x).containsKey(y);
     }
-    public Room currentRoom(int x, int y) {
-        return currentRoom = getRoom(currentX, currentY);
+    public boolean currentRoom(int x, int y) {
+        //return currentRoom = getRoom(currentX, currentY);
+        return true;
     }
 
     public String movePlayer() {
@@ -54,24 +55,24 @@ public class Dungeon {
                 System.out.print(" North (n)");
             }
         }
-            if (eastPossible) {
-                if (currentRoom(1, 2) || currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(4, 2) || currentRoom(1, 1) || currentRoom(3, 1) || currentRoom(1, 0)
-                        || currentRoom(2, 0) || currentRoom(1, -1)) {
-                    System.out.print(" East (e)");
-                }
+        if (eastPossible) {
+            if (currentRoom(1, 2) || currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(4, 2) || currentRoom(1, 1) || currentRoom(3, 1) || currentRoom(1, 0)
+                    || currentRoom(2, 0) || currentRoom(1, -1)) {
+                System.out.print(" East (e)");
             }
-            if (southPossible) {
-                if (currentRoom(1, 2) || currentRoom(3, 2) || currentRoom(1, 1) || currentRoom(4, 1) || currentRoom(1, 0) || currentRoom(3, 0) || currentRoom(4, 0)
-                || currentRoom(1, -1) || currentRoom(2,-1)) {
-                    System.out.print(" South (s)");
-                }
+        }
+        if (southPossible) {
+            if (currentRoom(1, 2) || currentRoom(3, 2) || currentRoom(1, 1) || currentRoom(4, 1) || currentRoom(1, 0) || currentRoom(3, 0) || currentRoom(4, 0)
+                    || currentRoom(1, -1) || currentRoom(2,-1)) {
+                System.out.print(" South (s)");
             }
-            if (westPossible) {
-                if (currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(4, 2) || currentRoom(2, 1) || currentRoom(4, 1) || currentRoom(1, 0) || currentRoom(2, 0) || currentRoom(3, 0)
-                        || currentRoom(2, -1)) {
-                    System.out.print(" West (w)");
-                }
-            }*/
+        }
+        if (westPossible) {
+            if (currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(4, 2) || currentRoom(2, 1) || currentRoom(4, 1) || currentRoom(1, 0) || currentRoom(2, 0) || currentRoom(3, 0)
+                    || currentRoom(2, -1)) {
+                System.out.print(" West (w)");
+            }
+        }
             System.out.print(" ? ");
 
             String error = "Invalid input.";
