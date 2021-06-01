@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class NPC {
-
     public String[] general(){
 
         String[] generalInfo = new String[]{""};
