@@ -111,7 +111,7 @@ public class Game {
         }
     }
 
-    public static boolean encounter(PlayerCharacter player, int gameStage) throws GameOverException {
+    public static boolean encounter(PlayerCharacter player, int gameStage) throws GameOverException, IllegalArgumentException {
         Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
         int mobCount = diceRoll(1, 3);
 
@@ -134,7 +134,8 @@ public class Game {
         encounterAll[0] = player;
         System.arraycopy(encounterMobs, 0, encounterAll, 1, encounterMobs.length);
         //establish initiative for player and mobs.
-        player.initiative = diceRoll(1, 20);
+        player.initiative = diceRoll(1, 20) + player.initBuff;
+        System.out.println("You rolled " + player.initiative + " for initiative!");
         for (Mob mob : encounterMobs){
             mob.initiative = diceRoll(1, 20);
         }
@@ -186,6 +187,12 @@ public class Game {
                             if (player.classType.equals("warrior")) {
                                 System.out.println(player.playerName + " your special warrior ability is SMASH. SMASH deals 4d" + player.atkStr + " damage and costs 5 mana");
                             }
+                            else if (player.classType.equals("rogue")){
+                                System.out.println(player.playerName + " your special rogue ability is SNEAK ATTACK. SNEAK ATTACK does damage based on your initiative and costs 5 mana. \nThis encounter it does 2d" + (player.initiative / 2) + " damage.");
+                            }
+                            else if (player.classType.equals("mage")){
+                                System.out.println(player.playerName + " your special mage ability is FIREBALL. FIREBALL does 2d8 damage and costs 5 mana.");
+                            }
                             if (player.mana < 5){
                                 System.out.println("You don't have enough mana, maybe try using a potion?");
                                 System.out.println();
@@ -205,13 +212,28 @@ public class Game {
                                     player.smash(encounterMobs[input]);
                                     movePoint -= 1;
                                 }
+                                else if (player.classType.equals("mage")){
+                                    player.fireball(encounterMobs[input]);
+                                    movePoint -= 1;
+                                }
+                                else if (player.classType.equals("rogue")){
+                                    player.sneakAttack(encounterMobs[input]);
+                                }
+                                else {
+                                    throw new IllegalArgumentException("player.classType did not match any special ability class");
+                                }
                             }
-                            else{
-                                continue;
-                            }
+                            break;
+                        }
+                        case "3": {
+                            System.out.println("Using an inventory item does NOT end your turn.");
+                            player.accessInventory();
                         }
                     }
                 }
+            }
+            else{
+                //TODO - Mob action logic
             }
             if (turn >= encounterAll.length){
                 turn = 0;
