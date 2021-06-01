@@ -253,6 +253,7 @@ class PlayerCharacter extends Entity {
         }
     }
     public void accessInventory(){
+        System.out.println("Inventory:");
         for (int i = 0; i < this.inventory.length; i++){
             if (this.inventory[i] == null){
                 System.out.println("Slot "+ (i + 1) + ": Empty ");
@@ -261,7 +262,9 @@ class PlayerCharacter extends Entity {
                 System.out.println("Slot " + (i + 1) + ": " + this.inventory[i].name);
             }
         }
-        //TODO - method to use items in inventory
+        while (true){
+            System.out.println("Which item would you like to use? Or choose 5 to go back:");
+        }
     }
     public void alterInventory(Item newItem){
         for (int i = 0; i < this.inventory.length; i++){
@@ -273,7 +276,7 @@ class PlayerCharacter extends Entity {
             }
 
         }
-        System.out.println("What slot would you like to add the item to?");
+        System.out.println("What slot would you like to add the item to? Or choose 5 to go back.");
         while(true) {
             switch (Game.userInput.nextLine()) {
                 case "1": {
@@ -291,6 +294,9 @@ class PlayerCharacter extends Entity {
                 case "4": {
                     this.inventory[3] = newItem;
                     break;
+                }
+                case "5": {
+
                 }
                 default: {
                     System.out.println("Enter 1,2, 3, or 4 to choose.");
