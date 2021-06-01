@@ -151,20 +151,20 @@ public class Entity {
 
     //Ability methods === === === === === === === === === === === === === === === === === === === === === === === === ===
 
-    public void basicAttack(Entity target, int atkStr, int atkSize) throws GameOverException{
+    public void basicAttack(Entity target) throws GameOverException{
         //damages an enemy target based on entity atk stats
-        int dmg = Game.diceRoll(atkSize, atkStr);
+        int dmg = Game.diceRoll(this.atkSize, this.atkStr);
         target.dmg(dmg);
     }
 
-    public void healAlly(Entity target, Entity caster) throws IllegalArgumentException{
+    public void healAlly(Entity target) throws IllegalArgumentException{
         //shaman only, heals an ally target for 2 d3 heals for 5 mana
         int manaCost = 5;
-        if (caster instanceof Mob){
-            if (((Mob)caster).classType.equals("shaman") && caster.mana > manaCost){
+        if (this instanceof Mob){
+            if (this.classType.equals("shaman") && this.mana > manaCost){
                 int heals = Game.diceRoll(2, 3);
                 target.heal(heals);
-                caster.changeMana(-manaCost);
+                this.changeMana(-manaCost);
             }
         }
         else{
@@ -172,45 +172,45 @@ public class Entity {
         }
 
     }
-
-    public void fireball(Entity target, Entity caster) throws GameOverException, IllegalArgumentException {
+//Mage special ability
+    public void fireball(Entity target) throws GameOverException, IllegalArgumentException {
         //mage only, deals 2 d6 damage
         int manaCost = 5;
-        if (caster instanceof PlayerCharacter){
-            if (((PlayerCharacter) caster).classType.equals("mage")){
+        if (this instanceof PlayerCharacter){
+            if (this.classType.equals("mage")){
                 int dmg = Game.diceRoll(2, 6);
                 target.dmg(dmg);
-                caster.changeMana(-manaCost);
+                this.changeMana(-manaCost);
             }
         }
         else{
             throw new IllegalArgumentException();
         }
     }
-
-    public void sneakAttack(Entity target, Entity caster) throws GameOverException, IllegalArgumentException {
+//Rogue special ability
+    public void sneakAttack(Entity target) throws GameOverException, IllegalArgumentException {
         //rogue only, does 2 dInitiative damage
         int manaCost = 5;
-        if (caster instanceof PlayerCharacter){
-            if (((PlayerCharacter) caster).classType.equals("rogue")){
-                int dmg = Game.diceRoll(2, caster.initiative);
+        if (this instanceof PlayerCharacter){
+            if (this.classType.equals("rogue")){
+                int dmg = Game.diceRoll(2, this.initiative);
                 target.dmg(dmg);
-                caster.changeMana(-manaCost);
+                this.changeMana(-manaCost);
             }
         }
         else{
             throw new IllegalArgumentException();
         }
     }
-
-    public void smash(Entity target, Entity caster) throws GameOverException, IllegalArgumentException {
+//Warrior special ability
+    public void smash(Entity target) throws GameOverException, IllegalArgumentException {
         //warrior only, does 4 dStrength damage
         int manaCost = 5;
-        if (caster instanceof PlayerCharacter){
-            if (((PlayerCharacter) caster).classType.equals("warrior")){
-                int dmg = Game.diceRoll(2, caster.initiative);
+        if (this instanceof PlayerCharacter){
+            if (this.classType.equals("warrior")){
+                int dmg = Game.diceRoll(4, this.atkStr);
                 target.dmg(dmg);
-                caster.changeMana(-manaCost);
+                this.changeMana(-manaCost);
             }
         }
         else{
