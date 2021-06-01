@@ -1,3 +1,4 @@
+import javax.naming.NoInitialContextException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -5,6 +6,7 @@ public class Game {
     public static Scanner userInput = new Scanner(System.in);
 
     public static void main(String[] args) {
+        MiniGame.blackJack();
         int gameStage = 1;
         while(true) { //game loop. All game processes should be inside this loop.
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
@@ -89,13 +91,13 @@ public class Game {
     /**
      * Does what it says on the tin
      * @param ceiling maximum allowable int input
-     * @return
+     * @return int input
      */
     public static int inputValidation (int ceiling){
         while (true){
             if (userInput.hasNextInt()){
                 int input = userInput.nextInt();
-                if (input < ceiling && input > 0){
+                if (input <= ceiling && input > 0){
                     return input;
                 }
                 else{
@@ -109,12 +111,12 @@ public class Game {
         }
     }
 
-    public static boolean encounter(PlayerCharacter player, int gameStage){
+    public static boolean encounter(PlayerCharacter player, int gameStage) throws GameOverException {
         Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
         int mobCount = diceRoll(1, 3);
 
         for (int i = 0; i < mobCount; i++){
-            switch(diceRoll(1, 3)){ //picking mobtype based on int 1-3
+            switch(diceRoll(1, 3)){ //picking mobType based on int 1-3
                 case 1:
                     encounterMobs[i] = Entity.buildGrunt();
                     break;
@@ -147,8 +149,75 @@ public class Game {
             encounterAll[j+1] = key;
 
         }
-        //TODO - implement turn based combat w/ logic for mobs and input choices for player
-        return true;
+        int turn = 0;
+        while(true){
+            int movePoint = 1;
+            if (encounterAll[turn] instanceof PlayerCharacter){
+                while(movePoint > 0){
+                    if (mobCount > 1){
+                        System.out.println("There are " + mobCount + " enemies before you!");
+                    }
+                    else{
+                        System.out.println("There is " + mobCount + " enemy before you!");
+                    }
+                    System.out.println("HP: " + player.hp + " Mana: " + player.mana);
+                    System.out.println("What would you like to do?\n1: Attack\n2: Special Attack\n3: Use an item from your inventory");
+                    switch(userInput.nextLine()){
+                        case "1": {
+                            System.out.println("Your basic attack deals " + player.atkSize + "d" + player.atkStr + "damage, which enemy would you like to target?");
+                            int i = 1;
+                            for (Mob mob : encounterMobs) {
+                                if (!mob.classType.equals("dead"))
+                                    System.out.println(i + ": A " + mob.classType + " with " + mob.hp + "HP");
+                                i++;
+                            }
+                            System.out.println("or choose " + encounterMobs.length + " to go back.");
+                            System.out.print("Choose: ");
+                            int input = inputValidation(encounterMobs.length);
+                            if (input < mobCount) {
+                                player.basicAttack(encounterMobs[input - 1]);
+                                movePoint -= 1;
+                            } else {
+                                continue;
+                            }
+                            break;
+                        }
+                        case "2": {
+                            if (player.classType.equals("warrior")) {
+                                System.out.println(player.playerName + " your special warrior ability is SMASH. SMASH deals 4d" + player.atkStr + " damage and costs 5 mana");
+                            }
+                            if (player.mana < 5){
+                                System.out.println("You don't have enough mana, maybe try using a potion?");
+                                System.out.println();
+                                continue;
+                            }
+                            System.out.println("Which enemy would you like to attack?\n or press " + encounterMobs.length + " to go back.");
+                            int i = 1;
+                            for (Mob mob : encounterMobs) {
+                                if (!mob.classType.equals("dead"))
+                                    System.out.println(i + ": A " + mob.classType + " with " + mob.hp + "HP");
+                                i++;
+                            }
+                            System.out.println(encounterMobs.length + ": Go back");
+                            int input = inputValidation(encounterMobs.length);
+                            if (input <= mobCount){
+                                if (player.classType.equals("warrior")){
+                                    player.smash(encounterMobs[input]);
+                                    movePoint -= 1;
+                                }
+                            }
+                            else{
+                                continue;
+                            }
+                        }
+                    }
+                }
+            }
+            if (turn >= encounterAll.length){
+                turn = 0;
+            }
+            turn += 1;
+        }
     }
 
 }
