@@ -12,55 +12,55 @@ public class MiniGame {
         while (true) {
             switch (Game.userInput.nextLine()) {
                 case "1": {
-                    if (i == 1) {
+                    if (q == 1) {
                         System.out.println("Correct!");
                         return true;
                     }
-                    if (i == 2) {
+                    if (q == 2) {
                         System.out.println("Bruh... Columbus... come on now!");
                         break;
                     }
-                    if (i == 3) {
+                    if (q == 3) {
                         System.out.println("I can't with you right now...");
                         break;
                     }
-                    if (i == 4) {
+                    if (q == 4) {
                         System.out.println("really.... REALLY?!?!");
                         break;
                     }
-                    if (i == 5) {
+                    if (q == 5) {
                         System.out.println("~shakes bald head~");
                         break;
                     }
                 }
                 case "2": {
-                    if (i == 1) {
+                    if (q == 1) {
                         System.out.println("Wait... you actually thought an integer had decimals? It's a whole number!");
                         break;
                     }
-                    if (i == 2) {
+                    if (q == 2) {
                         System.out.println("Haha, you stupid...");
                         break;
                     }
-                    if (i == 3) {
+                    if (q == 3) {
                         System.out.println("Yes! Finally! A half-decently smart person.");
                         return true;
                     }
-                    if (i == 4) {
+                    if (q == 4) {
                         System.out.println("Come on now! You can do better than THAT");
                         break;
                     }
-                    if (i == 5) {
+                    if (q == 5) {
                         System.out.println("Nice try");
                         break;
                     }
                 }
                 case "3": {
-                    if (i == 1) {
+                    if (q == 1) {
                         System.out.println("Haha, nice try...");
                         break;
                     }
-                    if (i == 2) {
+                    if (q == 2) {
                         System.out.println("Oh my gawd, well look atchu, aren't you just the smartest person in the room");
                         return true;
                     }
@@ -68,33 +68,33 @@ public class MiniGame {
                         System.out.println("I'm done....");
                         break;
                     }
-                    if (i == 4) {
+                    if (q == 4) {
                         System.out.println("DING DING DING, we have a winner!");
                         return true;
                     }
-                    if (i == 5) {
+                    if (q == 5) {
                         System.out.println("I can't believe they even allowed you to play");
                         break;
                     }
                 }
                 case "4": {
-                    if (i == 1) {
+                    if (q == 1) {
                         System.out.println("Haha, you're funny...");
                         break;
                     }
-                    if (i == 2) {
+                    if (q == 2) {
                         System.out.println("Haha, nice try...");
                         break;
                     }
-                    if (i == 3) {
+                    if (q == 3) {
                         System.out.println("WHY ARE YOU EVEN HERE RIGHT NOW");
                         break;
                     }
-                    if (i == 4) {
+                    if (q == 4) {
                         System.out.println("Just leave bruh");
                         break;
                     }
-                    if (i == 5) {
+                    if (q == 5) {
                         System.out.println("Yes... yEs... YES!!!");
                         return true;
                     }
@@ -121,7 +121,8 @@ public class MiniGame {
         String printOut = priceIsRightQuestions[j - 1];
         System.out.println(printOut);
         String priceGamePrompt = "Please enter a price (no decimals, commas, or $ sign): ";
-        String rareEqualsCase = "Your answer and the mob's answer were equally close to the real price. Please enter another answer.";
+        String rareEqualsCase = "Your answer and the mob's answer were equally close to the real price, so we're just gonna give you the win. Congrats.";
+        String winningPhrase = "Way to go bud, you finally did something right in your life";
         String losingPhrase = "Sometimes ya win, and sometimes ya lose. This time, ya lost big time.";
         String freePhrase = "Nothin' in life is free bruh.";
         String negativePhrase = "What? You think they're gonna pay YOU to buy their product???";
@@ -159,20 +160,21 @@ public class MiniGame {
                 mobAnswer = Game.diceRoll(1, 215000);
                 if (userInput <= 215000) {
                     if (215000 - userInput < 215000 - mobAnswer) {
+                        System.out.println(winningPhrase);
+                        System.out.println("The answer was " + priceIsRightAnswers[0] + ".");
                         return true;
                     }
-//                    if (215000 - userInput == 215000 - mobAnswer) {
-//                        System.out.println(rareEqualsCase);
-//                        mobAnswer = Game.diceRoll(1, 215000);
-//                        return false;
-//                    }
+                    if (215000 - userInput == 215000 - mobAnswer) {
+                        System.out.println(rareEqualsCase);
+                        System.out.println("The answer was " + priceIsRightAnswers[0] + ".");
+                        return true;
+                    }
                     if (215000 - userInput > 215000 - mobAnswer) {
                         System.out.println(losingPhrase);
                         System.out.println("The answer was " + priceIsRightAnswers[0] + ".");
                         break;
                     }
-                }
-                else {
+                } else {
                     System.out.println(losingPhrase);
                     System.out.println("The answer was " + priceIsRightAnswers[0] + ".");
                     break;
@@ -186,20 +188,21 @@ public class MiniGame {
                 mobAnswer = Game.diceRoll(1, 165000000);
                 if (userInput <= 165000000) {
                     if (165000000 - userInput < 165000000 - mobAnswer) {
+                        System.out.println(winningPhrase);
+                        System.out.println("The answer was " + priceIsRightAnswers[1] + ".");
                         return true;
                     }
-//                    if (165000000 - userInput == 165000000 - mobAnswer) {
-//                        System.out.println(rareEqualsCase);
-//                        mobAnswer = Game.diceRoll(1, 165000000);
-//                        return false;
-//                    }
+                    if (165000000 - userInput == 165000000 - mobAnswer) {
+                        System.out.println(rareEqualsCase);
+                        System.out.println("The answer was " + priceIsRightAnswers[1] + ".");
+                        return true;
+                    }
                     if (165000000 - userInput > 165000000 - mobAnswer) {
                         System.out.println(losingPhrase);
                         System.out.println("The answer was " + priceIsRightAnswers[1] + ".");
                         break;
                     }
-                }
-                else {
+                } else {
                     System.out.println(losingPhrase);
                     System.out.println("The answer was " + priceIsRightAnswers[1] + ".");
                     break;
@@ -213,20 +216,21 @@ public class MiniGame {
                 mobAnswer = Game.diceRoll(1, 15);
                 if (userInput <= 15) {
                     if (15 - userInput < 15 - mobAnswer) {
+                        System.out.println(winningPhrase);
+                        System.out.println("The answer was " + priceIsRightAnswers[2] + ".");
                         return true;
                     }
-//                    if (15 - userInput == 15 - mobAnswer) {
-//                        System.out.println(rareEqualsCase);
-//                        mobAnswer = Game.diceRoll(1, 15);
-//                        return false;
-//                    }
+                    if (15 - userInput == 15 - mobAnswer) {
+                        System.out.println(rareEqualsCase);
+                        System.out.println("The answer was " + priceIsRightAnswers[2] + ".");
+                        return true;
+                    }
                     if (15 - userInput > 15 - mobAnswer) {
                         System.out.println(losingPhrase);
                         System.out.println("The answer was " + priceIsRightAnswers[2] + ".");
                         break;
                     }
-                }
-                else {
+                } else {
                     System.out.println(losingPhrase);
                     System.out.println("The answer was " + priceIsRightAnswers[2] + ".");
                     break;
@@ -240,20 +244,21 @@ public class MiniGame {
                 mobAnswer = Game.diceRoll(1, 1100);
                 if (userInput <= 1100) {
                     if (1100 - userInput < 1100 - mobAnswer) {
+                        System.out.println(winningPhrase);
+                        System.out.println("The answer was " + priceIsRightAnswers[3] + ".");
                         return true;
                     }
-//                    if (1100 - userInput == 1100 - mobAnswer) {
-//                        System.out.println(rareEqualsCase);
-//                        mobAnswer = Game.diceRoll(1, 215000);
-//                        return false;
-//                    }
+                    if (1100 - userInput == 1100 - mobAnswer) {
+                        System.out.println(rareEqualsCase);
+                        System.out.println("The answer was " + priceIsRightAnswers[3] + ".");
+                        return true;
+                    }
                     if (1100 - userInput > 1100 - mobAnswer) {
                         System.out.println(losingPhrase);
                         System.out.println("The answer was " + priceIsRightAnswers[3] + ".");
                         break;
                     }
-                }
-                else {
+                } else {
                     System.out.println(losingPhrase);
                     System.out.println("The answer was " + priceIsRightAnswers[3] + ".");
                     break;
@@ -267,20 +272,21 @@ public class MiniGame {
                 mobAnswer = Game.diceRoll(1, 630);
                 if (userInput <= 630) {
                     if (630 - userInput < 630 - mobAnswer) {
+                        System.out.println(winningPhrase);
+                        System.out.println("The answer was " + priceIsRightAnswers[4] + ".");
                         return true;
                     }
-//                    if (630 - userInput == 630 - mobAnswer) {
-//                        System.out.println(rareEqualsCase);
-//                        mobAnswer = Game.diceRoll(1, 630);
-//                        return false;
-//                    }
+                    if (630 - userInput == 630 - mobAnswer) {
+                        System.out.println(rareEqualsCase);
+                        System.out.println("The answer was " + priceIsRightAnswers[4] + ".");
+                        return false;
+                    }
                     if (630 - userInput > 630 - mobAnswer) {
                         System.out.println(losingPhrase);
                         System.out.println("The answer was " + priceIsRightAnswers[4] + ".");
                         break;
                     }
-                }
-                else {
+                } else {
                     System.out.println(losingPhrase);
                     System.out.println("The answer was " + priceIsRightAnswers[4] + ".");
                     break;
