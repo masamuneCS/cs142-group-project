@@ -106,7 +106,7 @@ public class MiniGame {
             System.out.print("Enter your answer here; ");
             while (true) {
                 switch (Game.userInput.nextLine()) {
-                    case "1" -> System.out.println("a;sdlfkjie");
+                    case "1" -> System.out.println("~shaking bald head~");
                     case "2" -> System.out.println("Nice try");
                     case "3" -> System.out.println("I can't believe they even allowed you to play");
                     case "4" -> {
