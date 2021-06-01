@@ -39,7 +39,7 @@ public class Item {
         int damage = 0;
         int resist = 0;
         int manas = 0;
-        String name = "Frickin super ninja ultra max healing potion that resets you back to full HP";
+        String name = "Frickin' super ninja ultra max healing potion that resets you back to full HP";
         return new Item(heals, damage, resist, manas, name);
     }
 
