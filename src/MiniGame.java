@@ -115,6 +115,7 @@ public class MiniGame {
                     }
                 }
             }
+            break;
         }
         return false;
     }
