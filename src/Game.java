@@ -41,6 +41,8 @@ public class Game {
                     break; //breaks loop
                 }
 
+                encounter(player, gameStage);
+
                 Item newItem = Item.smallHealingPotion();
                 player.alterInventory(newItem);
                 player.accessInventory();
@@ -53,7 +55,7 @@ public class Game {
                 }
                 break;
             }
-        }
+        }//game loop end
     }
 
     /**
@@ -69,7 +71,7 @@ public class Game {
 
     }
 
-    private static Random rand = new Random(); //for getting nice random numbers without the weird math.random formula
+    private static final Random rand = new Random(); //for getting nice random numbers without the weird math.random formula
     /**
      * rolls dice!
      * @param numDice how many dice to roll
@@ -79,11 +81,16 @@ public class Game {
     public static int diceRoll (int numDice, int dSize){
         int roll = 0;
         for (int i = 0; i < numDice; i++){
-            roll += rand.nextInt(dSize + 1);
+            roll += 1 + rand.nextInt(dSize);
         }
         return roll;
     }
 
+    /**
+     * Does what it says on the tin
+     * @param ceiling maximum allowable int input
+     * @return
+     */
     public static int inputValidation (int ceiling){
         while (true){
             if (userInput.hasNextInt()){
@@ -95,13 +102,53 @@ public class Game {
                     userInput.nextLine();
                     System.out.println("Enter a number between 1 and " + ceiling + " to choose.");
                 }
-
             }
             else{
                 System.out.println("Enter a number between 1 and " + ceiling + " to choose.");
             }
         }
+    }
 
+    public static boolean encounter(PlayerCharacter player, int gameStage){
+        Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
+        int mobCount = diceRoll(1, 3);
+
+        for (int i = 0; i < mobCount; i++){
+            switch(diceRoll(1, 3)){ //picking mobtype based on int 1-3
+                case 1:
+                    encounterMobs[i] = Entity.buildGrunt();
+                    break;
+                case 2:
+                    encounterMobs[i] = Entity.buildBrute();
+                    break;
+                case 3:
+                    encounterMobs[i] = Entity.buildShaman();
+                    break;
+                default :
+                    throw new IllegalArgumentException("Encounter mob builder received invalid mob type roll");
+            }
+        }
+        Entity[] encounterAll = new Entity[5]; //placing player in entity array w/ mobs
+        encounterAll[0] = player;
+        System.arraycopy(encounterMobs, 0, encounterAll, 1, encounterMobs.length);
+        //establish initiative for player and mobs.
+        player.initiative = diceRoll(1, 20);
+        for (Mob mob : encounterMobs){
+            mob.initiative = diceRoll(1, 20);
+        }
+        //Ordering entities in array by initiative to establish turn order.
+        for (int i = 1; i < encounterAll.length; i++){
+            Entity key = encounterAll[i];
+            int j = i - 1;
+            while (j >= 0 && encounterAll[j].initiative > key.initiative){
+                encounterAll[j+1] = encounterAll[j];
+                j--;
+            }
+            encounterAll[j+1] = key;
+
+        }
+        //TODO - implement turn based combat w/ logic for mobs and input choices for player
+        return true;
     }
 
 }
