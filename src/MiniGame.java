@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 public class MiniGame {
     public static boolean triviaGame() throws InterruptedException {
 
@@ -64,7 +66,9 @@ public class MiniGame {
                         System.out.println("Oh my gawd, well look atchu, aren't you just the smartest person in the room");
                         return true;
                     }
-                    if (i == 3) {
+                    if (q == 3) {
+                        System.out.println("'Steve looks on in horror'");
+                        TimeUnit.SECONDS.sleep(1);
                         System.out.println("I'm done....");
                         break;
                     }
