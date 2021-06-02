@@ -24,34 +24,34 @@ public class Entity {
     //Player Character factory methods === === === === === === === === === === === === === === === === === === === ===
     public static PlayerCharacter buildRogue(String playerName){
         String classType = "rogue";
-        int maxHP = 20;
-        int maxMana = 15;
+        int maxHP = 30;
+        int maxMana = 20;
         int passiveResist = 0;
         int atkStr = 3;
         int atkSize = 2;
-        int initBuff = 2;
+        int initBuff = 8;
         return new PlayerCharacter(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize, initBuff);
     }
 
     public static PlayerCharacter buildWarrior(String playerName){
         String classType = "warrior";
-        int maxHP = 25;
-        int maxMana = 10;
-        int passiveResist = 1;
-        int atkStr = 4;
+        int maxHP = 35;
+        int maxMana = 15;
+        int passiveResist = 2;
+        int atkStr = 5;
         int atkSize = 2;
-        int initBuff = 0;
+        int initBuff = 2;
         return new PlayerCharacter(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize, initBuff);
     }
 
     public static PlayerCharacter buildMage(String playerName){
         String classType = "mage";
-        int maxHP = 15;
+        int maxHP = 20;
         int maxMana = 20;
-        int passiveResist = 0;
+        int passiveResist = 1;
         int atkStr = 3;
         int atkSize = 2;
-        int initBuff = 0;
+        int initBuff = 4;
         return new PlayerCharacter(playerName, maxHP, maxMana, passiveResist, classType, atkStr, atkSize, initBuff);
     }
 
@@ -62,7 +62,7 @@ public class Entity {
         int maxMana = 10;
         int atkDice = 1;
         int atkSize = 4;
-        int initBuff = 0;
+        int initBuff = 1;
         return new Mob(classType, maxHP, maxMana, atkDice, atkSize, initBuff);
     }
 
@@ -82,7 +82,7 @@ public class Entity {
         int maxMana = 15;
         int atkDice = 1;
         int atkSize = 4;
-        int initBuff = 0;
+        int initBuff = 4;
         return new Mob(classType, maxHP, maxMana, atkDice, atkSize, initBuff);
     }
 
@@ -92,7 +92,7 @@ public class Entity {
         int maxMana = 0;
         int atkDice = 0;
         int atkSize = 0;
-        int initBuff = 0;
+        int initBuff = -20;
         return new Mob(classType, maxHP, maxMana, atkDice, atkSize, initBuff);
     }
 
@@ -115,6 +115,7 @@ public class Entity {
             this.hp -= dmg;
         }
         else{
+            this.hp = 0;
             (this).classType = "dead";
         }
 
@@ -154,13 +155,14 @@ public class Entity {
     public void basicAttack(Entity target) throws GameOverException{
         //damages an enemy target based on entity atk stats
         int dmg = Game.diceRoll(this.atkSize, this.atkStr);
+        String targetClass = target.classType;
         target.dmg(dmg);
         if (this instanceof PlayerCharacter){
             if (target.hp > 0){
-                System.out.println(((PlayerCharacter) this).playerName + " attacked " + target.classType + " for " + dmg + " damage!");
+                System.out.println(((PlayerCharacter) this).playerName + " attacked " + targetClass + " for " + dmg + " damage!");
             }
             else{
-                System.out.println(((PlayerCharacter) this).playerName + " attacked " + target.classType + " for " + dmg + " damage and killed it!");
+                System.out.println(((PlayerCharacter) this).playerName + " attacked " + targetClass + " for " + dmg + " damage and killed it!");
             }
         }
         else{
@@ -186,18 +188,19 @@ public class Entity {
     }
 //Mage special ability
     public void fireball(Entity target) throws GameOverException, IllegalArgumentException {
-        //mage only, deals 2 d8 damage
+        //mage only, deals 4d5 damage
         int manaCost = 5;
         if (this instanceof PlayerCharacter){
             if (this.classType.equals("mage")){
-                int dmg = Game.diceRoll(2, 8);
+                int dmg = Game.diceRoll(4, 5);
+                String targetClass = target.classType;
                 target.dmg(dmg);
                 this.changeMana(-manaCost);
                 if (target.hp > 0){
-                    System.out.println(((PlayerCharacter) this).playerName + " cast FIREBALL on " + target.classType + " for " + dmg + " damage!");
+                    System.out.println(((PlayerCharacter) this).playerName + " cast FIREBALL on " + targetClass + " for " + dmg + " damage!");
                 }
                 else{
-                    System.out.println(((PlayerCharacter) this).playerName + " cast FIREBALL on " + target.classType + " for " + dmg + " damage and killed it!");
+                    System.out.println(((PlayerCharacter) this).playerName + " cast FIREBALL on " + targetClass + " for " + dmg + " damage and killed it!");
                 }
             }
         }
@@ -211,14 +214,15 @@ public class Entity {
         int manaCost = 5;
         if (this instanceof PlayerCharacter){
             if (this.classType.equals("rogue")){
-                int dmg = Game.diceRoll(2, this.initiative / 2);
+                int dmg = Game.diceRoll(3, this.initiative / 2);
+                String targetClass = target.classType;
                 target.dmg(dmg);
                 this.changeMana(-manaCost);
                 if (target.hp > 0){
-                    System.out.println(((PlayerCharacter) this).playerName + " used SNEAK ATTACK on " + target.classType + " for " + dmg + " damage!");
+                    System.out.println(((PlayerCharacter) this).playerName + " used SNEAK ATTACK on " + targetClass + " for " + dmg + " damage!");
                 }
                 else{
-                    System.out.println(((PlayerCharacter) this).playerName + " used SNEAK ATTACK on " + target.classType + " for " + dmg + " damage and killed it!");
+                    System.out.println(((PlayerCharacter) this).playerName + " used SNEAK ATTACK on " + targetClass + " for " + dmg + " damage and killed it!");
                 };
             }
         }
@@ -233,13 +237,14 @@ public class Entity {
         if (this instanceof PlayerCharacter){
             if (this.classType.equals("warrior")){
                 int dmg = Game.diceRoll(4, this.atkStr);
+                String targetClass = target.classType;
                 target.dmg(dmg);
                 this.changeMana(-manaCost);
                 if (target.hp > 0){
-                    System.out.println(((PlayerCharacter) this).playerName + " used SMASH on " + target.classType + " for " + dmg + " damage!");
+                    System.out.println(((PlayerCharacter) this).playerName + " used SMASH on " + targetClass + " for " + dmg + " damage!");
                 }
                 else{
-                    System.out.println(((PlayerCharacter) this).playerName + " used SMASH on " + target.classType + " for " + dmg + " damage and killed it!");
+                    System.out.println(((PlayerCharacter) this).playerName + " used SMASH on " + targetClass + " for " + dmg + " damage and killed it!");
                 }
             }
         }
