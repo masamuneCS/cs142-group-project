@@ -3,6 +3,7 @@ public class Item {
     public int size;
     public int strength;
     public String name;
+    public static Item[] lootTable0 = new Item[20];
     /*
     itemTypes:
     plusHealth = heals
@@ -19,6 +20,35 @@ public class Item {
     }
 
     //FACTORY METHODS
+    //Roll lootTable<gameStage>[diceRoll(1, 20)-1] to get a random appropriate loot drop
+    public static Item[] genLootTable(){
+        Item[] lootTable = new Item[20];
+        for (int i = 0; i < lootTable0.length; i++){
+            if (i < 4){
+                lootTable0[i] = smallHealPotion();
+            }
+            else if (i >= 5 && i < 8){
+                lootTable0[i] = mediumHealPotion();
+            }
+            else if (i >= 8 && i < 10){
+                lootTable0[i] = largeHealPotion();
+            }
+            else if (i >= 10 && i < 13){
+                lootTable0[i] = smallManaPot();
+            }
+            else if (i >= 13 && i < 15){
+                lootTable0[i] = largeManaPot();
+            }
+            else if (i >= 15 && i < 18){
+                lootTable0[i] = resistPot();
+            }
+            else{
+                lootTable0[i] = bomb();
+            }
+        }
+        return lootTable;
+    }
+
     // healing potion that adds 3 HP back
     public static Item smallHealPotion () {
         String itemType = "plusHealth";
