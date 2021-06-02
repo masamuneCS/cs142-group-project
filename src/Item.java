@@ -3,6 +3,13 @@ public class Item {
     public int size;
     public int strength;
     public String name;
+    /*
+    itemTypes:
+    plusHealth = heals
+    plusMana = restores mana
+    plusResist = increases resistance
+    bomb = deals damage
+     */
 
     public Item(String itemType, int size, int strength, String name){
         this.itemType = itemType;
@@ -78,16 +85,22 @@ public class Item {
     public void use (Entity target) throws IllegalArgumentException, GameOverException {
         switch(this.itemType){
             case "plusHealth":{
-                target.heal(Game.diceRoll(this.size, this.strength));
+                int heals = Game.diceRoll(this.size, this.strength);
+                ((Player) target).heal(heals);
+                System.out.println("Your potion healed you for " + heals + " HP.");
                 break;
             }
             case "plusMana":{
-                target.changeMana(Game.diceRoll(this.size, this.strength));
+                int manas = Game.diceRoll(this.size, this.strength);
+                ((Player) target).changeMana(manas);
+                System.out.println("Your potion restored " + manas + " mana.");
                 break;
             }
             case "plusResist": {
                 if (target instanceof Player){
-                    ((Player) target).changeResist(Game.diceRoll(this.size, this.strength));
+                    int resists = Game.diceRoll(this.size, this.strength);
+                    ((Player) target).changeResist(resists);
+                    System.out.println("Your potion gave you " + resists + " more resistance til the end of this encounter!");
                     break;
                 }
                 else{
@@ -95,7 +108,9 @@ public class Item {
                 }
             }
             case "bomb":{
-                target.dmg(Game.diceRoll(this.size, this.strength));
+                int dmg = Game.diceRoll(this.size, this.strength);
+                target.dmg(dmg);
+                System.out.println("Your bomb hit a " + target.classType + " for " + dmg + "damage!");
                 break;
             }
             default:
