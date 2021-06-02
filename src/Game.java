@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Game {
     public static Scanner userInput = new Scanner(System.in);
+    protected static boolean encounterActive = false;
+    protected static Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
 
     public static void main(String[] args){
         int gameStage = 1;
@@ -109,9 +111,8 @@ public class Game {
     }
 
     public static boolean encounter(Player player, int gameStage) throws GameOverException, IllegalArgumentException {
-        boolean encounterActive = true;
-        Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
         int mobCount = diceRoll(1, 3);
+        encounterActive = true;
 
         for (int i = 0; i < mobCount; i++){
             int roll = diceRoll(1, 10); //picking mobType based on int 1-10
@@ -161,6 +162,7 @@ public class Game {
             }
             if (allMobsDead){
                 System.out.println("You are victorious over your slain enemies!");
+                encounterActive = false;
                 return true; //all mobs are dead, player has won the encounter
             }
             mobCount = 0;
