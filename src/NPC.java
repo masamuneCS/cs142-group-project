@@ -8,6 +8,16 @@ public class NPC {
         return null;
     }
 
+    public static String[] narrator( String target, String itemReceved){
+
+        String[] speakingPart = new String[]{"congradulations on your victory against " + target + " !",
+                                            "game over, would you like to start again?",
+                                            "you found " + itemReceved + "from the chest! what luck",
+                                                "you got " + itemReceved + " from completing the minigame!",
+                                            "if you need help with trivia, try asking sodi for help! she *is* being payed after all!"};
+        return speakingPart;
+    }
+
 
         public static String harveyDio(int goodPoints) throws InterruptedException{   // good points is how well you're doing
                                                             // in the mini-game.
