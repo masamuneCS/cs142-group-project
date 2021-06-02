@@ -1,8 +1,9 @@
 import java.util.concurrent.TimeUnit;
 
 public class MiniGame {
-    public static boolean triviaGame() throws InterruptedException {
+    public static boolean triviaGame(){
 
+        // selecting the question and answer used to play
         int q = Game.diceRoll(1, 5);
         String[] gamePiece = NPC.triviaGameQuestionsAndAnswers(q);
 
@@ -85,9 +86,14 @@ public class MiniGame {
                         System.out.println("Oh my gawd, well look atchu, aren't you just the smartest person in the room");
                         return true;
                     }
+                    // if question and answer is the 3rd pair
                     if (q == 3) {
-                        System.out.println("'Steve looks on in horror'");
-                        TimeUnit.SECONDS.sleep(1);
+                        System.out.println("~Steve looks on in horror~");
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println(e);
+                        }
                         System.out.println("I'm done....");
                         break;
                     }
@@ -391,7 +397,8 @@ public class MiniGame {
                 // if player hits
                 if (Game.inputValidation(2) == 1) {
                     while (true) {
-                        drawnCard = Game.diceRoll(1, 12);
+                        drawnCard = Game.diceRoll(1, 10);
+                        // checking drawnCard against an array of already drawn cards
                         for (int key : drawnHand) {
                             if (drawnCard == key) {
                                 cardOccurrences++;
@@ -415,7 +422,8 @@ public class MiniGame {
                 else { //Player chose to stay
                     System.out.println("Dealer's current hand's value is: " + (dealerHandValue - hiddenCard) + ".");
                     while (true) {
-                        drawnCard = Game.diceRoll(1, 12);
+                        drawnCard = Game.diceRoll(1, 10);
+                        // checking drawnCard against array
                         for (int key : drawnHand) {
                             if (drawnCard == key) {
                                 cardOccurrences++;
