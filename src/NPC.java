@@ -74,14 +74,18 @@ public static String[] triviaGameQuestionsAndAnswers(int q) {
 }
 
 public static String[] trivia(int index){
-        String[] trivia = new String[]{"", "", ""};
-        String[] answer = new String[]{"", "", ""};
+        String[] trivia = new String[]{"what shape is a stop sign",
+                                        "True or False; the color orange was named after the fruit",
+                                        "what is meteorology the study of?"};
+        String[] answer = new String[]{"octagon", "True", "weather"};
         String[] both = new String[]{trivia[index], answer[index]};
         return both;
 }
 
 public static String help(int index){
-        String[] hints = new String[]{"", "", ""};
+        String[] hints = new String[]{"wait, seriously? alright... how many sides does it have.",
+                                    "oh shit, that's actually a good one... uhh, well what do you think came first, someone finding the fruit, or someone mixing the color?",
+                                    "huh, isn't this like, the greatest and most common trivia questions ever? just ask the local news outlet about it"};
         String given = hints[index];
         return given;
 }
