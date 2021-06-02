@@ -17,7 +17,9 @@ public final class Room {
     }
 
     public String roomDescriptions()  {
-        return null;
+        //Dungeon.currentRoom(3,2);
+        //You need to reference a specific dungeon, not the Dungeon class
+        return "bumbkis";
     }
 
     /*public static Room newRegularInstance() {

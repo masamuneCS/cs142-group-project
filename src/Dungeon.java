@@ -13,8 +13,6 @@ import java.util.*;
 
 public class Dungeon {
 
-    public static Scanner userEntry = new Scanner(System.in);
-
     private String description;
     private final Map<Integer, Map<Integer, Room>> map = new HashMap<Integer, Map<Integer, Room>>();
     public Room currentRoom;
@@ -42,13 +40,66 @@ public class Dungeon {
         //return currentRoom = getRoom(currentX, currentY);
         return true;
     }
+    /*public boolean interactable(int x, int y) {
+        if (currentRoom(2,1) || currentRoom(3,-1) || currentRoom(4,-1)) {
+            return true;
+        }
+        return false;
+    }*/
+
+    public String roomDescription()  {
+        if (currentRoom(0,0)) {
+            System.out.print("You step into the dark dungeon from the west, with torch in hand. Your adventure begins.");
+            }
+        if (currentRoom(1,0)) {
+            System.out.print("You step into the first room, noticing three doorways - one in each direction to the North, East and South, or you can return West to the start.");
+            //System.out.println("A slight chill grips the air.");
+        }
+        if (currentRoom(1,-1)) {
+            System.out.print("Mysterious yells can be heard from another part of the dungeon...");
+        }
+        if (currentRoom(1,1)) {
+            System.out.print("As you enter the room, several bats shriek as they fly past you...");
+            //System.out.println("There are doorways to the north, east, and south.");
+        }
+        if (currentRoom(1,2)) {
+            System.out.println("A strange regality adorns this room with limestone walls...");
+            //System.out.println("There are doorways to the east, and south.");
+        }
+        if (currentRoom(2,2)) {
+            System.out.println("The tiles in this room show signs of wear...");
+            //System.out.println("There are doorways to the east, north, and west.");
+        }
+        if (currentRoom(2,1)) {
+            System.out.println("There's an ominous shrine standing at the far end of the room.");
+            System.out.println("An unknown force beckons you towards it...");
+        }
+        if (currentRoom(2,0)) {
+            System.out.println("A seemingly endless abyss lies underneath the rope bridge adjoining the room before you to the one ahead...");
+        }
+        if (currentRoom(2,-1)) {
+            System.out.println("A mysterious hum emanates from the southern doorway. There's a crackling sound akin to that of a portal...");
+        }
+        if (currentRoom(3,2)) {
+            System.out.println("The northern doorway hums eerily. There's a crackling sound akin to that of a portal...");
+        }
+        if (currentRoom(3,1)) {
+            System.out.println("Candles have been set up around some sort of magic circle on the ground.");
+        }
+        if (currentRoom(3,0)) {
+            System.out.println("");
+        }
+        return roomDescription();
+    }
 
     public String movePlayer() {
         boolean northPossible = roomExists(currentX, currentY + 1);
         boolean southPossible = roomExists(currentX, currentY - 1);
         boolean eastPossible = roomExists(currentX + 1, currentY);
         boolean westPossible = roomExists(currentX - 1, currentY);
-        System.out.print("Where would you like to go :");
+        boolean interactPossible = true;
+
+        System.out.print("Where would you like to go from here? :");
         if (northPossible) {
             if (currentRoom(1, 0) || currentRoom(1, 1) || currentRoom(1, -1) || currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(3, 1)
                     || currentRoom(4, 0) || currentRoom(3, -1)) {
@@ -57,7 +108,7 @@ public class Dungeon {
         }
         if (eastPossible) {
             if (currentRoom(1, 2) || currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(4, 2) || currentRoom(1, 1) || currentRoom(3, 1) || currentRoom(1, 0)
-                    || currentRoom(2, 0) || currentRoom(1, -1)) {
+                    || currentRoom(2, 0) || currentRoom(1, -1) || currentRoom(0,0)) {
                 System.out.print(" East (e)");
             }
         }
@@ -69,11 +120,18 @@ public class Dungeon {
         }
         if (westPossible) {
             if (currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(4, 2) || currentRoom(2, 1) || currentRoom(4, 1) || currentRoom(1, 0) || currentRoom(2, 0) || currentRoom(3, 0)
-                    || currentRoom(2, -1)) {
+                    || currentRoom(2, -1) || currentRoom(0,0)) {
                 System.out.print(" West (w)");
             }
         }
+
+        if (interactPossible) {
+            if (currentRoom(2, 1) || currentRoom(3, -1) || currentRoom(4,-1)) {
+                System.out.print(" Use (u)");
+            }
+        }
             System.out.print(" ? ");
+
 
             String error = "Invalid input.";
 
@@ -111,8 +169,22 @@ public class Dungeon {
                             currentX++;
                             currentRoom = getRoom(currentX, currentY);
                             break;
-                        } else {
+                        } else if ((westPossible) && currentRoom(0,0)) {
+                            System.out.println("As you try to exit the dungeon, rocks very conveniently collapse upon the entrance.");
+                            System.out.println("You must press onward and complete what you came here for.");
+                        }
+                        else {
                             return error;
+                        }
+                    }
+                    case "u": {
+                        if (interactPossible) {
+                            if (currentRoom(2, 1)) {
+                                //shrine interaction
+                            }
+                            else {
+                                //chest interaction
+                            }
                         }
                     }
                 }
