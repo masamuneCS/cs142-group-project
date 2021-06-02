@@ -1,16 +1,15 @@
-import javax.naming.NoInitialContextException;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Game {
     public static Scanner userInput = new Scanner(System.in);
 
     public static void main(String[] args){
         int gameStage = 1;
+        MiniGame.blackJack();
         while(true) { //game loop. All game processes should be inside this loop.
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
-                PlayerCharacter player;
+                Player player;
                 System.out.println("What kind of hero are you? Type a number and press enter.\n" +
                         "1: Warrior. Can take a lot of hits.\n" +
                         "2: Rogue. Everything balanced, as it should be.\n" +
@@ -20,19 +19,19 @@ public class Game {
                         case "1" : {
                             System.out.println("What should I call you, warrior? Type a name and press enter.");
                             String name = userInput.nextLine();
-                            player = PlayerCharacter.buildWarrior(name);
+                            player = Player.buildWarrior(name);
                             break;
                         }
                         case "2" : {
                             System.out.println("What should I call you, rogue?");
                             String name = userInput.nextLine();
-                            player = PlayerCharacter.buildRogue(name);
+                            player = Player.buildRogue(name);
                             break;
                         }
                         case "3" : {
                             System.out.println("What should I call you, mage?");
                             String name = userInput.nextLine();
-                            player = PlayerCharacter.buildMage(name);
+                            player = Player.buildMage(name);
                             break;
                         }
                         default : {
@@ -45,9 +44,6 @@ public class Game {
 
                 encounter(player, gameStage);
 
-                Item newItem = Item.smallHealingPotion();
-                player.alterInventory(newItem);
-                player.accessInventory();
                 //TODO - Ya know, the rest of the game.
                 gameOver(player);
             }
@@ -65,7 +61,7 @@ public class Game {
      * @param player the player character
      * @throws GameOverException end the game
      */
-    public static void gameOver (PlayerCharacter player) throws GameOverException {
+    public static void gameOver (Player player) throws GameOverException {
         System.out.println(player.playerName + " died. How sad.\nG A M E  O V E R");
         System.out.println("Do you want to play again Y/n?");
         boolean playAgain = !userInput.next().equalsIgnoreCase("n");
@@ -112,7 +108,7 @@ public class Game {
         }
     }
 
-    public static boolean encounter(PlayerCharacter player, int gameStage) throws GameOverException, IllegalArgumentException {
+    public static boolean encounter(Player player, int gameStage) throws GameOverException, IllegalArgumentException {
         boolean encounterActive = true;
         Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
         int mobCount = diceRoll(1, 3);
@@ -176,7 +172,7 @@ public class Game {
             if (turn >= encounterAll.length - 1 || turn == -1){
                 turn = 0;
             }
-            if (encounterAll[turn] instanceof PlayerCharacter){
+            if (encounterAll[turn] instanceof Player){
                 while(true){
                     try {
                         Thread.sleep(1000);
