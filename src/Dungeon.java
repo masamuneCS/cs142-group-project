@@ -9,12 +9,15 @@ import java.awt.image.BufferedImage;
 import java.sql.Array;
 import java.lang.reflect.Array;*/
 
+import com.sun.tools.javac.util.Pair;
+
 import java.util.*;
 
 public class Dungeon {
 
     private String description;
     private final Map<Integer, Map<Integer, Room>> map = new HashMap<Integer, Map<Integer, Room>>();
+    //protected Map<Pair, Room> map2 = new HashMap<Pair, Room>(); <== Just an FYI, you could use a Pair for XY instead of two ints.
     public Room currentRoom;
     private int currentX = 0;
     private int currentY = 0;
