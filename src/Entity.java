@@ -98,7 +98,7 @@ public class Entity {
 
 // Stat effecting methods === === === === === === === === === === === === === === === === === === === ===
     /**
-     * method to reduce entity hp and kill entity.
+     * dmg method to reduce entity hp and kill entity.
      * @param dmg how much to lower hp
      * @throws GameOverException ends the game
      */
@@ -155,8 +155,19 @@ public class Entity {
         //damages an enemy target based on entity atk stats
         int dmg = Game.diceRoll(this.atkSize, this.atkStr);
         target.dmg(dmg);
+        if (this instanceof PlayerCharacter){
+            if (target.hp > 0){
+                System.out.println(((PlayerCharacter) this).playerName + " attacked " + target.classType + " for " + dmg + " damage!");
+            }
+            else{
+                System.out.println(((PlayerCharacter) this).playerName + " attacked " + target.classType + " for " + dmg + " damage and killed it!");
+            }
+        }
+        else{
+            System.out.println(this.classType + " attacked " + ((PlayerCharacter)target).playerName + " for " + dmg + " damage!");
+        }
     }
-
+//Shaman special ability
     public void healAlly(Entity target) throws IllegalArgumentException{
         //shaman only, heals an ally target for 2 d3 heals for 5 mana
         int manaCost = 5;
@@ -165,6 +176,7 @@ public class Entity {
                 int heals = Game.diceRoll(2, 3);
                 target.heal(heals);
                 this.changeMana(-manaCost);
+                System.out.println(this.classType + " healed " + target.classType + " for " + heals + " HP!");
             }
         }
         else{
@@ -174,13 +186,19 @@ public class Entity {
     }
 //Mage special ability
     public void fireball(Entity target) throws GameOverException, IllegalArgumentException {
-        //mage only, deals 2 d6 damage
+        //mage only, deals 2 d8 damage
         int manaCost = 5;
         if (this instanceof PlayerCharacter){
             if (this.classType.equals("mage")){
-                int dmg = Game.diceRoll(2, 6);
+                int dmg = Game.diceRoll(2, 8);
                 target.dmg(dmg);
                 this.changeMana(-manaCost);
+                if (target.hp > 0){
+                    System.out.println(((PlayerCharacter) this).playerName + " cast FIREBALL on " + target.classType + " for " + dmg + " damage!");
+                }
+                else{
+                    System.out.println(((PlayerCharacter) this).playerName + " cast FIREBALL on " + target.classType + " for " + dmg + " damage and killed it!");
+                }
             }
         }
         else{
@@ -193,9 +211,15 @@ public class Entity {
         int manaCost = 5;
         if (this instanceof PlayerCharacter){
             if (this.classType.equals("rogue")){
-                int dmg = Game.diceRoll(2, this.initiative);
+                int dmg = Game.diceRoll(2, this.initiative / 2);
                 target.dmg(dmg);
                 this.changeMana(-manaCost);
+                if (target.hp > 0){
+                    System.out.println(((PlayerCharacter) this).playerName + " used SNEAK ATTACK on " + target.classType + " for " + dmg + " damage!");
+                }
+                else{
+                    System.out.println(((PlayerCharacter) this).playerName + " used SNEAK ATTACK on " + target.classType + " for " + dmg + " damage and killed it!");
+                };
             }
         }
         else{
@@ -211,6 +235,12 @@ public class Entity {
                 int dmg = Game.diceRoll(4, this.atkStr);
                 target.dmg(dmg);
                 this.changeMana(-manaCost);
+                if (target.hp > 0){
+                    System.out.println(((PlayerCharacter) this).playerName + " used SMASH on " + target.classType + " for " + dmg + " damage!");
+                }
+                else{
+                    System.out.println(((PlayerCharacter) this).playerName + " used SMASH on " + target.classType + " for " + dmg + " damage and killed it!");
+                }
             }
         }
         else{
@@ -227,7 +257,6 @@ class PlayerCharacter extends Entity {
      * Character class defines the player character stats and methods for adjusting stats and inventory
      */
     protected String playerName;
-    protected String classType;
     protected int resist;
     private final int passiveResist;
     private static final int maxResist = 4;
@@ -311,37 +340,8 @@ class PlayerCharacter extends Entity {
 
 class Mob extends Entity {
 
-
     protected Mob(String classType, int maxHP, int maxMana, int atkStr, int atkSize, int initBuff){
         super(maxHP, maxMana, atkStr, atkSize, classType, initBuff);
     }
 
-/*    public static Mob grunt(){
-        String mobType = "grunt";
-        int maxHP = 10;
-        int maxMana = 10;
-        int atkDice = 1;
-        int atkSize = 4;
-        return new Mob(mobType, maxHP, maxMana, atkDice, atkSize);
-    }
-
-    public static Mob brute(){
-        String mobType = "brute";
-        int maxHP = 20;
-        int maxMana = 10;
-        int atkDice = 2;
-        int atkSize = 4;
-        return new Mob(mobType, maxHP, maxMana, atkDice, atkSize);
-    }
-
-    public static Mob shaman(){
-        String mobType = "shaman";
-        int maxHP = 10;
-        int maxMana = 15;
-        int atkDice = 1;
-        int atkSize = 4;
-        return new Mob(mobType, maxHP, maxMana, atkDice, atkSize);
-    }*/
-
-//call entity methods to effect mob stats
 }
