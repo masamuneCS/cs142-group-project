@@ -11,38 +11,33 @@ import java.lang.reflect.Array;*/
 
 import com.sun.tools.javac.util.Pair;
 
+import java.awt.*;
 import java.util.*;
 
 public class Dungeon {
 
     private String description;
-    private final Map<Integer, Map<Integer, Room>> map = new HashMap<Integer, Map<Integer, Room>>();
-    //protected Map<Pair, Room> map2 = new HashMap<Pair, Room>(); <== Just an FYI, you could use a Pair for XY instead of two ints.
+    protected HashMap<Point, Room> map;
     public Room currentRoom;
-    private int currentX = 0;
-    private int currentY = 0;
+    public static Point[] roomCoords;
 
-    private Room getRoom(int x, int y) {
-        return map.get(x).get(y);
-    }
-
-    public void putRoom(int x, int y) {
-        if (!map.containsKey(x)) {
-            map.put(x, new HashMap<Integer, Room>());
+    public Dungeon() {
+        roomCoords = new Point[16];
+        for (int i = 0; i < 16; i++){
+            for (int x = 0; x < 4; x++){
+                for (int y = 0; y < 4; y++){
+                    roomCoords[i] = new Point(x, y);
+                }
+            }
         }
-        map.get(x).put(y, currentRoom);
+
+        map = new HashMap<>();
+        for (int i = 1; i <= 16; i++){
+            map.put()
+        }
     }
 
-    private boolean roomExists(int x, int y) {
-        if (!map.containsKey(x)) {
-            return false;
-        }
-        return map.get(x).containsKey(y);
-    }
-    public boolean currentRoom(int x, int y) {
-        //return currentRoom = getRoom(currentX, currentY);
-        return true;
-    }
+
     /*public boolean interactable(int x, int y) {
         if (currentRoom(2,1) || currentRoom(3,-1) || currentRoom(4,-1)) {
             return true;
