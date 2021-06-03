@@ -47,9 +47,39 @@ public class Game {
                 while (true) {
                     for (int i = 0; i < 16; i++) {
                         Dungeon.movePlayer();
+                        if (i == 8) {
+                            try {
+                                Thread.sleep(150);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            System.out.println("\nThe dungeon itself begins to rumble and shake, causing small rocks fall from above.\nTime seems to be running out...");
+                        }
+                        if (i == 12) {
+                            try {
+                                Thread.sleep(150);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            System.out.println("\nThe dungeon begins to violently shake.\nYou don't know how much longer it'll hold...");
+                        }
+                        if (i == 16) {
+                            try {
+                                Thread.sleep(300);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            System.out.println("\nThe dungeon collapses on you!");
+                            gameOver(player);
+                        }
                     }
+
                     break;
+
                 }
+                // For an encounter, maybe set the encounter chance to 25 ~ 30% perhaps attainable via dice roll? (e.g.
+                // random 0-100, 0-30 = encounter, 31-100 = nothing + can continue moving on
+                // or 0-25 encounter, 26-95 = nothing, 96-100 = chest?
 
                 //encounter(player, gameStage);
 

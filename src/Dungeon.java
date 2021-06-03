@@ -9,35 +9,28 @@ import java.awt.image.BufferedImage;
 import java.sql.Array;
 import java.lang.reflect.Array;*/
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Dungeon {
 
-    private String description;
-    private static final Map<Integer, Map<Integer, Room>> map = new HashMap<Integer, Map<Integer, Room>>();
     public static Room currentRoom;
     protected static int currentX = 0;
     protected static int currentY = 0;
-
-    private static Room getRoom(int x, int y) {
-        return map.get(x).get(y);
-    }
-
-    public void putRoom(int x, int y) {
-        if (!map.containsKey(x)) {
-            map.put(x, new HashMap<Integer, Room>());
-        }
-        map.get(x).put(y, currentRoom);
-    }
-
-    public Room currentRoom(int x, int y) {
-        return currentRoom;
-    }
+    public boolean roomWasVisited;
 
     public static boolean roomDescription() {
         if (currentX == 0 && currentY == 0) {
-            System.out.print("You step into the dark dungeon from the west, with torch in hand. Your adventure begins.");
+            System.out.print("A hermit outside the dungeon greets you with a proposition.\n\"These dungeons are littered with treasure!\" he exclaims.\n");
+            try {
+                Thread.sleep(600);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.print("But, there is a caveat... the stability of its walls have deteriorated for far too long and the risk of it falling upon whomever enters is high...");
+            try {
+                Thread.sleep(600);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.print("You enter the dark dungeon from the west, with torch in hand. Your adventure begins...");
             return true;
         }
         if (currentX == 1 && currentY == 0) {
@@ -60,8 +53,13 @@ public class Dungeon {
             System.out.println("The tiles in this room show signs of wear...");
             return true;
         }
-        if (currentX == 2 && currentY == -1) {
+        if (currentX == 2 && currentY == 1) {
             System.out.println("There's an ominous shrine standing at the far end of the room.");
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println("An unknown force beckons you towards it...");
             return true;
         }
@@ -70,11 +68,23 @@ public class Dungeon {
             return true;
         }
         if (currentX == 2 && currentY == -1) {
-            System.out.println("A mysterious hum emanates from the southern doorway. There's a crackling sound akin to that of a portal...");
+            System.out.println("A mysterious hum emanates from the southern doorway.");
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("There's a crackling sound akin to that of a portal...");
             return true;
         }
         if (currentX == 3 && currentY == 2) {
-            System.out.println("The northern doorway hums eerily. There's a crackling sound akin to that of a portal...");
+            System.out.println("The northern doorway hums eerily.");
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("There's a crackling sound akin to that of a portal...");
             return true;
         }
         if (currentX == 3 && currentY == 1) {
@@ -128,6 +138,7 @@ public class Dungeon {
                         if (currentX == 3 && currentY == 3) {
                             currentX = 2;
                             currentY = -1;
+                            System.out.print("\nThe portal spits you out in another part of the dungeon!");
                         }
                         break;
                     }
@@ -137,6 +148,7 @@ public class Dungeon {
                         if (currentX == 2 && currentY == -2) {
                             currentX = 3;
                             currentY = 2;
+                            System.out.print("\nThe portal spits you out in another part of the dungeon!");
                         }
                         break;
                     }
@@ -165,29 +177,16 @@ public class Dungeon {
                 movePlayer();
 
             }
+
     }
 
+    public static boolean roomWasVisited(boolean wasVisited) {
+        wasVisited = false;
 
-    public Dungeon newInstance() {
-        Dungeon dungeon = new Dungeon();
-        dungeon.putRoom(0, 0);
-        dungeon.putRoom(1, 0);
-        dungeon.putRoom(1, -1);
-        dungeon.putRoom(1, 1);
-        dungeon.putRoom(1, 2);
-        dungeon.putRoom(2, 2);
-        dungeon.putRoom(2, 1);
-        dungeon.putRoom(2, 0);
-        dungeon.putRoom(2, -1);
-        dungeon.putRoom(3, -1);
-        dungeon.putRoom(3, 0);
-        dungeon.putRoom(3, 1);
-        dungeon.putRoom(3, 2);
-        dungeon.putRoom(4, 2);
-        dungeon.putRoom(4, 1);
-        dungeon.putRoom(4, 0);
-        dungeon.currentRoom = dungeon.getRoom(0, 0);
-        return dungeon;
+        if (wasVisited = false) {
+            wasVisited = true;
+        }
+        return wasVisited;
     }
 }
 
