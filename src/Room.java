@@ -1,25 +1,205 @@
+import com.sun.tools.javac.util.Pair;
+
+import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 
 public final class Room {
 
     private final String description;
-    private final static Set<Integer> roomsSeen = new HashSet<Integer>();
-    private final static Random random = new Random();
-    private final static int NUM_ROOMS = 16;
+    private boolean roomSeen;
+    private boolean canMoveNorth;
+    private boolean canMoveSouth;
+    private boolean canMoveEast;
+    private boolean canMoveWest;
+    private boolean containsShrine;
+    private boolean containsChest;
+    private Point roomCoordinate;
 
-    private Room(String description) {
+    protected static Room[] whichRoom = new Room[16];
+
+    private Room(String description, boolean roomSeen, boolean canMoveNorth, boolean canMoveSouth, boolean canMoveEast, boolean canMoveWest, boolean containsShrine, boolean containsChest, Point roomCoordinate) {
         this.description = description;
+        this.roomSeen = roomSeen;
+        this.canMoveNorth = canMoveNorth;
+        this.canMoveSouth = canMoveSouth;
+        this.canMoveEast = canMoveEast;
+        this.canMoveWest = canMoveWest;
+        this.containsShrine = containsShrine;
+        this.containsChest = containsChest;
+        this.roomCoordinate = roomCoordinate;
     }
 
-    public void enter() {
-        System.out.println("You are in " + description);
-    }
 
-    public String roomDescriptions()  {
-        //Dungeon.currentRoom(3,2);
-        //You need to reference a specific dungeon, not the Dungeon class
-        return "bumbkis";
+
+    public static void dungeon0Builder(Point[] roomCoord){
+        for (int i = 0; i < whichRoom.length; i++){
+            switch(i){
+                case 0:{
+                    Point roomCoordinate = roomCoord[i];//(0,0)
+                    boolean doorWest = false;
+                    boolean doorNorth = false;
+                    boolean doorEast = true;
+                    boolean doorSouth = true;
+                    boolean hasShrine = false;
+                    boolean hasChest = false;
+                    break;
+                }
+                case 1:{
+                    Point roomCoordinate = roomCoord[i];//(0,1)
+                    boolean doorWest = false;
+                    boolean doorNorth = true;
+                    boolean doorEast = true;
+                    boolean doorSouth = true;
+                    boolean hasShrine = false;
+                    boolean hasChest = false;
+                    break;
+                }
+                case 2:{
+                    Point roomCoordinate = roomCoord[i];//(0,2)
+                    boolean doorWest = false;
+                    boolean doorNorth = true;
+                    boolean doorEast = false;
+                    boolean doorSouth = true;
+                    boolean hasShrine = false;
+                    boolean hasChest = false;
+                    break;
+                }
+                case 3:{
+                    Point roomCoordinate = roomCoord[i];//(0,3)
+                    boolean doorWest = false;
+                    boolean doorNorth = true;
+                    boolean doorEast = true;
+                    boolean doorSouth = false;
+                    boolean hasShrine = false;
+                    boolean hasChest = true;
+                    break;
+                }
+                case 4:{
+                    Point roomCoordinate = roomCoord[i];//(1,0)
+                    boolean doorWest = true;
+                    boolean doorNorth = false;
+                    boolean doorEast = true;
+                    boolean doorSouth = false;
+                    boolean hasShrine = false;
+                    boolean hasChest = true;
+                    break;
+                }
+                case 5:{
+                    Point roomCoordinate = roomCoord[i];//(1,1)
+                    boolean doorWest = true;
+                    boolean doorNorth = false;
+                    boolean doorEast = false;
+                    boolean doorSouth = true;
+                    boolean hasShrine = true;
+                    boolean hasChest = false;
+                    break;
+                }
+                case 6:{
+                    Point roomCoordinate = roomCoord[i];//(1,2)
+                    boolean doorWest = false;
+                    boolean doorNorth = true;
+                    boolean doorEast = true;
+                    boolean doorSouth = true;
+                    boolean hasShrine = false;
+                    boolean hasChest = false;
+                    break;
+                }
+                case 7:{
+                    Point roomCoordinate = roomCoord[i];//(1,3)
+                    boolean doorWest = true;
+                    boolean doorNorth = true;
+                    boolean doorEast = false;
+                    boolean doorSouth = false;
+                    boolean hasShrine = false;
+                    boolean hasChest = false;
+                    break;
+                }
+                case 8:{
+                    Point roomCoordinate = roomCoord[i];//(2,0)
+                    boolean doorWest = true;
+                    boolean doorNorth = false;
+                    boolean doorEast = true;
+                    boolean doorSouth = true;
+                    boolean hasShrine = false;
+                    boolean hasChest = false;
+                    break;
+                }
+                case 9:{
+                    Point roomCoordinate = roomCoord[i];//(2,1)
+                    boolean doorWest = false;
+                    boolean doorNorth = true;
+                    boolean doorEast = true;
+                    boolean doorSouth = false;
+                    boolean hasShrine = false;
+                    boolean hasChest = false;
+                    break;
+                }
+                case 10:{
+                    Point roomCoordinate = roomCoord[i];//(2,2)
+                    boolean doorWest = true;
+                    boolean doorNorth = false;
+                    boolean doorEast = true;
+                    boolean doorSouth = true;
+                    boolean hasShrine = false;
+                    boolean hasChest = false;
+                    break;
+                }
+                case 11:{
+                    Point roomCoordinate = roomCoord[i];//(2,3)
+                    boolean doorWest = false;
+                    boolean doorNorth = true;
+                    boolean doorEast = false;
+                    boolean doorSouth = false;
+                    boolean hasShrine = false;
+                    boolean hasChest = true;
+                    break;
+                }
+                case 12:{
+                    Point roomCoordinate = roomCoord[i];//(3,0)
+                    boolean doorWest = true;
+                    boolean doorNorth = false;
+                    boolean doorEast = false;
+                    boolean doorSouth = false;
+                    boolean hasShrine = false;
+                    boolean hasChest = true;
+                    break;
+                }
+                case 13:{
+                    Point roomCoordinate = roomCoord[i];//(3,1)
+                    boolean doorWest = true;
+                    boolean doorNorth = false;
+                    boolean doorEast = false;
+                    boolean doorSouth = true;
+                    boolean hasShrine = false;
+                    boolean hasChest = true;
+                    break;
+                }
+                case 14:{
+                    Point roomCoordinate = roomCoord[i];//(3,2)
+                    boolean doorWest = true;
+                    boolean doorNorth = true;
+                    boolean doorEast = false;
+                    boolean doorSouth = true;
+                    boolean hasShrine = false;
+                    boolean hasChest = false
+                    break;
+                }
+                case 15:{
+                    Point roomCoordinate = roomCoord[i];//(3,3)
+                    boolean doorWest = false;
+                    boolean doorNorth = true;
+                    boolean doorEast = false;
+                    boolean doorSouth = false;
+                    boolean hasShrine = false;
+                    boolean hasChest = false;
+                    break;
+                }
+            }
+        }
+
+
+
     }
 
     /*public static Room newRegularInstance() {
