@@ -151,12 +151,10 @@ public class Dungeon {
                     }
 
                     case "u": {
-                        if (interactPossible) {
-                            if (currentX == 2 && currentY == 1) {
-                                //shrine interaction
-                            } else {
-                                //chest interaction
-                            }
+                        if (currentX == 2 && currentY == 1) {
+                            //shrine interaction
+                        } else {
+                            //chest interaction
                         }
                     }
                     default: {
