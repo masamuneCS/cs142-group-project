@@ -6,51 +6,57 @@ public class Game {
     protected static boolean encounterActive = false;
     protected static Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int gameStage = 1;
-        MiniGame.blackJack();
-        while(true) { //game loop. All game processes should be inside this loop.
+
+
+        while (true) { //game loop. All game processes should be inside this loop.
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
                 Player player;
                 System.out.println("What kind of hero are you? Type a number and press enter.\n" +
                         "1: Warrior. Can take a lot of hits.\n" +
                         "2: Rogue. Everything balanced, as it should be.\n" +
                         "3: Mage. Hits very hard, is made of glass.");
-                while(true) {
+                while (true) {
                     switch (userInput.nextLine()) {
-                        case "1" : {
+                        case "1": {
                             System.out.println("What should I call you, warrior? Type a name and press enter.");
                             String name = userInput.nextLine();
                             player = Player.buildWarrior(name);
                             break;
                         }
-                        case "2" : {
+                        case "2": {
                             System.out.println("What should I call you, rogue?");
                             String name = userInput.nextLine();
                             player = Player.buildRogue(name);
                             break;
                         }
-                        case "3" : {
+                        case "3": {
                             System.out.println("What should I call you, mage?");
                             String name = userInput.nextLine();
                             player = Player.buildMage(name);
                             break;
                         }
-                        default : {
+                        default: {
                             System.out.println("Enter 1,2, or 3 to choose.");
                             continue;
                         }
                     }
                     break; //breaks loop
                 }
+                while (true) {
+                    for (int i = 0; i < 16; i++) {
+                        Dungeon.movePlayer();
+                    }
+                    break;
+                }
 
-                encounter(player, gameStage);
+                //encounter(player, gameStage);
 
                 //TODO - Ya know, the rest of the game.
                 gameOver(player);
-            }
-            catch (GameOverException exception) { //either closes program or restarts game based on player choice in GameOverException.
-                if (exception.playAgain){
+            } catch (GameOverException exception) { //either closes program or restarts game based on player choice in GameOverException.
+                if (exception.playAgain) {
                     continue;
                 }
                 break;
@@ -70,6 +76,7 @@ public class Game {
         throw new GameOverException(playAgain);
 
     }
+
 
     private static final Random rand = new Random(); //for getting nice random numbers without the weird math.random formula
     /**
