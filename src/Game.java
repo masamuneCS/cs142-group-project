@@ -45,7 +45,7 @@ public class Game {
                     break; //breaks loop
                 }
                 while (true) {
-                    for (int i = 0; i < 16; i++) {
+                    for (int i = 0; i <= 16; i++) {
                         Dungeon.movePlayer();
                         if (i == 8) {
                             try {
