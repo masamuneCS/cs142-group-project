@@ -9,9 +9,8 @@ import java.awt.image.BufferedImage;
 import java.sql.Array;
 import java.lang.reflect.Array;*/
 
-import com.sun.tools.javac.util.Pair;
-
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Dungeon {
 
@@ -39,10 +38,7 @@ public class Dungeon {
         }
         return map.get(x).containsKey(y);
     }
-    public boolean currentRoom(int x, int y) {
-        //return currentRoom = getRoom(currentX, currentY);
-        return true;
-    }
+
     /*public boolean interactable(int x, int y) {
         if (currentRoom(2,1) || currentRoom(3,-1) || currentRoom(4,-1)) {
             return true;
@@ -50,50 +46,60 @@ public class Dungeon {
         return false;
     }*/
 
-    public String roomDescription()  {
-        if (currentRoom(0,0)) {
+    public Room currentRoom(int x, int y) {
+        Room currentRoom = (getRoom(currentX, currentY));
+        return currentRoom;
+    }
+
+    public String roomDescription() {
+        if (currentX == 0 && currentY == 0) {
             System.out.print("You step into the dark dungeon from the west, with torch in hand. Your adventure begins.");
-            }
-        if (currentRoom(1,0)) {
+        }
+        if (currentX == 1 && currentY == 0) {
             System.out.print("You step into the first room, noticing three doorways - one in each direction to the North, East and South, or you can return West to the start.");
             //System.out.println("A slight chill grips the air.");
         }
-        if (currentRoom(1,-1)) {
+        if (currentX == 1 && currentY == -1) {
             System.out.print("Mysterious yells can be heard from another part of the dungeon...");
         }
-        if (currentRoom(1,1)) {
+        if (currentX == 1 && currentY == 1) {
             System.out.print("As you enter the room, several bats shriek as they fly past you...");
             //System.out.println("There are doorways to the north, east, and south.");
         }
-        if (currentRoom(1,2)) {
+        if (currentX == 1 && currentY == 2) {
             System.out.println("A strange regality adorns this room with limestone walls...");
             //System.out.println("There are doorways to the east, and south.");
         }
-        if (currentRoom(2,2)) {
+        if (currentX == 2 && currentY == 2) {
             System.out.println("The tiles in this room show signs of wear...");
             //System.out.println("There are doorways to the east, north, and west.");
         }
-        if (currentRoom(2,1)) {
+        if (currentX == 2 && currentY == -1) {
             System.out.println("There's an ominous shrine standing at the far end of the room.");
             System.out.println("An unknown force beckons you towards it...");
         }
-        if (currentRoom(2,0)) {
+        if (currentX == 2 && currentY == 0) {
             System.out.println("A seemingly endless abyss lies underneath the rope bridge adjoining the room before you to the one ahead...");
         }
-        if (currentRoom(2,-1)) {
+        if (currentX == 2 && currentY == -1) {
             System.out.println("A mysterious hum emanates from the southern doorway. There's a crackling sound akin to that of a portal...");
         }
-        if (currentRoom(3,2)) {
+        if (currentX == 3 && currentY == 2) {
             System.out.println("The northern doorway hums eerily. There's a crackling sound akin to that of a portal...");
         }
-        if (currentRoom(3,1)) {
+        if (currentX == 3 && currentY == 1) {
             System.out.println("Candles have been set up around some sort of magic circle on the ground.");
         }
-        if (currentRoom(3,0)) {
+        if (currentX == 3 && currentY == 0) {
             System.out.println("");
         }
         return roomDescription();
     }
+
+    /*public Room currentRoom(int x, int y) {
+        //return currentRoom = getRoom(currentX, currentY);
+        return currentRoom;
+    }*/
 
     public String movePlayer() {
         boolean northPossible = roomExists(currentX, currentY + 1);
@@ -104,32 +110,31 @@ public class Dungeon {
 
         System.out.print("Where would you like to go from here? :");
         if (northPossible) {
-            if (currentRoom(1, 0) || currentRoom(1, 1) || currentRoom(1, -1) || currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(3, 1)
-                    || currentRoom(4, 0) || currentRoom(3, -1)) {
+            if ((currentX == 1 && currentY == 0) || (currentX == 1 && currentY == -1) || (currentX == 1 && currentY == 1) || (currentX == 2 && currentY == 2)
+                    || (currentX == 3 && currentY == 2) || (currentX == 3 && currentY == 1) || (currentX == 3 && currentY == -1) || (currentX == 4 && currentY == 0)) {
                 System.out.print(" North (n)");
             }
         }
         if (eastPossible) {
-            if (currentRoom(1, 2) || currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(4, 2) || currentRoom(1, 1) || currentRoom(3, 1) || currentRoom(1, 0)
-                    || currentRoom(2, 0) || currentRoom(1, -1) || currentRoom(0,0)) {
+            if ((currentX == 0 && currentY == 0) || (currentX == 1 && currentY == 2) || (currentX == 1 && currentY == 1) || (currentX == 1 && currentY == 0) || (currentX == 1 && currentY == -1) || (currentX == 2 && currentY == 2) || (currentX == 2 && currentY == 0) || (currentX == 3 && currentY == 2) || (currentX == 3 && currentY == 1) || (currentX == 4 && currentY == 2)) {
                 System.out.print(" East (e)");
             }
         }
         if (southPossible) {
-            if (currentRoom(1, 2) || currentRoom(3, 2) || currentRoom(1, 1) || currentRoom(4, 1) || currentRoom(1, 0) || currentRoom(3, 0) || currentRoom(4, 0)
-                    || currentRoom(1, -1) || currentRoom(2,-1)) {
+            if ((currentX == 1 && currentY == 2) || (currentX == 1 && currentY == 1) || (currentX == 1 && currentY == 0) || (currentX == 1 && currentY == -1) || (currentX == 2 && currentY == -1) || (currentX == 3 && currentY == 2) || (currentX == 3 && currentY == 0) || (currentX == 4 && currentY == 1) || (currentX == 4 && currentY == 0)) {
                 System.out.print(" South (s)");
             }
         }
         if (westPossible) {
-            if (currentRoom(2, 2) || currentRoom(3, 2) || currentRoom(4, 2) || currentRoom(2, 1) || currentRoom(4, 1) || currentRoom(1, 0) || currentRoom(2, 0) || currentRoom(3, 0)
-                    || currentRoom(2, -1) || currentRoom(0,0)) {
+            if ((currentX == 0 && currentY == 0) || (currentX == 1 && currentY == 0) || (currentX == 2 && currentY == 2) || (currentX == 2 && currentY == 1) ||
+                    (currentX == 2 && currentY == 0) || (currentX == 2 && currentY == -1) || (currentX == 3 && currentY == 2) || (currentX == 3 && currentY == 0) ||
+                    (currentX == 4 && currentY == 2)) {
                 System.out.print(" West (w)");
             }
         }
 
         if (interactPossible) {
-            if (currentRoom(2, 1) || currentRoom(3, -1) || currentRoom(4,-1)) {
+            if ((currentX == 1 && currentY == -1) || (currentX == 1 && currentY == -1) || (currentX == 1 && currentY == -1)) {
                 System.out.print(" Use (u)");
             }
         }
@@ -144,6 +149,7 @@ public class Dungeon {
                         if (northPossible) {
                             currentY++;
                             currentRoom = getRoom(currentX, currentY);
+                            System.out.println(currentRoom.roomDescriptions());
                             break;
                         } else {
                             return error;
@@ -153,6 +159,7 @@ public class Dungeon {
                         if (southPossible) {
                             currentY--;
                             currentRoom = getRoom(currentX, currentY);
+                            System.out.println(currentRoom.roomDescriptions());
                             break;
                         } else {
                             return error;
@@ -162,6 +169,7 @@ public class Dungeon {
                         if (eastPossible) {
                             currentX--;
                             currentRoom = getRoom(currentX, currentY);
+                            System.out.println(currentRoom.roomDescriptions());
                             break;
                         } else {
                             return error;
@@ -171,53 +179,53 @@ public class Dungeon {
                         if (westPossible) {
                             currentX++;
                             currentRoom = getRoom(currentX, currentY);
+                            System.out.println(currentRoom.roomDescriptions());
                             break;
-                        } else if ((westPossible) && currentRoom(0,0)) {
+                        } else if ((westPossible) && (currentX == 0 && currentY == 0)) {
                             System.out.println("As you try to exit the dungeon, rocks very conveniently collapse upon the entrance.");
                             System.out.println("You must press onward and complete what you came here for.");
-                        }
-                        else {
+                        } else {
                             return error;
                         }
                     }
                     case "u": {
                         if (interactPossible) {
-                            if (currentRoom(2, 1)) {
+                            if (currentX == 2 && currentY == 1) {
                                 //shrine interaction
-                            }
-                            else {
+                            } else {
                                 //chest interaction
                             }
                         }
                     }
                 }
             }
-        }
-
-
-        public static Dungeon newInstance() {
-            Dungeon dungeon = new Dungeon();
-            dungeon.putRoom(0, 0);
-            dungeon.putRoom(1, 0);
-            dungeon.putRoom(1, -1);
-            dungeon.putRoom(1, 1);
-            dungeon.putRoom(1, 2);
-            dungeon.putRoom(2, 2);
-            dungeon.putRoom(2, 1);
-            dungeon.putRoom(2, 0);
-            dungeon.putRoom(2, -1);
-            dungeon.putRoom(3, -1);
-            dungeon.putRoom(3, 0);
-            dungeon.putRoom(3, 1);
-            dungeon.putRoom(3, 2);
-            dungeon.putRoom(4, 2);
-            dungeon.putRoom(4, 1);
-            dungeon.putRoom(4, 0);
-            dungeon.currentRoom = dungeon.getRoom(0, 0);
-            return dungeon;
-
-        }
     }
+
+
+    public Dungeon newInstance() {
+        Dungeon dungeon = new Dungeon();
+        dungeon.putRoom(0, 0);
+        dungeon.putRoom(1, 0);
+        dungeon.putRoom(1, -1);
+        dungeon.putRoom(1, 1);
+        dungeon.putRoom(1, 2);
+        dungeon.putRoom(2, 2);
+        dungeon.putRoom(2, 1);
+        dungeon.putRoom(2, 0);
+        dungeon.putRoom(2, -1);
+        dungeon.putRoom(3, -1);
+        dungeon.putRoom(3, 0);
+        dungeon.putRoom(3, 1);
+        dungeon.putRoom(3, 2);
+        dungeon.putRoom(4, 2);
+        dungeon.putRoom(4, 1);
+        dungeon.putRoom(4, 0);
+        dungeon.currentRoom = dungeon.getRoom(0, 0);
+        return dungeon;
+
+    }
+
+}
 
 
 

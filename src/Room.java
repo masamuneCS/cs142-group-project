@@ -1,5 +1,6 @@
-import java.io.IOException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 public final class Room {
 
@@ -19,7 +20,7 @@ public final class Room {
     public String roomDescriptions()  {
         //Dungeon.currentRoom(3,2);
         //You need to reference a specific dungeon, not the Dungeon class
-        return "bumbkis";
+        return "";
     }
 
     /*public static Room newRegularInstance() {
