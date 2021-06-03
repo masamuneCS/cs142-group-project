@@ -49,6 +49,10 @@ public class Item {
         return lootTable;
     }
 
+    public static Item getLootDrop(){
+        return lootTable0[Game.diceRoll(1, lootTable0.length)];
+    }
+
     // healing potion that adds 3 HP back
     public static Item smallHealPotion () {
         String itemType = "plusHealth";
