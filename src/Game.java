@@ -133,16 +133,16 @@ public class Game {
         encounterAll[0] = player;
         System.arraycopy(encounterMobs, 0, encounterAll, 1, encounterMobs.length);
         //establish initiative for player and mobs.
-        player.initiative = diceRoll(1, 20) + player.initBuff;
-        System.out.println("You rolled " + player.initiative + " for initiative!");
+        player.setInitiative(diceRoll(1, 20) + player.initBuff);
+        System.out.println("You rolled " + player.getInitiative() + " for initiative!");
         for (Mob mob : encounterMobs){
-            mob.initiative = diceRoll(1, 20);
+            mob.setInitiative(diceRoll(1, 20));
         }
         //Ordering entities in array by initiative to establish turn order.
         for (int i = 1; i < encounterAll.length; i++){
             Entity key = encounterAll[i];
             int j = i - 1;
-            while (j >= 0 && encounterAll[j].initiative < key.initiative){
+            while (j >= 0 && encounterAll[j].getInitiative() < key.getInitiative()){
                 encounterAll[j+1] = encounterAll[j];
                 j--;
             }
@@ -187,7 +187,7 @@ public class Game {
                     else{
                         System.out.println("There is " + mobCount + " enemy before you!");
                     }
-                    System.out.println("HP: " + player.hp + " Mana: " + player.mana);
+                    System.out.println("HP: " + player.getHp() + " Mana: " + player.getMana());
                     System.out.println("What would you like to do?\n1: Attack\n2: Special Attack\n3: Use an item from your inventory");
                     switch(userInput.nextLine()){
                         case "1": {
@@ -195,7 +195,7 @@ public class Game {
                             int i = 1;
                             for (Mob mob : encounterMobs) {
                                 if (!mob.classType.equals("dead"))
-                                    System.out.println(i + ": A " + mob.classType + " with " + mob.hp + "HP");
+                                    System.out.println(i + ": A " + mob.classType + " with " + mob.getHp() + "HP");
                                 i++;
                             }
                             System.out.println("or choose " + encounterMobs.length + " to go back.");
@@ -220,7 +220,7 @@ public class Game {
                                 }
                             }
                             else if (player.classType.equals("rogue")){
-                                System.out.println(player.playerName + " your special rogue ability is SNEAK ATTACK. SNEAK ATTACK does damage based on your initiative and costs 5 mana. \nThis encounter it does 2d" + (player.initiative / 2) + " damage.");
+                                System.out.println(player.playerName + " your special rogue ability is SNEAK ATTACK. SNEAK ATTACK does damage based on your initiative and costs 5 mana. \nThis encounter it does 2d" + (player.getInitiative() / 2) + " damage.");
                                 try {
                                     Thread.sleep(500);
                                 } catch (InterruptedException e) {
@@ -235,7 +235,7 @@ public class Game {
                                     System.err.println("Slept thread was interrupted");
                                 }
                             }
-                            if (player.mana < 5){
+                            if (player.getMana() < 5){
                                 System.out.println("You don't have enough mana, maybe try using a potion?");
                                 System.out.println();
                                 try {
@@ -249,7 +249,7 @@ public class Game {
                             int i = 1;
                             for (Mob mob : encounterMobs) {
                                 if (!mob.classType.equals("dead"))
-                                    System.out.println(i + ": A " + mob.classType + " with " + mob.hp + "HP");
+                                    System.out.println(i + ": A " + mob.classType + " with " + mob.getHp() + "HP");
                                 i++;
                             }
                             System.out.println(encounterMobs.length + ": Go back");
@@ -315,7 +315,7 @@ public class Game {
                         }
                         for (Mob mob : encounterMobs) {
                             if (mob != encounterAll[turn]) { //this logic is very stupid and it might behoove me to sort for which ally has the LOWEST HP if time allows.
-                                if (mob.hp < mob.maxHP / 2 && encounterAll[turn].mana >= 5 && !mob.classType.equals("dead")) {
+                                if (mob.getHp() < mob.maxHP / 2 && encounterAll[turn].getMana() >= 5 && !mob.classType.equals("dead")) {
                                     encounterAll[turn].healAlly(mob);
                                     continue;
                                 }

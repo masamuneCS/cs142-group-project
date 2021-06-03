@@ -3,14 +3,14 @@ import java.util.Locale;
 public class Entity {
     //players and mobs are entities. Call entity methods when you need to do Stuff.
     protected String classType;
-    protected int hp;
-    protected int mana;
+    private int hp;
+    private int mana;
     protected final int maxHP;
     protected final int maxMana;
-    protected int atkStr;
-    protected int atkSize;
-    protected int initiative;
-    protected int initBuff;
+    protected final int atkStr;
+    protected final int atkSize;
+    private int initiative;
+    protected final int initBuff;
 
     public Entity(int maxHP, int maxMana, int atkStr, int atkSize, String classType, int initBuff) {
         this.classType = classType;
@@ -19,6 +19,22 @@ public class Entity {
         this.atkStr = atkStr;
         this.atkSize = atkSize;
         initiative = this.initBuff = initBuff; //default initiative is always zero, gets rolled at top of encounter
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public int getInitiative() {
+        return initiative;
+    }
+
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
     }
 
     //Player factory methods === === === === === === === === === === === === === === === === === === === ===
@@ -104,19 +120,19 @@ public class Entity {
      */
     public void dmg(int dmg) throws GameOverException{
         if (this instanceof Player){
-            if (this.hp - (dmg - ((Player) this).resist) > 0){
-                this.hp -= (dmg - ((Player) this).resist);
+            if (hp - (dmg - ((Player) this).resist) > 0){
+                hp -= (dmg - ((Player) this).resist);
             }
             else{
                 Game.gameOver((Player) this);
             }
         }
-        else if (this.hp - dmg > 0){
-            this.hp -= dmg;
+        else if (hp - dmg > 0){
+            hp -= dmg;
         }
         else{
-            this.hp = 0;
-            (this).classType = "dead";
+            hp = 0;
+            classType = "dead";
         }
 
     }
@@ -126,11 +142,11 @@ public class Entity {
      * @param heals how much to increase HP
      */
     public void heal(int heals){
-        if (this.hp + heals <= this.maxHP ){
-            this.hp += heals;
+        if (hp + heals <= maxHP ){
+            hp += heals;
         }
         else {
-            this.hp = this.maxHP;
+            hp = maxHP;
         }
     }
 
@@ -139,14 +155,14 @@ public class Entity {
      * @param manas positive increases mana, negative decreases mana
      */
     public void changeMana(int manas){
-        if (this.mana + manas <= this.maxMana && this.mana + manas > 0){
-            this.mana += manas;
+        if (mana + manas <= maxMana && mana + manas > 0){
+            mana += manas;
         }
-        else if(this.mana + manas > this.maxMana){
-            this.mana = this.maxMana;
+        else if(mana + manas > maxMana){
+            mana = maxMana;
         }
         else{
-            this.mana = 0;
+            mana = 0;
         }
     }
 
@@ -159,7 +175,7 @@ public class Entity {
      */
     public void basicAttack(Entity target) throws GameOverException{
         //damages an enemy target based on entity atk stats
-        int dmg = Game.diceRoll(this.atkSize, this.atkStr);
+        int dmg = Game.diceRoll(atkSize, atkStr);
         String targetClass = target.classType;
         target.dmg(dmg);
         if (this instanceof Player){
@@ -171,7 +187,7 @@ public class Entity {
             }
         }
         else{
-            System.out.println(this.classType + " attacked " + ((Player)target).playerName + " for " + dmg + " damage!");
+            System.out.println(classType + " attacked " + ((Player)target).playerName + " for " + dmg + " damage!");
         }
     }
 //Shaman special ability
@@ -179,11 +195,11 @@ public class Entity {
         //shaman only, heals an ally target for 2 d3 heals for 5 mana
         int manaCost = 5;
         if (this instanceof Mob){
-            if (this.classType.equals("shaman") && this.mana > manaCost){
+            if (classType.equals("shaman") && mana > manaCost){
                 int heals = Game.diceRoll(2, 3);
                 target.heal(heals);
-                this.changeMana(-manaCost);
-                System.out.println(this.classType + " healed " + target.classType + " for " + heals + " HP!");
+                changeMana(-manaCost);
+                System.out.println(classType + " healed " + target.classType + " for " + heals + " HP!");
             }
         }
         else{
@@ -196,11 +212,11 @@ public class Entity {
         //mage only, deals 4d5 damage
         int manaCost = 5;
         if (this instanceof Player){
-            if (this.classType.equals("mage")){
+            if (classType.equals("mage")){
                 int dmg = Game.diceRoll(4, 5);
                 String targetClass = target.classType;
                 target.dmg(dmg);
-                this.changeMana(-manaCost);
+                changeMana(-manaCost);
                 if (target.hp > 0){
                     System.out.println(((Player) this).playerName + " cast FIREBALL on " + targetClass + " for " + dmg + " damage!");
                 }
@@ -218,11 +234,11 @@ public class Entity {
         //rogue only, does 2 dInitiative damage
         int manaCost = 5;
         if (this instanceof Player){
-            if (this.classType.equals("rogue")){
-                int dmg = Game.diceRoll(3, this.initiative / 2);
+            if (classType.equals("rogue")){
+                int dmg = Game.diceRoll(3, initiative / 2);
                 String targetClass = target.classType;
                 target.dmg(dmg);
-                this.changeMana(-manaCost);
+                changeMana(-manaCost);
                 if (target.hp > 0){
                     System.out.println(((Player) this).playerName + " used SNEAK ATTACK on " + targetClass + " for " + dmg + " damage!");
                 }
@@ -240,11 +256,11 @@ public class Entity {
         //warrior only, does 4 dStrength damage
         int manaCost = 5;
         if (this instanceof Player){
-            if (this.classType.equals("warrior")){
-                int dmg = Game.diceRoll(4, this.atkStr);
+            if (classType.equals("warrior")){
+                int dmg = Game.diceRoll(4, atkStr);
                 String targetClass = target.classType;
                 target.dmg(dmg);
-                this.changeMana(-manaCost);
+                changeMana(-manaCost);
                 if (target.hp > 0){
                     System.out.println(((Player) this).playerName + " used SMASH on " + targetClass + " for " + dmg + " damage!");
                 }
@@ -278,14 +294,14 @@ class Player extends Entity {
     // Stat effecting methods === === === === === === === === === === === === === === === === === === === ===
 
     public void changeResist(int resists){
-        if (this.resist + resists > this.passiveResist && this.resist + resists < maxResist){
+        if (resist + resists > passiveResist && resist + resists < maxResist){
             this.resist += resists;
         }
-        else if (this.resist + resists < this.passiveResist){
-            this.resist = this.passiveResist;
+        else if (resist + resists < passiveResist){
+            resist = passiveResist;
         }
         else if (this.resist + resists > maxResist){
-            this.resist = maxResist;
+            resist = maxResist;
         }
     }
 
@@ -295,12 +311,12 @@ class Player extends Entity {
      */
     public void accessInventory() throws GameOverException {
         System.out.println("Inventory:");
-        for (int i = 0; i < this.inventory.length; i++){
-            if (this.inventory[i] == null){
+        for (int i = 0; i < inventory.length; i++){
+            if (inventory[i] == null){
                 System.out.println("Slot "+ (i + 1) + ": Empty ");
             }
             else{
-                System.out.println("Slot " + (i + 1) + ": " + this.inventory[i].name);
+                System.out.println("Slot " + (i + 1) + ": " + inventory[i].name);
             }
         }
 
@@ -311,13 +327,13 @@ class Player extends Entity {
             switch(this.inventory[input].itemType){
                 case "plusHealth":
                 case "plusMana":
-                    this.inventory[input].use(this);
-                    this.inventory[input] = null;
+                    inventory[input].use(this);
+                    inventory[input] = null;
                     break;
                 case "plusResist":
                     if (Game.encounterActive){
-                        this.inventory[input].use(this);
-                        this.inventory[input] = null;
+                        inventory[input].use(this);
+                        inventory[input] = null;
                     }
                     else{
                         System.out.println("You can only use this during an encounter!");
@@ -327,7 +343,7 @@ class Player extends Entity {
                     if (Game.encounterActive) {
                         for (Entity target : Game.encounterMobs) {
                             if (!target.classType.equals("dead")){
-                                this.inventory[input].use(target);
+                                inventory[input].use(target);
                             }
                         }
                     } else {
@@ -336,7 +352,7 @@ class Player extends Entity {
                     break;
                 }
                 default: {
-                    throw new IllegalArgumentException("Inventory tried to use unknown item type, got " + this.inventory[input].itemType + " for object " + this.inventory[input]);
+                    throw new IllegalArgumentException("Inventory tried to use unknown item type, got " + inventory[input].itemType + " for object " + inventory[input]);
                 }
             }
         }
@@ -348,11 +364,11 @@ class Player extends Entity {
      */
     public void alterInventory(Item newItem){
         for (int i = 0; i < this.inventory.length; i++){
-            if (this.inventory[i] == null){
+            if (inventory[i] == null){
                 System.out.println("Slot "+ (i + 1) + ": Empty ");
             }
             else{
-                System.out.print("Slot " + (i + 1) + ": " + this.inventory[i].name);
+                System.out.print("Slot " + (i + 1) + ": " + inventory[i].name);
             }
         }
 
@@ -360,16 +376,16 @@ class Player extends Entity {
             System.out.println("What slot would you like to add the item to? Or choose 5 to throw away the new item.");
             int input = Game.inputValidation(5);
             if (input < 5){
-                if (this.inventory[input - 1] == null){
-                    this.inventory[input - 1] = newItem;
+                if (inventory[input - 1] == null){
+                    inventory[input - 1] = newItem;
                 }
                 else{
-                    System.out.println("There is a " + this.inventory[input -1].name + " in that slot, are you sure? [y,N]");
+                    System.out.println("There is a " + inventory[input -1].name + " in that slot, are you sure? [y,N]");
                     String strInput = Game.userInput.nextLine();
                     switch(strInput.toUpperCase(Locale.ROOT)){
                         case "Y":{
-                            System.out.println("You threw away " + this.inventory[input - 1] + " and kept " + newItem);
-                            this.inventory[input - 1] = newItem;
+                            System.out.println("You threw away " + inventory[input - 1] + " and kept " + newItem);
+                            inventory[input - 1] = newItem;
                             break;
                         }
                         case "N":
