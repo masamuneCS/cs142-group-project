@@ -369,7 +369,7 @@ class Player extends Entity {
                 System.out.println("Slot "+ (i + 1) + ": Empty ");
             }
             else{
-                System.out.print("Slot " + (i + 1) + ": " + inventory[i].name);
+                System.out.println("Slot " + (i + 1) + ": " + inventory[i].name);
             }
         }
 
@@ -385,7 +385,7 @@ class Player extends Entity {
                     String strInput = Game.userInput.nextLine();
                     switch(strInput.toUpperCase(Locale.ROOT)){
                         case "Y":{
-                            System.out.println("You threw away " + inventory[input - 1] + " and kept " + newItem);
+                            System.out.println("You threw away " + inventory[input - 1].name + " and kept " + newItem.name);
                             inventory[input - 1] = newItem;
                             break;
                         }
