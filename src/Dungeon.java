@@ -10,16 +10,20 @@ public class Dungeon {
     private Point lastRoomCoord;
     public static Point[] roomCoords;
     protected static final Point startCoord = new Point(0, 0);
+    protected static final Point victoryCoord = new Point(3, 3);
 
     public Dungeon() {
         roomCoords = new Point[16];
-        for (int i = 0; i < 16; i++) {
-            for (int x = 0; x < 4; x++) {
-                for (int y = 0; y < 4; y++) {
-                    roomCoords[i] = new Point(x, y);
-                }
+        int index = 0;
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                roomCoords[index] = new Point(x, y);
+                index++;
             }
         }
+
+        Room.dungeon0Builder(roomCoords);
+
 
         map = new HashMap<>();
         for (int i = 0; i < 16; i++) {
@@ -57,6 +61,7 @@ public class Dungeon {
         if (currentRoom.isCanMoveWest()){
             System.out.print("4. West ");
         }
+        System.out.println();
         System.out.println("Pick a direction 1-4 or choose 5 to stay here.");
         int newX;
         int newY;
@@ -117,7 +122,7 @@ public class Dungeon {
         }//End input validation loop for movement switch
         if (playerMoved){
             lastRoomCoord = currentRoom.getRoomCoordinate();
-            Point newRoomCoord = new Point(currentX, currentY);
+            Point newRoomCoord = new Point(newX, newY);
             currentRoom = map.get(newRoomCoord);
         }
     }
