@@ -14,9 +14,9 @@ public class Dungeon {
     public static Room currentRoom;
     public static int currentX = 0;
     public static int currentY = 0;
-//    public static int[] pastXValues = new int[16];
-//    public static int[] pastYValues = new int[16];
-//    int i = 1;
+    public static int[] pastXValues = new int[16];
+    public static int[] pastYValues = new int[16];
+    public static int i = 1;
 //    public boolean roomWasVisited;
 
     public static boolean roomDescription() {
@@ -103,11 +103,11 @@ public class Dungeon {
 
     public static String movePlayer() throws GameOverException {
         boolean interactPossible = true;
-        int[] pastXValues = new int[16];
-        int[] pastYValues = new int[16];
-        pastXValues[0] = 0;
-        pastYValues[0] = 0;
-        int i = 1;
+//        int[] pastXValues = new int[16];
+//        int[] pastYValues = new int[16];
+//        pastXValues[0] = 0;
+//        pastYValues[0] = 0;
+//        int i = 1;
 
         Dungeon.roomDescription();
 
@@ -143,8 +143,9 @@ public class Dungeon {
                 switch (Game.userInput.nextLine()) {
                     case "n": {
                         currentY++;
+                        pastXValues[i] = currentX;
                         pastYValues[i] = currentY;
-                        i++;
+//                        i++;
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1,2);
                             if (chancer == 1) {
@@ -171,8 +172,9 @@ public class Dungeon {
 
                     case "s": {
                         currentY--;
+                        pastXValues[i] = currentX;
                         pastYValues[i] = currentY;
-                        i++;
+//                        i++;
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1,2);
                             if (chancer == 1) {
@@ -200,7 +202,8 @@ public class Dungeon {
                     case "e": {
                         currentX++;
                         pastXValues[i] = currentX;
-                        i++;
+                        pastYValues[i] = currentY;
+//                        i++;
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1,2);
                             if (chancer == 1) {
@@ -221,7 +224,8 @@ public class Dungeon {
                     case "w": {
                         currentX--;
                         pastXValues[i] = currentX;
-                        i++;
+                        pastYValues[i] = currentY;
+//                        i++;
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1,2);
                             if (chancer == 1) {
@@ -252,6 +256,7 @@ public class Dungeon {
                     }
 
                 }
+                i++;
                 movePlayer();
 
             }
@@ -264,7 +269,12 @@ public class Dungeon {
                 continue;
             }
             else if (xValues[i] == playersX && yValues[i] == playersY){
-                return false;
+                while (Dungeon.i == 1) {
+                    if (xValues[1] == 1 && yValues[1] == 0) {
+                        continue;
+                    }
+                }
+                break;
             }
         }
         return true;

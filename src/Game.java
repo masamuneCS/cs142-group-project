@@ -100,6 +100,12 @@ public class Game {
                 gameOver(player);
             } catch (GameOverException exception) { //either closes program or restarts game based on player choice in GameOverException.
                 if (exception.playAgain) {
+                    Dungeon.currentX = 0;
+                    Dungeon.currentY = 0;
+                    for (int i = 0; i < Dungeon.pastXValues.length; i++) {
+                        Dungeon.pastXValues[i] = 0;
+                        Dungeon.pastYValues[i] = 0;
+                    }
                     continue;
                 }
                 break;
