@@ -454,6 +454,7 @@ public class MiniGame {
         System.out.println("You may choose to hit (draw another card) or stay (stop drawing cards for the rest of the game).");
         System.out.println("The dealer (i.e. me) will always choose to hit unless the value of their hand is 17 or over.");
         System.out.println("By the way, I have 1 card whose value will not be revealed until the end.");
+        System.out.println("Until the end of the game, the dealer's current hand value will be the value of all their cards minus the hidden card.");
         System.out.println("There is some strategy involved. Use your brain, and good luck.");
 
         // loop for gameplay
