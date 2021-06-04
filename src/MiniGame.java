@@ -24,12 +24,12 @@ public class MiniGame {
                 case "1": {
                     // if question and answer is the 1st pair
                     if (q == 1) {
-                        System.out.println("Correct!");
+                        System.out.println("we-hel look at you, all smart'n'stuff. getting answers right.");
                         return true;
                     }
                     // if question and answer is the 2nd pair
                     if (q == 2) {
-                        System.out.println("Bruh... Columbus... come on now!");
+                        System.out.println("are you familiar with the story of Christopher Columbus? no, i thought not.");
                         break;
                     }
                     // if question and answer is the 3rd pair
@@ -39,7 +39,8 @@ public class MiniGame {
                     }
                     // if question and answer is the 4th pair
                     if (q == 4) {
-                        System.out.println("really.... REALLY?!?!");
+                        System.out.println("alright, look. that ain't right and we both know that. what i want, no, need to know is this\n"
+                        + "how long have you been crazy");
                         break;
                     }
                     // if question and answer is the 5th pair
@@ -52,7 +53,7 @@ public class MiniGame {
                 case "2": {
                     // if question and answer is the 1st pair
                     if (q == 1) {
-                        System.out.println("Wait... you actually thought an integer had decimals? It's a whole number!");
+                        System.out.println("ha! even i know that ain't right.");
                         break;
                     }
                     // if question and answer is the 2nd pair
@@ -62,12 +63,12 @@ public class MiniGame {
                     }
                     // if question and answer is the 3rd pair
                     if (q == 3) {
-                        System.out.println("Yes! Finally! A half-decently smart person.");
+                        System.out.println("not bad, then again, i know nothing of this subject so that could-a-been an easy one for all i know.");
                         return true;
                     }
                     // if question and answer is the 4th pair
                     if (q == 4) {
-                        System.out.println("Come on now! You can do better than THAT");
+                        System.out.println("Thats incorrect. i dont know why it is either, i dont know anything about this");
                         break;
                     }
                     // if question and answer is the 5th pair
@@ -85,7 +86,7 @@ public class MiniGame {
                     }
                     // if question and answer is the 2nd pair
                     if (q == 2) {
-                        System.out.println("Oh my gawd, well look atchu, aren't you just the smartest person in the room");
+                        System.out.println("well the people in charge of the show tell me you're right. so good job");
                         return true;
                     }
                     // if question and answer is the 3rd pair
@@ -172,7 +173,7 @@ public class MiniGame {
         // setting phrases to string variables
         String priceGamePrompt = "Steeve: Please enter a price (no decimals, commas, or $ sign): ";
         String rareEqualsCase = "Steeve: Your answer and the mob's answer were equally close to the real price, so we're just gonna give you the win. Congrats.";
-        String winningPhrase = "Steeve: Way to go bud, you won over that... i dont even know what that is some kinda goblin? anyway, congratulations";
+        String winningPhrase = "Steeve: Way to go bud, you won over that... i don't even know what that is some kinda goblin? anyway, congratulations";
         String losingPhrase = "Steeve: Sometimes ya win, and uh, sorry man but this ain't one of those times.";
         String freePhrase = "Steeve: What the hell man, you know full well that 'Free' isn't the right answer. since when have you *ever* gotten a free anything!";
         String negativePhrase = "Steeve: What? You think they're gonna pay YOU to buy their product???";
