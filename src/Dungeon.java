@@ -145,7 +145,7 @@ public class Dungeon {
                     case "n": {
                         pastXValues[i] = currentX;
                         pastYValues[i] = currentY;
-                        currentY++;
+
 //                        pastXValues[i] = currentX;
 //                        pastYValues[i] = currentY;
 //                        i++;
@@ -160,11 +160,19 @@ public class Dungeon {
 //                            }
 //                        }
                         // preventing user from going off the map
-                        if (currentY == 3 && (currentX == 1 || currentX == 2 || currentX == 4)) {
-                            currentY = 2;
+                        if (currentY == 2 && (currentX == 1 || currentX == 2 || currentX == 4)) {
                             System.out.println(error);
                             break;
                         }
+
+                        // preventing user from walking through walls they shouldn't (going North)
+                        if ((currentX == 2 && currentY == -1) || (currentX == 2 && currentY == 0) || (currentX == 2 && currentY == 1)
+                                || (currentX == 3 && currentY == 0) || (currentX == 4 && currentY == 1)) {
+                            System.out.println(error);
+                            break;
+                        }
+
+
                         // letting user pass through a portal
                         if (currentX == 3 && currentY == 3) {
                             currentX = 2;
@@ -181,13 +189,14 @@ public class Dungeon {
 //                                System.out.println("You would be playing the game."); (for debugging purposes)
                             }
                         }
+                        currentY++;
                         break;
                     }
 
                     case "s": {
                         pastXValues[i] = currentX;
                         pastYValues[i] = currentY;
-                        currentY--;
+
 //                        pastXValues[i] = currentX;
 //                        pastYValues[i] = currentY;
 //                        i++;
@@ -207,6 +216,12 @@ public class Dungeon {
                             System.out.println(error);
                             break;
                         }
+                        // preventing user from walking through walls they shouldn't (going South)
+                        if ((currentX == 1 && currentY == -1) || (currentX == 2 && currentY == 2) || (currentX == 2 && currentY == 1) || (currentX == 2 && currentY == 0)
+                                || (currentX == 3 && currentY == 1) || (currentX == 4 && currentY == 2)) {
+                            System.out.println(error);
+                            break;
+                        }
                         // letting user pass through a portal
                         if (currentX == 2 && currentY == -2) {
                             currentX = 3;
@@ -223,13 +238,14 @@ public class Dungeon {
 //                                System.out.println("You would be playing the game."); (for debugging purposes)
                             }
                         }
+                        currentY--;
                         break;
                     }
 
                     case "e": {
                         pastXValues[i] = currentX;
                         pastYValues[i] = currentY;
-                        currentX++;
+
 //                        pastXValues[i] = currentX;
 //                        pastYValues[i] = currentY;
 //                        i++;
@@ -249,6 +265,11 @@ public class Dungeon {
                             System.out.println(error);
                             break;
                         }
+                        // preventing user from walking between rooms they shouldn't (going East)
+                        if ((currentX == 2 && currentY == 1) || (currentX == 2 && currentY == -1) || (currentX == 3 && currentY == 0) ||
+                                (currentX == 3 && currentY == -1)) {
+                            System.out.println(error);
+                        }
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1, 2);
                             if (chancer == 1) {
@@ -259,6 +280,7 @@ public class Dungeon {
 //                                System.out.println("You would be playing the game."); (for debugging purposes)
                             }
                         }
+                        currentX++;
                         break;
                     }
                     case "w": {

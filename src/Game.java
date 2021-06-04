@@ -9,12 +9,12 @@ public class Game {
     public static int gameStage = 1;
 
     public static void main(String[] args) {
-//        int gameStage = 1;
+        int gameStage = 1;
 
 
         while (true) { //game loop. All game processes should be inside this loop.
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
-//                Player player;
+                //Player player;
                 System.out.println("What kind of hero are you? Type a number and press enter.\n" +
                         "1: Warrior. Can take a lot of hits.\n" +
                         "2: Rogue. Everything balanced, as it should be.\n" +
