@@ -5,14 +5,16 @@ public class Game {
     public static Scanner userInput = new Scanner(System.in);
     protected static boolean encounterActive = false;
     protected static Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
+    public static Player player;
+    public static int gameStage = 1;
 
     public static void main(String[] args) {
-        int gameStage = 1;
+//        int gameStage = 1;
 
 
         while (true) { //game loop. All game processes should be inside this loop.
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
-                Player player;
+//                Player player;
                 System.out.println("What kind of hero are you? Type a number and press enter.\n" +
                         "1: Warrior. Can take a lot of hits.\n" +
                         "2: Rogue. Everything balanced, as it should be.\n" +
@@ -47,6 +49,17 @@ public class Game {
                 while (true) {
                     for (int i = 0; i <= 16; i++) {
                         Dungeon.movePlayer();
+
+//                        if (Dungeon.roomWasVisited(Dungeon.pastXValues, Dungeon.pastYValues, Dungeon.currentX, Dungeon.currentY) == false) {
+//                            int chancer = Game.diceRoll(1,2);
+//                            if (chancer == 1) {
+//                                break;
+//                            }
+//                            if (chancer == 2) {
+//                                encounter(player, gameStage);
+//                            }
+//                        }
+
                         if (i == 8) {
                             try {
                                 Thread.sleep(150);
@@ -81,7 +94,7 @@ public class Game {
                 // random 0-100, 0-30 = encounter, 31-100 = nothing + can continue moving on
                 // or 0-25 encounter, 26-95 = nothing, 96-100 = chest?
 
-                //encounter(player, gameStage);
+//                encounter(player, gameStage);
 
                 //TODO - Ya know, the rest of the game.
                 gameOver(player);
