@@ -6,15 +6,15 @@ public class MiniGame {
         // selecting the question and answer used to play
         int q = Game.diceRoll(1, 5);
         String[] gamePiece = NPC.triviaGameQuestionsAndAnswers(q);
-        System.out.println("alright, welcome to trivia! this is a very simple game, i ask you a question, and you answer with one of the provided by each question\n"+
-                "that's right, this is multiple choice. here we go now.");
+        System.out.println("Annnnnd here's your host, Steve Harvey! 'Alright, welcome to trivia! This is a very simple game, I ask you a question, and you answer with one of the provided by each question\n"+
+                "That's right, this is multiple choice. Here we go now.'");
 
         // printing out the question and answer
         String question = gamePiece[0];
         String answers = gamePiece[1];
         System.out.println(question);
         System.out.println(answers);
-        System.out.print("you have your question, you have your options, now we need your answer, what'cha got for me; ");
+        System.out.print("You have your question, you have your options, now we need your answer, whatcha got for me; ");
 
         // loop for gameplay
         while (true) {
