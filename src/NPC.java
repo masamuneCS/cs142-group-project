@@ -10,11 +10,11 @@ public class NPC {
 
     public static String[] narrator( String target, String itemReceved){
 
-        String[] speakingPart = new String[]{"congratulations on your victory against " + target + " !",
-                                            "game over, would you like to start again?",
-                                            "you found " + itemReceved + "from the chest! what luck",
-                                                "you got " + itemReceved + " from completing the minigame!",
-                                            "if you need help with trivia, try asking sodi for help! she *is* being payed after all!"};
+        String[] speakingPart = new String[]{"Congratulations on your victory against " + target + " !",
+                                            "Game over, would you like to start again?",
+                                            "You found " + itemReceved + "from the chest! what luck",
+                                                "You got " + itemReceved + " from completing the minigame!",
+                                            "If you need help with trivia, try asking sodi for help! she *is* being payed after all!"};
         return speakingPart;
     }
 
@@ -35,9 +35,9 @@ public class NPC {
             }
             else{
                 //dialogue to make fun of the player because they arent good at simple tasks
-                String[] badDio = new String[]{"wow... i can not 'believe' that was your answer",
-                        "let me ask ya a little something, aright? how in THE hell did you get that?",
-                "'steeve looks on in horror'\n ...what the hell man?"};
+                String[] badDio = new String[]{"Wow... I can not 'believe' that was your answer",
+                        "Let me ask ya a little something, alright? How in THE hell did you get that?",
+                "'Steve looks on in horror'\n ...what the hell man?"};
                 DIO = badDio[index];
             }
                 return DIO;

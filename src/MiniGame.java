@@ -453,6 +453,7 @@ public class MiniGame {
         System.out.println("Steve: You are now playing BlackJack. The goal is to get as close to 21 as possible without going over.");
         System.out.println("You may choose to hit (draw another card) or stay (stop drawing cards for the rest of the game).");
         System.out.println("The dealer (i.e. me) will always choose to hit unless the value of their hand is 17 or over.");
+        System.out.println("By the way, I have 1 card whose value will not be revealed until the end.");
         System.out.println("There is some strategy involved. Use your brain, and good luck.");
 
         // loop for gameplay
@@ -571,34 +572,34 @@ public class MiniGame {
         if (dealerHandValue > 21) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("Steve: well, looks like i went over, and you won. i've been Steeve Harvey and i will see you later.");
+            System.out.println("Steve: well, looks like I went over, and you won. I've been Steeve Harvey and I will see you later.");
             return true;
         }
         else if (playerHandValue > 21) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("Steeve: dang man, i almost feel bad. no one wants to lose like that... \n" +
-                    "glad it ain't me though! see you next time!");
+            System.out.println("Steve: dang man, I almost feel bad. No one wants to lose like that... \n" +
+                    "Glad it ain't me though! See you next time!");
             return false;
         }
         else if (playerHandValue > dealerHandValue) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("well, well. looks like you beat me fair and square. congratulations, and i will see you later.");
+            System.out.println("Well, well. Looks like you beat me fair and square. Congratulations, and I will see you later.");
             return true;
         }
         else if (playerHandValue < dealerHandValue) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("Steeve: YES! sorry, that was very rude of me. im just not use to winning in these games\n" +
-                    "until next time.");
+            System.out.println("Steeve: YES! Sorry, that was very rude of me. I'm just not use to winning in these games\n" +
+                    "Until next time.");
             return false;
         }
         else {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("huh, looks like you won. im not sure how but you did it!\n" +
-                    "im Steeve Harvey and i will see you next time");
+            System.out.println("Huh, looks like you won. I'm not sure how but you did it!\n" +
+                    "I'm Steve Harvey and I will see you next time");
             return true;
         }
     }
