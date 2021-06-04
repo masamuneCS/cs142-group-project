@@ -14,8 +14,8 @@ public class Dungeon {
     public static Room currentRoom;
     public static int currentX = 0;
     public static int currentY = 0;
-    public static int[] pastXValues = new int[16];
-    public static int[] pastYValues = new int[16];
+    public static int[] pastXValues = new int[20];
+    public static int[] pastYValues = new int[20];
     public static int i = 0;
 //    public boolean roomWasVisited;
 
@@ -148,16 +148,16 @@ public class Dungeon {
 //                        pastXValues[i] = currentX;
 //                        pastYValues[i] = currentY;
 //                        i++;
-                        if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
-                            int chancer = Game.diceRoll(1,2);
-                            if (chancer == 1) {
-                                break;
-                            }
-                            if (chancer == 2) {
-                                Game.encounter(Game.player, Game.gameStage);
-//                                System.out.println("You would be playing the game."); (for debugging purposes)
-                            }
-                        }
+//                        if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
+//                            int chancer = Game.diceRoll(1,2);
+//                            if (chancer == 1) {
+//                                break;
+//                            }
+//                            if (chancer == 2) {
+//                                Game.encounter(Game.player, Game.gameStage);
+////                                System.out.println("You would be playing the game."); (for debugging purposes)
+//                            }
+//                        }
                         // preventing user from going off the map
                         if (currentY == 3 && (currentX == 1 || currentX == 4)) {
                             currentY = 2;
@@ -170,6 +170,16 @@ public class Dungeon {
                             currentY = -1;
                             System.out.print("\nThe portal spits you out in another part of the dungeon!");
                         }
+                        if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
+                            int chancer = Game.diceRoll(1,2);
+                            if (chancer == 1) {
+                                break;
+                            }
+                            if (chancer == 2) {
+                                Game.encounter(Game.player, Game.gameStage);
+//                                System.out.println("You would be playing the game."); (for debugging purposes)
+                            }
+                        }
                         break;
                     }
 
@@ -180,16 +190,16 @@ public class Dungeon {
 //                        pastXValues[i] = currentX;
 //                        pastYValues[i] = currentY;
 //                        i++;
-                        if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
-                            int chancer = Game.diceRoll(1,2);
-                            if (chancer == 1) {
-                                break;
-                            }
-                            if (chancer == 2) {
-                                Game.encounter(Game.player, Game.gameStage);
-//                                System.out.println("You would be playing the game.");
-                            }
-                        }
+//                        if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
+//                            int chancer = Game.diceRoll(1,2);
+//                            if (chancer == 1) {
+//                                break;
+//                            }
+//                            if (chancer == 2) {
+//                                Game.encounter(Game.player, Game.gameStage);
+////                                System.out.println("You would be playing the game.");
+//                            }
+//                        }
                         // preventing user from going off the map
                         if (currentY == -2 && (currentX == 3 || currentX == 4)) {
                             currentY = -1;
@@ -202,6 +212,16 @@ public class Dungeon {
                             currentY = 2;
                             System.out.print("\nThe portal spits you out in another part of the dungeon!");
                         }
+                        if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
+                            int chancer = Game.diceRoll(1,2);
+                            if (chancer == 1) {
+                                break;
+                            }
+                            if (chancer == 2) {
+                                Game.encounter(Game.player, Game.gameStage);
+//                                System.out.println("You would be playing the game."); (for debugging purposes)
+                            }
+                        }
                         break;
                     }
 
@@ -212,6 +232,22 @@ public class Dungeon {
 //                        pastXValues[i] = currentX;
 //                        pastYValues[i] = currentY;
 //                        i++;
+//                        if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
+//                            int chancer = Game.diceRoll(1,2);
+//                            if (chancer == 1) {
+//                                break;
+//                            }
+//                            if (chancer == 2) {
+//                                Game.encounter(Game.player, Game.gameStage);
+////                                System.out.println("You would be playing the game."); (for debugging purposes)
+//                            }
+//                        }
+                        // preventing user from going off the map
+                        if (currentX == 5 && (currentY == 1 || currentY == 0 || currentY == -1)) {
+                            currentX = 4;
+                            System.out.println(error);
+                            break;
+                        }
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1,2);
                             if (chancer == 1) {
@@ -221,12 +257,6 @@ public class Dungeon {
                                 Game.encounter(Game.player, Game.gameStage);
 //                                System.out.println("You would be playing the game."); (for debugging purposes)
                             }
-                        }
-                        // preventing user from going off the map
-                        if (currentX == 5 && (currentY == 1 || currentY == 0 || currentY == -1)) {
-                            currentX = 4;
-                            System.out.println(error);
-                            break;
                         }
                         break;
                     }
@@ -237,6 +267,22 @@ public class Dungeon {
 //                        pastXValues[i] = currentX;
 //                        pastYValues[i] = currentY;
 //                        i++;
+//                        if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
+//                            int chancer = Game.diceRoll(1,2);
+//                            if (chancer == 1) {
+//                                break;
+//                            }
+//                            if (chancer == 2) {
+//                                Game.encounter(Game.player, Game.gameStage);
+////                                System.out.println("You would be playing the game."); (for debugging purposes)
+//                            }
+//                        }
+                        // preventing user from going off the map
+                        if (currentX == 0 && (currentY == 2 || currentY == 1 || currentY == -1)) {
+                            currentX = 1;
+                            System.out.println(error);
+                            break;
+                        }
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1,2);
                             if (chancer == 1) {
@@ -246,12 +292,6 @@ public class Dungeon {
                                 Game.encounter(Game.player, Game.gameStage);
 //                                System.out.println("You would be playing the game."); (for debugging purposes)
                             }
-                        }
-                        // preventing user from going off the map
-                        if (currentX == 0 && (currentY == 2 || currentY == 1 || currentY == -1)) {
-                            currentX = 1;
-                            System.out.println(error);
-                            break;
                         }
                         break;
                     }
@@ -276,7 +316,7 @@ public class Dungeon {
     }
 
     public static boolean roomWasVisited(int[] xValues, int[] yValues, int playersX, int playersY) {
-        for (int i = 0; i < xValues.length; i++) {
+        for (int i = 0; i < 18; i++) {
             if (xValues[i] != playersX && yValues[i] != playersY) {
                 continue;
             }
