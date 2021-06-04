@@ -30,6 +30,10 @@ public final class Room {
         this.roomCoordinate = roomCoordinate;
     }
 
+    public void setContainsChest(boolean containsChest) {
+        this.containsChest = containsChest;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -91,7 +95,7 @@ public final class Room {
                     doorEast = true;
                     doorSouth = true;
                     hasShrine = false;
-                    hasChest = false;
+                    hasChest = true;
                     break;
                 }
                 case 1:{
