@@ -48,7 +48,7 @@ public class NPC {
         //insert array containing the hints for ALL of the riddles
         // cant really finish till we have a set amount of riddles
         String[] riddleHint;
-        riddleHint = new String[]{"hello, i exist", "please don't use this in final version"};
+        riddleHint = new String[]{"Hello, I exist", "please don't use this in final version..."};
 
         return riddleHint;
     }
@@ -58,7 +58,10 @@ public static String[] triviaGameQuestionsAndAnswers(int q) {
             "What year did America gain its independence?",
             "What do you have to put at the top of your code when utilizing a Scanner?",
             "What's the difference between while loops and for loops?",
-            "Do you have to create a constructor when coding an object class?"};
+            "Do you have to create a constructor when coding an object class?",
+            "What shape is a stop sign",
+            "Was the color orange named after the fruit or before?",
+            "What is meteorology the study of?"};
         String[] triviaGameAnswers = new String[]{"Choose your answer: \n" + "1) Doubles \n" + "2) Ints \n" + "3) Both\n" + "4) Neither",
             "Choose your answer: \n" + "1) 1492 \n" + "2) 1861 \n" + "3) 1776\n" + "4) 2021",
             "Choose your answer: \n" + "1) Your name \n" + "2) An import statement \n" + "3) Class name\n" + "4) Main method",
@@ -66,21 +69,25 @@ public static String[] triviaGameQuestionsAndAnswers(int q) {
                     "3) Really just looks since you can rewrite a while loop to resemble a for loop and vice versa\n" +
                     "4) One's a type and one's a method call",
             "Choose your answer: \n" + "1) Well duh \n" + "2) Yes, you need several \n" + "3) Yes, but just 1\n" +
-                    "4) Well not necessarily because there's a default constructor"};
+                    "4) Well not necessarily because there's a default constructor",
+            "Choose your answer: \n" + "1) Hexagon \n" + "2) Circle \n" + "3) Octagon \n" + "4) Dodecahedron",
+            "Choose your answer \n" + "1) Obviously before \n" + "2) Duh, it was named after \n" + "3) Nah man, they were named at the same time \n" +
+            "4) Are we talkin' like burnt orange, rust orange, jack-o-lantern orange, or what?",
+            "Choose your answer: \n" + "1) Meteors \n" + "2) Asteroids \n" + "3) Weather \n" + "4) The sky"};
         String question = triviaGameQuestions[q - 1];
         String answer = triviaGameAnswers[q - 1];
         String[] questionAndAnswer = new String[]{question,answer};
         return questionAndAnswer;
 }
 
-public static String[] trivia(int index){
-        String[] trivia = new String[]{"what shape is a stop sign",
-                                        "True or False; the color orange was named after the fruit",
-                                        "what is meteorology the study of?"};
-        String[] answer = new String[]{"octagon", "True", "weather"};
-        String[] both = new String[]{trivia[index], answer[index]};
-        return both;
-}
+//public static String[] trivia(int index){
+//        String[] trivia = new String[]{"what shape is a stop sign",
+//                                        "True or False; the color orange was named after the fruit",
+//                                        "what is meteorology the study of?"};
+//        String[] answer = new String[]{"octagon", "True", "weather"};
+//        String[] both = new String[]{trivia[index], answer[index]};
+//        return both;
+//}
 
 public static String help(int index){
         String[] hints = new String[]{"wait, seriously? alright... how many sides does it have.",
