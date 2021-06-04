@@ -572,12 +572,14 @@ public class MiniGame {
         if (dealerHandValue > 21) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
+            System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
             System.out.println("Steve: well, looks like I went over, and you won. I've been Steeve Harvey and I will see you later.");
             return true;
         }
         else if (playerHandValue > 21) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
+            System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
             System.out.println("Steve: dang man, I almost feel bad. No one wants to lose like that... \n" +
                     "Glad it ain't me though! See you next time!");
             return false;
@@ -585,12 +587,14 @@ public class MiniGame {
         else if (playerHandValue > dealerHandValue) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
+            System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
             System.out.println("Well, well. Looks like you beat me fair and square. Congratulations, and I will see you later.");
             return true;
         }
         else if (playerHandValue < dealerHandValue) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
+            System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
             System.out.println("Steeve: YES! Sorry, that was very rude of me. I'm just not use to winning in these games\n" +
                     "Until next time.");
             return false;
@@ -598,6 +602,7 @@ public class MiniGame {
         else {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
+            System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
             System.out.println("Huh, looks like you won. I'm not sure how but you did it!\n" +
                     "I'm Steve Harvey and I will see you next time");
             return true;
