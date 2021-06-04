@@ -16,7 +16,7 @@ public class Dungeon {
     public static int currentY = 0;
     public static int[] pastXValues = new int[16];
     public static int[] pastYValues = new int[16];
-    public static int i = 1;
+    public static int i = 0;
 //    public boolean roomWasVisited;
 
     public static boolean roomDescription() {
@@ -142,9 +142,11 @@ public class Dungeon {
             while (true) {
                 switch (Game.userInput.nextLine()) {
                     case "n": {
-                        currentY++;
                         pastXValues[i] = currentX;
                         pastYValues[i] = currentY;
+                        currentY++;
+//                        pastXValues[i] = currentX;
+//                        pastYValues[i] = currentY;
 //                        i++;
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1,2);
@@ -152,7 +154,8 @@ public class Dungeon {
                                 break;
                             }
                             if (chancer == 2) {
-                                Game.encounter(Game.player, Game.gameStage);
+//                                Game.encounter(Game.player, Game.gameStage);
+                                System.out.println("You would be playing the game.");
                             }
                         }
                         // preventing user from going off the map
@@ -171,9 +174,11 @@ public class Dungeon {
                     }
 
                     case "s": {
-                        currentY--;
                         pastXValues[i] = currentX;
                         pastYValues[i] = currentY;
+                        currentY--;
+//                        pastXValues[i] = currentX;
+//                        pastYValues[i] = currentY;
 //                        i++;
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1,2);
@@ -181,7 +186,8 @@ public class Dungeon {
                                 break;
                             }
                             if (chancer == 2) {
-                                Game.encounter(Game.player, Game.gameStage);
+//                                Game.encounter(Game.player, Game.gameStage);
+                                System.out.println("You would be playing the game.");
                             }
                         }
                         // preventing user from going off the map
@@ -200,9 +206,11 @@ public class Dungeon {
                     }
 
                     case "e": {
-                        currentX++;
                         pastXValues[i] = currentX;
                         pastYValues[i] = currentY;
+                        currentX++;
+//                        pastXValues[i] = currentX;
+//                        pastYValues[i] = currentY;
 //                        i++;
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1,2);
@@ -210,7 +218,8 @@ public class Dungeon {
                                 break;
                             }
                             if (chancer == 2) {
-                                Game.encounter(Game.player, Game.gameStage);
+//                                Game.encounter(Game.player, Game.gameStage);
+                                System.out.println("You would be playing the game.");
                             }
                         }
                         // preventing user from going off the map
@@ -222,9 +231,11 @@ public class Dungeon {
                         break;
                     }
                     case "w": {
-                        currentX--;
                         pastXValues[i] = currentX;
                         pastYValues[i] = currentY;
+                        currentX--;
+//                        pastXValues[i] = currentX;
+//                        pastYValues[i] = currentY;
 //                        i++;
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
                             int chancer = Game.diceRoll(1,2);
@@ -232,7 +243,8 @@ public class Dungeon {
                                 break;
                             }
                             if (chancer == 2) {
-                                Game.encounter(Game.player, Game.gameStage);
+//                                Game.encounter(Game.player, Game.gameStage);
+                                System.out.println("You would be playing the game.");
                             }
                         }
                         // preventing user from going off the map
@@ -269,15 +281,15 @@ public class Dungeon {
                 continue;
             }
             else if (xValues[i] == playersX && yValues[i] == playersY){
-                while (Dungeon.i == 1) {
-                    if (xValues[1] == 1 && yValues[1] == 0) {
-                        continue;
-                    }
-                }
-                break;
+//                while (Dungeon.i == 1) {
+//                    if (xValues[1] == 1 && yValues[1] == 0) {
+//                        return false;
+//                    }
+//                }
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }
 
