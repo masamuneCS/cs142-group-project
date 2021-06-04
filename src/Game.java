@@ -12,10 +12,10 @@ public class Game {
 
     public static void main(String[] args){
         int gameStage = 0;
-        Dungeon dungeon0 = new Dungeon();
-        Item.genLootTable();
         while(true) { //Main game loop
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
+                Dungeon dungeon0 = new Dungeon();
+                Item.genLootTable();
                 Player player;
                 System.out.println("What kind of hero are you? Type a number and press enter.\n" +
                         "1: Warrior. Can take a lot of hits.\n" +
