@@ -6,13 +6,15 @@ public class MiniGame {
         // selecting the question and answer used to play
         int q = Game.diceRoll(1, 5);
         String[] gamePiece = NPC.triviaGameQuestionsAndAnswers(q);
+        System.out.println("alright, welcome to trivia! this is a very simple game, i ask you a question, and you answer with one of the provided by each question\n"+
+                "that's right, this is multiple choice. here we go now.");
 
         // printing out the question and answer
         String question = gamePiece[0];
         String answers = gamePiece[1];
         System.out.println(question);
         System.out.println(answers);
-        System.out.print("Enter your answer here; ");
+        System.out.print("you have your question, you have your options, now we need your answer, what'cha got for me; ");
 
         // loop for gameplay
         while (true) {
@@ -42,7 +44,7 @@ public class MiniGame {
                     }
                     // if question and answer is the 5th pair
                     if (q == 5) {
-                        System.out.println("~shakes bald head~");
+                        System.out.println("~shakes bald head~\n" + "no");
                         break;
                     }
                 }
@@ -137,7 +139,7 @@ public class MiniGame {
                     }
                 }
                 default: {
-                    System.out.println("That ain't even an answer. Try again.");
+                    System.out.println("That's not an answer, but you know, that's okay, lets give it another go");
                     continue;
                 }
             }
@@ -168,13 +170,14 @@ public class MiniGame {
         System.out.println(printOut);
 
         // setting phrases to string variables
-        String priceGamePrompt = "Please enter a price (no decimals, commas, or $ sign): ";
-        String rareEqualsCase = "Your answer and the mob's answer were equally close to the real price, so we're just gonna give you the win. Congrats.";
-        String winningPhrase = "Way to go bud, you finally did something right in your life";
-        String losingPhrase = "Sometimes ya win, and sometimes ya lose. This time, ya lost big time.";
-        String freePhrase = "Nothin' in life is free bruh.";
-        String negativePhrase = "What? You think they're gonna pay YOU to buy their product???";
-        String invalidInput = "That was not a valid answer. Please try again.";
+        String priceGamePrompt = "Steeve: Please enter a price (no decimals, commas, or $ sign): ";
+        String rareEqualsCase = "Steeve: Your answer and the mob's answer were equally close to the real price, so we're just gonna give you the win. Congrats.";
+        String winningPhrase = "Steeve: Way to go bud, you won over that... i dont even know what that is some kinda goblin? anyway, congratulations";
+        String losingPhrase = "Steeve: Sometimes ya win, and uh, sorry man but this ain't one of those times.";
+        String freePhrase = "Steeve: What the hell man, you know full well that 'Free' isn't the right answer. since when have you *ever* gotten a free anything!";
+        String negativePhrase = "Steeve: What? You think they're gonna pay YOU to buy their product???";
+        String invalidInput = "Steeve: That was not a valid answer. Please try again.";
+        String goodByeStatement = "well anyway, ive been your host, and i will see you later.";
 
         // initializing variables
         int userInput;
@@ -384,9 +387,9 @@ public class MiniGame {
         int cardOccurrences = 0;
 
         // announcing the rules
-        System.out.println("You are now playing BlackJack. The goal is to get as close to 21 as possible without going over.");
+        System.out.println("Steeve: You are now playing BlackJack. The goal is to get as close to 21 as possible without going over.");
         System.out.println("You may choose to hit (draw another card) or stay (stop drawing cards for the rest of the game).");
-        System.out.println("The dealer will always choose to hit unless the value of their hand is 17 or over.");
+        System.out.println("The dealer(i.e. me) will always choose to hit unless the value of their hand is 17 or over.");
         System.out.println("There is some strategy involved. Use your brain, and good luck.");
 
         // loop for gameplay
@@ -504,31 +507,34 @@ public class MiniGame {
         if (dealerHandValue > 21) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("Wow, you really frickin' did it. You won. Who knew you had it in you.");
+            System.out.println("Steve: well, looks like i went over, and you won. i've been Steeve Harvey and i will see you later.");
             return true;
         }
         else if (playerHandValue > 21) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("You lost. Too bad, so sad.");
+            System.out.println("Steeve: dang man, i almost feel bad. no one wants to lose like that... \n" +
+                    "glad it ain't me though! see you next time!");
             return false;
         }
         else if (playerHandValue > dealerHandValue) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("Wow, you really frickin' did it. You won. Who knew you had it in you.");
+            System.out.println("well, well. looks like you beat me fair and square. congratulations, and i will see you later.");
             return true;
         }
         else if (playerHandValue < dealerHandValue) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("You lost. Too bad, so sad.");
+            System.out.println("Steeve: YES! sorry, that was very rude of me. im just not use to winning in these games\n" +
+                    "until next time.");
             return false;
         }
         else {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("Wow, you won. You lucky son of a gun");
+            System.out.println("huh, looks like you won. im not sure how but you did it!\n" +
+                    "im Steeve Harvey and i will see you next time");
             return true;
         }
     }
