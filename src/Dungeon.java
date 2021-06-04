@@ -154,8 +154,8 @@ public class Dungeon {
                                 break;
                             }
                             if (chancer == 2) {
-//                                Game.encounter(Game.player, Game.gameStage);
-                                System.out.println("You would be playing the game.");
+                                Game.encounter(Game.player, Game.gameStage);
+//                                System.out.println("You would be playing the game."); (for debugging purposes)
                             }
                         }
                         // preventing user from going off the map
@@ -186,8 +186,8 @@ public class Dungeon {
                                 break;
                             }
                             if (chancer == 2) {
-//                                Game.encounter(Game.player, Game.gameStage);
-                                System.out.println("You would be playing the game.");
+                                Game.encounter(Game.player, Game.gameStage);
+//                                System.out.println("You would be playing the game.");
                             }
                         }
                         // preventing user from going off the map
@@ -218,8 +218,8 @@ public class Dungeon {
                                 break;
                             }
                             if (chancer == 2) {
-//                                Game.encounter(Game.player, Game.gameStage);
-                                System.out.println("You would be playing the game.");
+                                Game.encounter(Game.player, Game.gameStage);
+//                                System.out.println("You would be playing the game."); (for debugging purposes)
                             }
                         }
                         // preventing user from going off the map
@@ -243,8 +243,8 @@ public class Dungeon {
                                 break;
                             }
                             if (chancer == 2) {
-//                                Game.encounter(Game.player, Game.gameStage);
-                                System.out.println("You would be playing the game.");
+                                Game.encounter(Game.player, Game.gameStage);
+//                                System.out.println("You would be playing the game."); (for debugging purposes)
                             }
                         }
                         // preventing user from going off the map
