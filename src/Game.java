@@ -242,6 +242,7 @@ public class Game {
                 }
             }
             else{
+                userInput.nextLine();
                 System.out.println("Enter a number between 1 and " + ceiling + " to choose.");
             }
         }
