@@ -10,7 +10,7 @@ public class NPC {
 
     public static String[] narrator( String target, String itemReceved){
 
-        String[] speakingPart = new String[]{"congradulations on your victory against " + target + " !",
+        String[] speakingPart = new String[]{"congratulations on your victory against " + target + " !",
                                             "game over, would you like to start again?",
                                             "you found " + itemReceved + "from the chest! what luck",
                                                 "you got " + itemReceved + " from completing the minigame!",
