@@ -129,7 +129,7 @@ public class Game {
                         }//End MiniGame case
                     }//End encounter chance case
                     //chest case
-                    else if (currentRoom.isContainsChest()){
+                    if (currentRoom.isContainsChest()){
                         System.out.println("There is a strange chest in the center of the room, do you open it?\n1: Yes\n2:No");
                         if (inputValidation(2) == 1){
                             openChest(player);
