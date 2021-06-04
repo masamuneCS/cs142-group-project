@@ -139,6 +139,7 @@ public class Dungeon {
 
             String error = "Invalid input.";
 
+//            while (i < 16) {
             while (true) {
                 switch (Game.userInput.nextLine()) {
                     case "n": {
@@ -159,7 +160,7 @@ public class Dungeon {
 //                            }
 //                        }
                         // preventing user from going off the map
-                        if (currentY == 3 && (currentX == 1 || currentX == 4)) {
+                        if (currentY == 3 && (currentX == 1 || currentX == 2 || currentX == 4)) {
                             currentY = 2;
                             System.out.println(error);
                             break;
@@ -171,7 +172,7 @@ public class Dungeon {
                             System.out.print("\nThe portal spits you out in another part of the dungeon!");
                         }
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
-                            int chancer = Game.diceRoll(1,2);
+                            int chancer = Game.diceRoll(1, 2);
                             if (chancer == 1) {
                                 break;
                             }
@@ -201,7 +202,7 @@ public class Dungeon {
 //                            }
 //                        }
                         // preventing user from going off the map
-                        if (currentY == -2 && (currentX == 3 || currentX == 4)) {
+                        if (currentY == -2 && (currentX == 1 || currentX == 3 || currentX == 4)) {
                             currentY = -1;
                             System.out.println(error);
                             break;
@@ -213,7 +214,7 @@ public class Dungeon {
                             System.out.print("\nThe portal spits you out in another part of the dungeon!");
                         }
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
-                            int chancer = Game.diceRoll(1,2);
+                            int chancer = Game.diceRoll(1, 2);
                             if (chancer == 1) {
                                 break;
                             }
@@ -243,13 +244,13 @@ public class Dungeon {
 //                            }
 //                        }
                         // preventing user from going off the map
-                        if (currentX == 5 && (currentY == 1 || currentY == 0 || currentY == -1)) {
+                        if (currentX == 5 && (currentY == 2 || currentY == 1 || currentY == 0 || currentY == -1)) {
                             currentX = 4;
                             System.out.println(error);
                             break;
                         }
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
-                            int chancer = Game.diceRoll(1,2);
+                            int chancer = Game.diceRoll(1, 2);
                             if (chancer == 1) {
                                 break;
                             }
@@ -284,7 +285,7 @@ public class Dungeon {
                             break;
                         }
                         if (roomWasVisited(pastXValues, pastYValues, currentX, currentY) == false) {
-                            int chancer = Game.diceRoll(1,2);
+                            int chancer = Game.diceRoll(1, 2);
                             if (chancer == 1) {
                                 break;
                             }
@@ -309,10 +310,11 @@ public class Dungeon {
 
                 }
                 i++;
+//            }
                 movePlayer();
 
             }
-
+//        return "hi";
     }
 
     public static boolean roomWasVisited(int[] xValues, int[] yValues, int playersX, int playersY) {
