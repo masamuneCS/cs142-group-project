@@ -474,6 +474,7 @@ public class MiniGame {
                         }
                     }
                     else if (dealerHandValue >= 17) {
+                        System.out.println("The dealer must stand because the value of their hand is/over 17");
                         System.out.println("Your current hand's value is: " + playerHandValue + ".");
                         System.out.print("Would you like to hit or stand? (1 - hit, 2 - stand): ");
                         // asking if player would like to hit one more time cuz dealer can't
