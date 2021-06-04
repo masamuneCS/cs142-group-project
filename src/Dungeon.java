@@ -14,8 +14,8 @@ public class Dungeon {
     public static Room currentRoom;
     public static int currentX = 0;
     public static int currentY = 0;
-    public static int[] pastXValues = new int[20];
-    public static int[] pastYValues = new int[20];
+    public static int[] pastXValues = new int[100000000];
+    public static int[] pastYValues = new int[100000000];
     public static int i = 0;
 //    public boolean roomWasVisited;
 
@@ -340,7 +340,7 @@ public class Dungeon {
     }
 
     public static boolean roomWasVisited(int[] xValues, int[] yValues, int playersX, int playersY) {
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < xValues.length; i++) {
             if (xValues[i] != playersX && yValues[i] != playersY) {
                 continue;
             }
