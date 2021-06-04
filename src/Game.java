@@ -296,7 +296,7 @@ public class Game {
         player.setInitiative(diceRoll(1, 20) + player.initBuff);
         System.out.println("You rolled " + player.getInitiative() + " for initiative!");
         for (Mob mob : encounterMobs){
-            mob.setInitiative(diceRoll(1, 20));
+            mob.setInitiative(diceRoll(1, 20) + mob.initBuff);
         }
         //Ordering entities in array by initiative to establish turn order.
         for (int i = 1; i < encounterAll.length; i++){
