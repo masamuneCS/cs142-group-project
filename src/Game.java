@@ -56,7 +56,7 @@ public class Game {
                         System.out.println("There is sunlight streaming in from the far door, you've made it!");
                         victory(player);
                     }
-                    if (currentRoom.getRoomCoordinate().equals(Dungeon.startCoord)){
+                    if (currentRoom.getRoomCoordinate().equals(Dungeon.startCoord) && !currentRoom.isRoomSeen()){
                         currentRoom.setRoomSeen(true);
                         System.out.println("You step into the dark dungeon from the west, with torch in hand. Your adventure begins.");
                         System.out.println("A tumbling crash roars behind you, the entrance to the dungeon has caved in. You must find a new way out.");
@@ -411,6 +411,9 @@ public class Game {
                             }
                             System.out.println(encounterMobs.length + ": Go back");
                             int input = inputValidation(5) - 1;
+                            if (input == 5){
+                                continue;
+                            }
                             if (input < 5){
                                 if (encounterMobs[input].classType.equals("dead")){
                                     System.out.println("There's nothing there for you to attack!");
