@@ -403,11 +403,11 @@ class Player extends Entity {
                 }
             }
             else {
-                System.out.println("Are you sure you want to throw away the " + newItem + "? [y/N]");
+                System.out.println("Are you sure you want to throw away the " + newItem.name + "? [y/N]");
                 String strInput = Game.userInput.nextLine();
                 switch(strInput.toUpperCase(Locale.ROOT)){
                     case "Y":{
-                        System.out.println("You threw away " + newItem);
+                        System.out.println("You threw away " + newItem.name);
                         break;
                     }
                     case "N":
