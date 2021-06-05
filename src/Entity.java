@@ -325,35 +325,41 @@ class Player extends Entity {
         int input = Game.inputValidation(5);
         if (input < 5){
             input--;
-            switch(this.inventory[input].itemType){
-                case "plusHealth":
-                case "plusMana":
-                    inventory[input].use(this);
-                    inventory[input] = null;
-                    break;
-                case "plusResist":
-                    if (Game.encounterActive){
+            if (inventory[input] == null){
+                System.out.println("There is no object there!");
+            }
+            else{
+                switch(inventory[input].itemType){
+                    case "plusHealth":
+                    case "plusMana":
                         inventory[input].use(this);
                         inventory[input] = null;
-                    }
-                    else{
-                        System.out.println("You can only use this during an encounter!");
-                    }
-                    break;
-                case "bomb": {
-                    if (Game.encounterActive) {
-                        for (Entity target : Game.encounterMobs) {
-                            if (!target.classType.equals("dead")){
-                                inventory[input].use(target);
-                            }
+                        break;
+                    case "plusResist":
+                        if (Game.encounterActive){
+                            inventory[input].use(this);
+                            inventory[input] = null;
                         }
-                    } else {
-                        System.out.println("You can only use a bomb in an encounter!");
+                        else{
+                            System.out.println("You can only use this during an encounter!");
+                        }
+                        break;
+                    case "bomb": {
+                        if (Game.encounterActive) {
+                            for (Entity target : Game.encounterMobs) {
+                                if (!target.classType.equals("dead")){
+                                    inventory[input].use(target);
+                                }
+                            }
+                            inventory[input] = null;
+                        } else {
+                            System.out.println("You can only use a bomb in an encounter!");
+                        }
+                        break;
                     }
-                    break;
-                }
-                default: {
-                    throw new IllegalArgumentException("Inventory tried to use unknown item type, got " + inventory[input].itemType + " for object " + inventory[input]);
+                    default: {
+                        throw new IllegalArgumentException("Inventory tried to use unknown item type, got " + inventory[input].itemType + " for object " + inventory[input]);
+                    }
                 }
             }
         }
@@ -398,11 +404,11 @@ class Player extends Entity {
                 }
             }
             else {
-                System.out.println("Are you sure you want to throw away the " + newItem + "? [y/N]");
+                System.out.println("Are you sure you want to throw away the " + newItem.name + "? [y/N]");
                 String strInput = Game.userInput.nextLine();
                 switch(strInput.toUpperCase(Locale.ROOT)){
                     case "Y":{
-                        System.out.println("You threw away " + newItem);
+                        System.out.println("You threw away " + newItem.name);
                         break;
                     }
                     case "N":
