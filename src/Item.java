@@ -50,7 +50,7 @@ public class Item {
     }
 
     public static Item getLootDrop(){
-        return lootTable0[Game.diceRoll(1, lootTable0.length)];
+        return lootTable0[Game.diceRoll(1, lootTable0.length - 1)];
     }
 
     // healing potion that adds 3 HP back

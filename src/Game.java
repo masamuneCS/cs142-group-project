@@ -1,113 +1,177 @@
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
+
+import static java.lang.Thread.currentThread;
+import static java.lang.Thread.sleep;
 
 public class Game {
     public static Scanner userInput = new Scanner(System.in);
     protected static boolean encounterActive = false;
     protected static Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
-    public static Player player;
-    public static int gameStage = 1;
 
-    public static void main(String[] args) {
-        int gameStage = 1;
-
-
-        while (true) { //game loop. All game processes should be inside this loop.
+    public static void main(String[] args){
+        int gameStage = 0;
+        while(true) { //Main game loop
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
-                //Player player;
+                Dungeon dungeon0 = new Dungeon();
+                Item.genLootTable();
+                Player player;
                 System.out.println("What kind of hero are you? Type a number and press enter.\n" +
                         "1: Warrior. Can take a lot of hits.\n" +
                         "2: Rogue. Everything balanced, as it should be.\n" +
                         "3: Mage. Hits very hard, is made of glass.");
-                while (true) {
+                while(true) { //input validation loop
                     switch (userInput.nextLine()) {
-                        case "1": {
+                        case "1" : {
                             System.out.println("What should I call you, warrior? Type a name and press enter.");
                             String name = userInput.nextLine();
                             player = Player.buildWarrior(name);
                             break;
                         }
-                        case "2": {
+                        case "2" : {
                             System.out.println("What should I call you, rogue?");
                             String name = userInput.nextLine();
                             player = Player.buildRogue(name);
                             break;
                         }
-                        case "3": {
+                        case "3" : {
                             System.out.println("What should I call you, mage?");
                             String name = userInput.nextLine();
                             player = Player.buildMage(name);
                             break;
                         }
-                        default: {
+                        default : {
                             System.out.println("Enter 1,2, or 3 to choose.");
                             continue;
                         }
                     }
                     break; //breaks loop
-                }
-                while (true) {
-                    for (int i = 0; i <= 16; i++) {
-                        Dungeon.movePlayer();
-
-//                        if (Dungeon.roomWasVisited(Dungeon.pastXValues, Dungeon.pastYValues, Dungeon.currentX, Dungeon.currentY) == false) {
-//                            int chancer = Game.diceRoll(1,2);
-//                            if (chancer == 1) {
-//                                break;
-//                            }
-//                            if (chancer == 2) {
-//                                encounter(player, gameStage);
-//                            }
-//                        }
-
-                        if (i == 8) {
-                            try {
-                                Thread.sleep(150);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                }//End input validation loop for character creation switch
+                while(true){ //Dungeon exploration loop
+                    Room currentRoom = dungeon0.getCurrentRoom();
+                    if (currentRoom.getRoomCoordinate().equals(Dungeon.victoryCoord)){
+                        System.out.println("There are monsters here, but you feel a breeze. You may be close to escape!");
+                        encounter(player, gameStage);
+                        System.out.println("There is sunlight streaming in from the far door, you've made it!");
+                        victory(player);
+                    }
+                    if (currentRoom.getRoomCoordinate().equals(Dungeon.startCoord)){
+                        currentRoom.setRoomSeen(true);
+                        System.out.println("You step into the dark dungeon from the west, with torch in hand. Your adventure begins.");
+                        System.out.println("A tumbling crash roars behind you, the entrance to the dungeon has caved in. You must find a new way out.");
+                    }
+                    //shrine case
+                    if (currentRoom.isContainsShrine()){
+                        System.out.println("There's an ominous shrine standing at the far end of the room.\nAn unknown force beckons you towards it...");
+                        if (!currentRoom.isRoomSeen()){
+                            boolean wonMiniGame = MiniGame.triviaGame();
+                            if (wonMiniGame){
+                                System.out.println("The shrine restores you.");
+                                player.heal(player.maxHP);
+                                player.changeMana(player.maxMana);
+                                System.out.println("You have " + player.getHp() + " HP and " + player.getMana() + " mana.");
                             }
-                            System.out.println("\nThe dungeon itself begins to rumble and shake, causing small rocks fall from above.\nTime seems to be running out...");
                         }
-                        if (i == 12) {
-                            try {
-                                Thread.sleep(150);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                        else{
+                            System.out.println("Do you approach the shrine?\n1: Yes  2:No");
+                            int input = inputValidation(2);
+                            if (input == 1){
+                                boolean wonMiniGame = MiniGame.triviaGame();
+                                if (wonMiniGame){
+                                    System.out.println("The shrine restores you.");
+                                    player.heal(player.maxHP);
+                                    player.changeMana(player.maxMana);
+                                    System.out.println("You have " + player.getHp() + " HP and " + player.getMana() + " mana.");
+                                }
                             }
-                            System.out.println("\nThe dungeon begins to violently shake.\nYou don't know how much longer it'll hold...");
+                            else{
+                                System.out.println("You back away from the shrine.");
+                            }
                         }
-                        if (i == 16) {
-                            try {
-                                Thread.sleep(300);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                    }//End Shrine case
+                    System.out.println(currentRoom.getDescription());
+                    try {
+                        sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    //encounter case
+                    if (!currentRoom.isRoomSeen()){
+                        int encounterChanceRoll = diceRoll(1,20);
+                        if (encounterChanceRoll < 11){
+                            System.out.println("Monsters crawl forth from the shadows to attack!");
+                            if (encounter(player, gameStage)){
+                                System.out.println("You've defeated the monsters! Perhaps they carried something valuable?");
+                                player.alterInventory(Item.getLootDrop());
                             }
-                            System.out.println("\nThe dungeon collapses on you!");
-                            gameOver(player);
+                        }//End encounter combat case
+                        else if (encounterChanceRoll >= 11 && encounterChanceRoll < 16){
+                            boolean wonMiniGame;
+                            System.out.println("A strange sound is quickly growing closer! Is that... the theme of a game show?");
+                            if (encounterChanceRoll == 11 || encounterChanceRoll == 12){
+                                wonMiniGame = MiniGame.blackJack();
+
+                            }
+                            else if(encounterChanceRoll == 13 || encounterChanceRoll == 14){
+                                wonMiniGame = MiniGame.priceIsRightGame();
+                            }
+                            else{
+                                wonMiniGame = MiniGame.triviaGame();
+                            }
+                            if (wonMiniGame){
+                                System.out.println("Steve Harvey has left you a gift!");
+                                player.alterInventory(Item.getLootDrop());
+                            }
+                            else{
+                                System.out.println("You have disappointed Steve Harvey. Perhaps if you'd done better he may have left you a boon.");
+                            }
+                        }//End MiniGame case
+                    }//End encounter chance case
+                    //chest case
+                    if (currentRoom.isContainsChest()){
+                        System.out.println("There is a strange chest in the center of the room, do you open it?\n1: Yes\n2:No");
+                        if (inputValidation(2) == 1){
+                            openChest(player);
+                            currentRoom.setContainsChest(false);
                         }
                     }
-
-                    break;
-
-                }
-                // For an encounter, maybe set the encounter chance to 25 ~ 30% perhaps attainable via dice roll? (e.g.
-                // random 0-100, 0-30 = encounter, 31-100 = nothing + can continue moving on
-                // or 0-25 encounter, 26-95 = nothing, 96-100 = chest?
-
-//                encounter(player, gameStage);
-
-                //TODO - Ya know, the rest of the game.
-                gameOver(player);
-            } catch (GameOverException exception) { //either closes program or restarts game based on player choice in GameOverException.
-                if (exception.playAgain) {
-                    Dungeon.currentX = 0;
-                    Dungeon.currentY = 0;
-                    for (int i = 0; i < Dungeon.pastXValues.length; i++) {
-                        Dungeon.pastXValues[i] = 0;
-                        Dungeon.pastYValues[i] = 0;
+                    currentRoom.setRoomSeen(true);
+                    while(true){
+                        System.out.println("There doesn't seem to be anything special here\n1. Move on\n2. Open inventory");
+                        if (currentRoom.isContainsChest()){
+                            System.out.println("3. Open the chest");
+                        }
+                        switch(inputValidation(3)){
+                            case 1:{
+                                dungeon0.movePlayer();
+                                break;
+                            }
+                            case 2:{
+                                player.accessInventory();
+                                continue;
+                            }
+                            case 3:{
+                                if (currentRoom.isContainsChest()){
+                                    openChest(player);
+                                    currentRoom.setContainsChest(false);
+                                    continue;
+                                }
+                            }
+                            default:
+                                continue;
+                        }
+                        break;
                     }
+
+                }//End exploration loop
+
+            }
+            catch (GameOverException exception) { //either closes program or restarts game based on player choice in GameOverException.
+                if (exception.playAgain){
                     continue;
                 }
+                System.out.println("Thanks for playing!");
                 break;
             }
         }//game loop end
@@ -121,11 +185,28 @@ public class Game {
     public static void gameOver (Player player) throws GameOverException {
         System.out.println(player.playerName + " died. How sad.\nG A M E  O V E R");
         System.out.println("Do you want to play again Y/n?");
-        boolean playAgain = !userInput.next().equalsIgnoreCase("n");
+        boolean playAgain;
+        if ("Y".equals(userInput.nextLine().toUpperCase(Locale.ROOT))) {
+            playAgain = true;
+        }
+        else{
+            playAgain = false;
+        }
         throw new GameOverException(playAgain);
 
     }
 
+    public static void victory (Player player) throws GameOverException {
+        System.out.println(player.playerName + " escaped the dungeon and only got injured a little bit, good job!\nWould you like to play again? [y/N]");
+        boolean playAgain;
+        if ("Y".equals(userInput.nextLine().toUpperCase(Locale.ROOT))) {
+            playAgain = true;
+        }
+        else{
+            playAgain = false;
+        }
+        throw new GameOverException(playAgain);
+    }
 
     private static final Random rand = new Random(); //for getting nice random numbers without the weird math.random formula
     /**
@@ -161,8 +242,31 @@ public class Game {
                 }
             }
             else{
+                userInput.nextLine();
                 System.out.println("Enter a number between 1 and " + ceiling + " to choose.");
             }
+        }
+    }
+
+    private static void openChest(Player player) {
+        int chestRoll = diceRoll(1,10);
+        boolean wonMiniGame = false;
+        if (chestRoll < 8){
+            player.alterInventory(Item.getLootDrop());
+            return;
+        }
+        else if (chestRoll == 8){
+            wonMiniGame = MiniGame.blackJack();
+        }
+        else if (chestRoll >= 9){
+            wonMiniGame = MiniGame.triviaGame();
+        }
+        if (wonMiniGame){
+            System.out.println("Steve Harvey has left you a gift!");
+            player.alterInventory(Item.getLootDrop());
+        }
+        else{
+            System.out.println("You have disappointed Steve Harvey. Perhaps if you'd done better he may have left you a boon.");
         }
     }
 
@@ -192,7 +296,7 @@ public class Game {
         player.setInitiative(diceRoll(1, 20) + player.initBuff);
         System.out.println("You rolled " + player.getInitiative() + " for initiative!");
         for (Mob mob : encounterMobs){
-            mob.setInitiative(diceRoll(1, 20));
+            mob.setInitiative(diceRoll(1, 20) + mob.initBuff);
         }
         //Ordering entities in array by initiative to establish turn order.
         for (int i = 1; i < encounterAll.length; i++){
@@ -233,7 +337,7 @@ public class Game {
             if (encounterAll[turn] instanceof Player){
                 while(true){
                     try {
-                        Thread.sleep(1000);
+                        sleep(1000);
                     } catch (InterruptedException e) {
                         System.err.println("Slept thread was interrupted");
                     }
@@ -267,35 +371,37 @@ public class Game {
                             break;
                         }
                         case "2": {
-                            if (player.classType.equals("warrior")) {
-                                System.out.println(player.playerName + " your special warrior ability is SMASH. SMASH deals 4d" + player.atkStr + " damage and costs 5 mana");
-                                try {
-                                    Thread.sleep(500);
-                                } catch (InterruptedException e) {
-                                    System.err.println("Slept thread was interrupted");
-                                }
-                            }
-                            else if (player.classType.equals("rogue")){
-                                System.out.println(player.playerName + " your special rogue ability is SNEAK ATTACK. SNEAK ATTACK does damage based on your initiative and costs 5 mana. \nThis encounter it does 2d" + (player.getInitiative() / 2) + " damage.");
-                                try {
-                                    Thread.sleep(500);
-                                } catch (InterruptedException e) {
-                                    System.err.println("Slept thread was interrupted");
-                                }
-                            }
-                            else if (player.classType.equals("mage")){
-                                System.out.println(player.playerName + " your special mage ability is FIREBALL. FIREBALL does 2d8 damage and costs 5 mana.");
-                                try {
-                                    Thread.sleep(500);
-                                } catch (InterruptedException e) {
-                                    System.err.println("Slept thread was interrupted");
-                                }
+                            switch (player.classType) {
+                                case "warrior":
+                                    System.out.println(player.playerName + " your special warrior ability is SMASH. SMASH deals 4d" + player.atkStr + " damage and costs 5 mana");
+                                    try {
+                                        sleep(500);
+                                    } catch (InterruptedException e) {
+                                        System.err.println("Slept thread was interrupted");
+                                    }
+                                    break;
+                                case "rogue":
+                                    System.out.println(player.playerName + " your special rogue ability is SNEAK ATTACK. SNEAK ATTACK does damage based on your initiative and costs 5 mana. \nThis encounter it does 2d" + (player.getInitiative() / 2) + " damage.");
+                                    try {
+                                        sleep(500);
+                                    } catch (InterruptedException e) {
+                                        System.err.println("Slept thread was interrupted");
+                                    }
+                                    break;
+                                case "mage":
+                                    System.out.println(player.playerName + " your special mage ability is FIREBALL. FIREBALL does 2d8 damage and costs 5 mana.");
+                                    try {
+                                        sleep(500);
+                                    } catch (InterruptedException e) {
+                                        System.err.println("Slept thread was interrupted");
+                                    }
+                                    break;
                             }
                             if (player.getMana() < 5){
                                 System.out.println("You don't have enough mana, maybe try using a potion?");
                                 System.out.println();
                                 try {
-                                    Thread.sleep(500);
+                                    sleep(500);
                                 } catch (InterruptedException e) {
                                     System.err.println("Slept thread was interrupted");
                                 }
@@ -356,7 +462,7 @@ public class Game {
                     case "grunt":
                     case "brute": {
                         try {
-                            Thread.sleep(1000);
+                            sleep(1000);
                         } catch (InterruptedException e) {
                             System.err.println("Slept thread was interrupted");
                         }
@@ -365,7 +471,7 @@ public class Game {
                     }
                     case "shaman": {
                         try {
-                            Thread.sleep(1000);
+                            sleep(1000);
                         } catch (InterruptedException e) {
                             System.err.println("Slept thread was interrupted");
                         }

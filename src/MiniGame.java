@@ -4,15 +4,17 @@ public class MiniGame {
     public static boolean triviaGame(){
 
         // selecting the question and answer used to play
-        int q = Game.diceRoll(1, 5);
+        int q = Game.diceRoll(1, 8);
         String[] gamePiece = NPC.triviaGameQuestionsAndAnswers(q);
+        System.out.println("Annnnnd here's your host, Steve Harvey! 'Alright, welcome to trivia! This is a very simple game, I ask you a question, and you answer with one of the provided by each question\n"+
+                "That's right, this is multiple choice. Here we go now.'");
 
         // printing out the question and answer
         String question = gamePiece[0];
         String answers = gamePiece[1];
         System.out.println(question);
         System.out.println(answers);
-        System.out.print("Enter your answer here; ");
+        System.out.print("You have your question, you have your options, now we need your answer, whatcha got for me; ");
 
         // loop for gameplay
         while (true) {
@@ -22,12 +24,12 @@ public class MiniGame {
                 case "1": {
                     // if question and answer is the 1st pair
                     if (q == 1) {
-                        System.out.println("Correct!");
+                        System.out.println("We-hel look at you, all smart'n stuff. getting answers right.");
                         return true;
                     }
                     // if question and answer is the 2nd pair
                     if (q == 2) {
-                        System.out.println("Bruh... Columbus... come on now!");
+                        System.out.println("Are you familiar with the story of Christopher Columbus? No? I didn't think so.");
                         break;
                     }
                     // if question and answer is the 3rd pair
@@ -37,12 +39,28 @@ public class MiniGame {
                     }
                     // if question and answer is the 4th pair
                     if (q == 4) {
-                        System.out.println("really.... REALLY?!?!");
+                        System.out.println("Alright, look. That ain't right and we both know that. what I want, no, need to know is this\n"
+                        + "How long have you been crazy?");
                         break;
                     }
                     // if question and answer is the 5th pair
                     if (q == 5) {
-                        System.out.println("~shakes bald head~");
+                        System.out.println("~shakes bald head~\n" + "no");
+                        break;
+                    }
+                    // if question and answer is the 6th pair
+                    if (q == 6) {
+                        System.out.println("You're joking...\n" + "no");
+                        break;
+                    }
+                    // if question and answer is the 7th pair
+                    if (q == 7) {
+                        System.out.println("You're funny...\n" + "no");
+                        break;
+                    }
+                    // if question and answer is the 8th pair
+                    if (q == 8) {
+                        System.out.println("not even close...");
                         break;
                     }
                 }
@@ -50,7 +68,7 @@ public class MiniGame {
                 case "2": {
                     // if question and answer is the 1st pair
                     if (q == 1) {
-                        System.out.println("Wait... you actually thought an integer had decimals? It's a whole number!");
+                        System.out.println("ha! even i know that ain't right.");
                         break;
                     }
                     // if question and answer is the 2nd pair
@@ -60,17 +78,32 @@ public class MiniGame {
                     }
                     // if question and answer is the 3rd pair
                     if (q == 3) {
-                        System.out.println("Yes! Finally! A half-decently smart person.");
+                        System.out.println("Not bad, but then again, I know nothing of this subject so that could-a-been an easy one for all I know.");
                         return true;
                     }
                     // if question and answer is the 4th pair
                     if (q == 4) {
-                        System.out.println("Come on now! You can do better than THAT");
+                        System.out.println("That's incorrect. I don't know why it is either, I don't know anything about this");
                         break;
                     }
                     // if question and answer is the 5th pair
                     if (q == 5) {
                         System.out.println("Nice try");
+                        break;
+                    }
+                    // if question and answer is the 6th pair
+                    if (q == 6) {
+                        System.out.println("Omg...");
+                        break;
+                    }
+                    // if question and answer is the 7th pair
+                    if (q == 7) {
+                        System.out.println("Heck yeah baby!");
+                        return true;
+                    }
+                    // if question and answer is the 8th pair
+                    if (q == 8) {
+                        System.out.println("just... why?");
                         break;
                     }
                 }
@@ -83,7 +116,7 @@ public class MiniGame {
                     }
                     // if question and answer is the 2nd pair
                     if (q == 2) {
-                        System.out.println("Oh my gawd, well look atchu, aren't you just the smartest person in the room");
+                        System.out.println("Well the people in charge of the show tell me you're right. So good job");
                         return true;
                     }
                     // if question and answer is the 3rd pair
@@ -105,6 +138,21 @@ public class MiniGame {
                     // if question and answer is the 5th pair
                     if (q == 5) {
                         System.out.println("I can't believe they even allowed you to play");
+                        break;
+                    }
+                    // if question and answer is the 6th pair
+                    if (q == 6) {
+                        System.out.println("Why haven't you come to this show before?!?!");
+                        return true;
+                    }
+                    // if question and answer is the 7th pair
+                    if (q == 7) {
+                        System.out.println("Ugh, I simply just can't");
+                        break;
+                    }
+                    // if question and answer is the 8th pair
+                    if (q == 8) {
+                        System.out.println("Nice try");
                         break;
                     }
                 }
@@ -135,9 +183,24 @@ public class MiniGame {
                         System.out.println("Yes... yEs... YES!!!");
                         return true;
                     }
+                    // if question and answer is the 6th pair
+                    if (q == 6) {
+                        System.out.println("~walks away~");
+                        break;
+                    }
+                    // if question and answer is the 7th pair
+                    if (q == 7) {
+                        System.out.println("~opens mouth in disbelief~");
+                        break;
+                    }
+                    // if question and answer is the 8th pair
+                    if (q == 8) {
+                        System.out.println("OMG YESSS");
+                        return true;
+                    }
                 }
                 default: {
-                    System.out.println("That ain't even an answer. Try again.");
+                    System.out.println("That's not an answer, but you know, that's okay, lets give it another go");
                     continue;
                 }
             }
@@ -162,19 +225,21 @@ public class MiniGame {
         String printOut = priceIsRightQuestions[j - 1];
 
         // announcing the rules
+        System.out.println("And here's your host.... Steve Harvey!");
         System.out.println("You are now playing the price is right.");
         System.out.println("The goal is to guess a price as close to the actual price as possible without going over.");
         System.out.println("Use your brain, and good luck.");
         System.out.println(printOut);
 
         // setting phrases to string variables
-        String priceGamePrompt = "Please enter a price (no decimals, commas, or $ sign): ";
-        String rareEqualsCase = "Your answer and the mob's answer were equally close to the real price, so we're just gonna give you the win. Congrats.";
-        String winningPhrase = "Way to go bud, you finally did something right in your life";
-        String losingPhrase = "Sometimes ya win, and sometimes ya lose. This time, ya lost big time.";
-        String freePhrase = "Nothin' in life is free bruh.";
-        String negativePhrase = "What? You think they're gonna pay YOU to buy their product???";
-        String invalidInput = "That was not a valid answer. Please try again.";
+        String priceGamePrompt = "Steve: Please enter a price (no decimals, commas, or $ sign): ";
+        String rareEqualsCase = "Steve: Your answer and the mob's answer were equally close to the real price, so we're just gonna give you the win. Congrats.";
+        String winningPhrase = "Steve: Way to go bud, you won over that... i don't even know what that is some kinda goblin? anyway, congratulations";
+        String losingPhrase = "Steve: Sometimes ya win, and uh, sorry man but this ain't one of those times.";
+        String freePhrase = "Steve: What the hell man, you know full well that 'Free' isn't the right answer. since when have you *ever* gotten a free anything!";
+        String negativePhrase = "Steve: What? You think they're gonna pay YOU to buy their product???";
+        String invalidInput = "Steve: That was not a valid answer. Please try again.";
+        String goodByeStatement = "Well anyway, ive been your host, and i will see you later.";
 
         // initializing variables
         int userInput;
@@ -384,9 +449,12 @@ public class MiniGame {
         int cardOccurrences = 0;
 
         // announcing the rules
-        System.out.println("You are now playing BlackJack. The goal is to get as close to 21 as possible without going over.");
+        System.out.println("And here's your host.... Steve Harvey!");
+        System.out.println("Steve: You are now playing BlackJack. The goal is to get as close to 21 as possible without going over.");
         System.out.println("You may choose to hit (draw another card) or stay (stop drawing cards for the rest of the game).");
-        System.out.println("The dealer will always choose to hit unless the value of their hand is 17 or over.");
+        System.out.println("The dealer (i.e. me) will always choose to hit unless the value of their hand is 17 or over.");
+        System.out.println("By the way, I have 1 card whose value will not be revealed until the end.");
+        System.out.println("Until the end of the game, the dealer's current hand value will be the value of all their cards minus the hidden card.");
         System.out.println("There is some strategy involved. Use your brain, and good luck.");
 
         // loop for gameplay
@@ -470,6 +538,7 @@ public class MiniGame {
                         }
                     }
                     else if (dealerHandValue >= 17) {
+                        System.out.println("The dealer must stand because the value of their hand is/over 17");
                         System.out.println("Your current hand's value is: " + playerHandValue + ".");
                         System.out.print("Would you like to hit or stand? (1 - hit, 2 - stand): ");
                         // asking if player would like to hit one more time cuz dealer can't
@@ -504,31 +573,39 @@ public class MiniGame {
         if (dealerHandValue > 21) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("Wow, you really frickin' did it. You won. Who knew you had it in you.");
+            System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
+            System.out.println("Steve: well, looks like I went over, and you won. I've been Steeve Harvey and I will see you later.");
             return true;
         }
         else if (playerHandValue > 21) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("You lost. Too bad, so sad.");
+            System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
+            System.out.println("Steve: dang man, I almost feel bad. No one wants to lose like that... \n" +
+                    "Glad it ain't me though! See you next time!");
             return false;
         }
         else if (playerHandValue > dealerHandValue) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("Wow, you really frickin' did it. You won. Who knew you had it in you.");
+            System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
+            System.out.println("Well, well. Looks like you beat me fair and square. Congratulations, and I will see you later.");
             return true;
         }
         else if (playerHandValue < dealerHandValue) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("You lost. Too bad, so sad.");
+            System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
+            System.out.println("Steeve: YES! Sorry, that was very rude of me. I'm just not use to winning in these games\n" +
+                    "Until next time.");
             return false;
         }
         else {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
-            System.out.println("Wow, you won. You lucky son of a gun");
+            System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
+            System.out.println("Huh, looks like you won. I'm not sure how but you did it!\n" +
+                    "I'm Steve Harvey and I will see you next time");
             return true;
         }
     }
