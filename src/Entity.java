@@ -350,6 +350,7 @@ class Player extends Entity {
                                     inventory[input].use(target);
                                 }
                             }
+                            inventory[input] = null;
                         } else {
                             System.out.println("You can only use a bomb in an encounter!");
                         }
