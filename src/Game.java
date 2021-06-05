@@ -358,9 +358,12 @@ public class Game {
                                     System.out.println(i + ": A " + mob.classType + " with " + mob.getHp() + "HP");
                                 i++;
                             }
-                            System.out.println("or choose " + encounterMobs.length + " to go back.");
+                            System.out.println("or choose 5 to go back.");
                             System.out.print("Choose: ");
                             int input = inputValidation(encounterMobs.length) - 1;
+                            if (input == 5){
+                                continue;
+                            }
                             if (encounterMobs[input].classType.equals("dead")){
                                 System.out.println("There's nothing there for you to attack!");
                                 continue;
@@ -416,7 +419,7 @@ public class Game {
                             }
                             System.out.println(encounterMobs.length + ": Go back");
                             int input = inputValidation(5) - 1;
-                            if (input < encounterMobs.length){
+                            if (input < 5){
                                 if (encounterMobs[input].classType.equals("dead")){
                                     System.out.println("There's nothing there for you to attack!");
                                     continue;
