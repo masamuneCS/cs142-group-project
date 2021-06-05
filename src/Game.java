@@ -310,17 +310,9 @@ public class Game {
 
         }
         int turn = -2;
-        boolean allMobsDead = false;
         while(true){ // encounter combat turns loop
-            turn++;
-            for (Mob mob : encounterMobs){
-                allMobsDead = true;
-                if (!mob.classType.equals("dead")){
-                    allMobsDead = false;
-                    break;
-                }
-            }
-            if (allMobsDead){
+            turn++;;
+            if (isAllMobsDead()){
                 System.out.println("You are victorious over your slain enemies!");
                 encounterActive = false;
                 return true; //all mobs are dead, player has won the encounter
@@ -443,6 +435,11 @@ public class Game {
                         case "3": {
                             System.out.println("Using an inventory item does NOT end your turn.");
                             player.accessInventory();
+                            if (isAllMobsDead()){
+                                System.out.println("You are victorious over your slain enemies!");
+                                encounterActive = false;
+                                return true; //all mobs are dead, player has won the encounter
+                            }
                             continue;
                         }
                     }//End switch case
@@ -492,6 +489,17 @@ public class Game {
                 }
             }
         }//End encounter combat loop
+    }
+
+    private static boolean isAllMobsDead() {
+        boolean allMobsDead = true;
+        for (Mob mob : encounterMobs){
+            if (!mob.classType.equals("dead")){
+                allMobsDead = false;
+                break;
+            }
+        }
+        return allMobsDead;
     }
 
 }
