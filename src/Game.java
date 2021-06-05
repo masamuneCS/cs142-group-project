@@ -138,7 +138,7 @@ public class Game {
                     }
                     currentRoom.setRoomSeen(true);
                     while(true){
-                        System.out.println("There doesn't seem to be anything special here\n1. Move on\n2. Open inventory");
+                        System.out.println("It seems safe enough here, what would you like to do?\n1. Move on\n2. Open inventory");
                         if (currentRoom.isContainsChest()){
                             System.out.println("3. Open the chest");
                         }
