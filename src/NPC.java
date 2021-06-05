@@ -61,7 +61,19 @@ public static String[] triviaGameQuestionsAndAnswers(int q) {
             "Do you have to create a constructor when coding an object class?",
             "What shape is a stop sign",
             "Was the color orange named after the fruit or before?",
-            "What is meteorology the study of?"};
+            "What is meteorology the study of?",
+            "In a website url, what does www stand for?",
+            "What major tournament did Serena Williams win while pregnant?",
+            "Which singer's real name is Stefani Joanne Angelina Germanotta?",
+            "Which country consumes the most chocolate per capita?",
+            "Which two U.S. states don’t observe Daylight Saving Time?",
+            "What is the tiny piece at the end of a shoelace called?",
+            "How many ribs are in a human body?",
+            "What color eyes do most humans have?",
+            "Which country produces the most coffee in the world?",
+            "What does BMW stand for (in English)?",
+            "Which bone are babies born without?",
+            "Which mammal has no vocal cords?"};
         String[] triviaGameAnswers = new String[]{"Choose your answer: \n" + "1) Doubles \n" + "2) Ints \n" + "3) Both\n" + "4) Neither",
             "Choose your answer: \n" + "1) 1492 \n" + "2) 1861 \n" + "3) 1776\n" + "4) 2021",
             "Choose your answer: \n" + "1) Your name \n" + "2) An import statement \n" + "3) Class name\n" + "4) Main method",
@@ -72,8 +84,22 @@ public static String[] triviaGameQuestionsAndAnswers(int q) {
                     "4) Well not necessarily because there's a default constructor",
             "Choose your answer: \n" + "1) Hexagon \n" + "2) Circle \n" + "3) Octagon \n" + "4) Dodecahedron",
             "Choose your answer \n" + "1) Obviously before \n" + "2) Duh, it was named after \n" + "3) Nah man, they were named at the same time \n" +
-            "4) Are we talkin' like burnt orange, rust orange, jack-o-lantern orange, or what?",
-            "Choose your answer: \n" + "1) Meteors \n" + "2) Asteroids \n" + "3) Weather \n" + "4) The sky"};
+                    "4) Are we talkin' like burnt orange, rust orange, jack-o-lantern orange, or what?",
+            "Choose your answer: \n" + "1) Meteors \n" + "2) Asteroids \n" + "3) Weather \n" + "4) The sky",
+            "Choose your answer: \n" + "1) world wrestling week \n" + "2) world wide web \n" + "3) world wide website \n" +
+                    "4) wide wombat world",
+            "Choose your answer: \n" + "1) The US Open \n" + "2) The French Open \n" + "3) The Australian Open \n" + "4) Wimbledon",
+            "Choose your answer: \n" + "1) Halsey \n" + "2) Madonna \n" + "3) Pink \n" + "4) Lady Gaga",
+            "Choose your answer: \n" + "1) The Netherlands \n" + "2) Switzerland \n" + "3) Germany \n" + "4) France",
+            "Choose your answer: \n" + "1) Arizona and Hawaii \n" + "2) Kansas and Texas \n" + "3) California and Idaho \n" + "4) Trick question, all the states observe daylight savings",
+            "Choose your answer: \n" + "1) Lace \n" + "2) Aglet \n" + "3) Plastic \n" + "4) The whacker",
+            "Choose your answer: \n" + "1) 10 \n" + "2) 12 \n" + "3) 18 \n" + "4) 24",
+            "Choose your answer: \n" + "1) Green \n" + "2) Hazel \n" + "3) Brown \n" + "4) Blue",
+            "Choose your answer: \n" + "1) Columbia \n" + "2) Peru \n" + "3) France \n" + "4) Brazil",
+            "Choose your answer: \n" + "1) Bavarian Motor Works \n" + "2) Brazilian Motor Works \n" + "3) Brazen Motor Works \n" + "4) Bring Mom With",
+            "Choose your answer: \n" + "1) Skull \n" + "2) Elbow \n" + "3) Knuckle \n" + "4) Knee cap",
+            "Choose your answer: \n" + "1) Salamander \n" + "2) Giraffe \n" + "3) Lizard \n" + "4) Elephant"};
+
         String question = triviaGameQuestions[q - 1];
         String answer = triviaGameAnswers[q - 1];
         String[] questionAndAnswer = new String[]{question,answer};

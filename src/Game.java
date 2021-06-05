@@ -18,9 +18,9 @@ public class Game {
                 Item.genLootTable();
                 Player player;
                 System.out.println("What kind of hero are you? Type a number and press enter.\n" +
-                        "1: Warrior. Can take a lot of hits.\n" +
+                        "1: Warrior. Can take a lot of hits, and always reduces incoming damage by 2.\n" +
                         "2: Rogue. Everything balanced, as it should be.\n" +
-                        "3: Mage. Hits very hard, is made of glass.");
+                        "3: Mage. Hits very hard, is made of glass, and always reduces incoming damage by 1.");
                 while(true) { //input validation loop
                     switch (userInput.nextLine()) {
                         case "1" : {

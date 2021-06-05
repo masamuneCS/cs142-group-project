@@ -4,7 +4,7 @@ public class MiniGame {
     public static boolean triviaGame(){
 
         // selecting the question and answer used to play
-        int q = Game.diceRoll(1, 8);
+        int q = Game.diceRoll(1, 20);
         String[] gamePiece = NPC.triviaGameQuestionsAndAnswers(q);
         System.out.println("Annnnnd here's your host, Steve Harvey! 'Alright, welcome to trivia! This is a very simple game, I ask you a question, and you answer with one of the provided by each question\n"+
                 "That's right, this is multiple choice. Here we go now.'");
@@ -39,7 +39,7 @@ public class MiniGame {
                     }
                     // if question and answer is the 4th pair
                     if (q == 4) {
-                        System.out.println("Alright, look. That ain't right and we both know that. what I want, no, need to know is this\n"
+                        System.out.println("Alright, look. That ain't right and we both know that. What I want, no, need to know is this\n"
                         + "How long have you been crazy?");
                         break;
                     }
@@ -60,7 +60,67 @@ public class MiniGame {
                     }
                     // if question and answer is the 8th pair
                     if (q == 8) {
+                        System.out.println("Hahahaha I see what you're doing... ~meteor~ology, ~meteors~... good one");
+                        break;
+                    }
+                    // if question and answer is the 9th pair
+                    if (q == 9) {
                         System.out.println("not even close...");
+                        break;
+                    }
+                    // if question and answer is the 10th pair
+                    if (q == 10) {
+                        System.out.println("Nice try, but no");
+                        break;
+                    }
+                    // if question and answer is the 11th pair
+                    if (q == 11) {
+                        System.out.println("Don't you ever read about pop culture?");
+                        break;
+                    }
+                    // if question and answer is the 12th pair
+                    if (q == 12) {
+                        System.out.println("Not gonna lie, that was a good guess. That would've been mine too.");
+                        break;
+                    }
+                    // if question and answer is the 13th pair
+                    if (q == 13) {
+                        System.out.println("Looks like someone knows their science and geography");
+                        return true;
+                    }
+                    // if question and answer is the 14th pair
+                    if (q == 14) {
+                        System.out.println("not even close...");
+                        break;
+                    }
+                    // if question and answer is the 15th pair
+                    if (q == 15) {
+                        System.out.println("not even close...");
+                        break;
+                    }
+                    // if question and answer is the 16th pair
+                    if (q == 16) {
+                        System.out.println("not even close...");
+                        break;
+                    }
+                    // if question and answer is the 17th pair
+                    if (q == 17) {
+                        System.out.println("~proceeds to walk out of the room~");
+                        break;
+                    }
+                    // if question and answer is the 18th pair
+                    if (q == 18) {
+                        System.out.println("Man, I got mad respect for you now!");
+                        return true;
+                    }
+                    // if question and answer is the 19th pair
+                    if (q == 19) {
+                        System.out.println("You weren't even in the ballpark with that one");
+                        break;
+                    }
+                    // if question and answer is the 20th pair
+                    if (q == 20) {
+                        System.out.println("Wow... really?");
                         break;
                     }
                 }
@@ -68,7 +128,7 @@ public class MiniGame {
                 case "2": {
                     // if question and answer is the 1st pair
                     if (q == 1) {
-                        System.out.println("ha! even i know that ain't right.");
+                        System.out.println("Ha! Even I know that ain't right.");
                         break;
                     }
                     // if question and answer is the 2nd pair
@@ -105,6 +165,66 @@ public class MiniGame {
                     if (q == 8) {
                         System.out.println("just... why?");
                         break;
+                    }
+                    // if question and answer is the 9th pair
+                    if (q == 9) {
+                        System.out.println("I swear, if you didn't get that right...");
+                        return true;
+                    }
+                    // if question and answer is the 10th pair
+                    if (q == 10) {
+                        System.out.println("Nice try, but not quite");
+                        break;
+                    }
+                    // if question and answer is the 11th pair
+                    if (q == 11) {
+                        System.out.println("Don't you ever read about pop culture?");
+                        break;
+                    }
+                    // if question and answer is the 12th pair
+                    if (q == 12) {
+                        System.out.println("Ah, no wonder there's a little padding around your stomach area");
+                        return true;
+                    }
+                    // if question and answer is the 13th pair
+                    if (q == 13) {
+                        System.out.println("Hahaha I get it, cuz Kansas is the ~sun~flower state... nice try, but no");
+                        break;
+                    }
+                    // if question and answer is the 14th pair
+                    if (q == 14) {
+                        System.out.println("You must've watched Phineas and Ferb as a kid huh");
+                        return true;
+                    }
+                    // if question and answer is the 15th pair
+                    if (q == 15) {
+                        System.out.println("Not quite");
+                        break;
+                    }
+                    // if question and answer is the 16th pair
+                    if (q == 16) {
+                        System.out.println("not even close...");
+                        break;
+                    }
+                    // if question and answer is the 17th pair
+                    if (q == 17) {
+                        System.out.println("~proceeds to walk out of the room~");
+                        break;
+                    }
+                    // if question and answer is the 18th pair
+                    if (q == 18) {
+                        System.out.println("Guess someone isn't a motorhead");
+                        break;
+                    }
+                    // if question and answer is the 19th pair
+                    if (q == 19) {
+                        System.out.println("You weren't even in the ballpark with that one");
+                        break;
+                    }
+                    // if question and answer is the 20th pair
+                    if (q == 20) {
+                        System.out.println("Wait really? You got that right? Dang, who woulda thunk it");
+                        return true;
                     }
                 }
                 // if input is 3
@@ -155,6 +275,66 @@ public class MiniGame {
                         System.out.println("Nice try");
                         break;
                     }
+                    // if question and answer is the 9th pair
+                    if (q == 9) {
+                        System.out.println("Hahaha, you're a funny person");
+                        break;
+                    }
+                    // if question and answer is the 10th pair
+                    if (q == 10) {
+                        System.out.println("Wow, look atchu being all worldly");
+                        return true;
+                    }
+                    // if question and answer is the 11th pair
+                    if (q == 11) {
+                        System.out.println("Don't you ever read about pop culture?");
+                        break;
+                    }
+                    // if question and answer is the 12th pair
+                    if (q == 12) {
+                        System.out.println("Not quite");
+                        break;
+                    }
+                    // if question and answer is the 13th pair
+                    if (q == 13) {
+                        System.out.println("Hahaha I get it, cuz California's all beachy... nice try, but no");
+                        break;
+                    }
+                    // if question and answer is the 14th pair
+                    if (q == 14) {
+                        System.out.println("I mean, yes, it's maaade outta plastic, but not quite");
+                        break;
+                    }
+                    // if question and answer is the 15th pair
+                    if (q == 15) {
+                        System.out.println("Close, but no cigar");
+                        break;
+                    }
+                    // if question and answer is the 16th pair
+                    if (q == 16) {
+                        System.out.println("Mmhmm, yep, congrats");
+                        return true;
+                    }
+                    // if question and answer is the 17th pair
+                    if (q == 17) {
+                        System.out.println("~proceeds to walk out of the room~");
+                        break;
+                    }
+                    // if question and answer is the 18th pair
+                    if (q == 18) {
+                        System.out.println("Guess someone isn't a motorhead");
+                        break;
+                    }
+                    // if question and answer is the 19th pair
+                    if (q == 19) {
+                        System.out.println("You weren't even in the ballpark with that one");
+                        break;
+                    }
+                    // if question and answer is the 20th pair
+                    if (q == 20) {
+                        System.out.println("Ok, that was a hard one, I'll give you that");
+                        break;
+                    }
                 }
                 // if input is 4
                 case "4": {
@@ -197,6 +377,66 @@ public class MiniGame {
                     if (q == 8) {
                         System.out.println("OMG YESSS");
                         return true;
+                    }
+                    // if question and answer is the 9th pair
+                    if (q == 9) {
+                        System.out.println("Hahaha, you're a funny person");
+                        break;
+                    }
+                    // if question and answer is the 10th pair
+                    if (q == 10) {
+                        System.out.println("Nice try, but no");
+                        break;
+                    }
+                    // if question and answer is the 11th pair
+                    if (q == 11) {
+                        System.out.println("Wow, even I didn't know that one");
+                        return true;
+                    }
+                    // if question and answer is the 12th pair
+                    if (q == 12) {
+                        System.out.println("That was a good guess, I'll give you that");
+                        break;
+                    }
+                    // if question and answer is the 13th pair
+                    if (q == 13) {
+                        System.out.println("Hahaha... nice try, but no");
+                        break;
+                    }
+                    // if question and answer is the 14th pair
+                    if (q == 14) {
+                        System.out.println("You must be the older/oldest sibling");
+                        break;
+                    }
+                    // if question and answer is the 15th pair
+                    if (q == 15) {
+                        System.out.println("Yes actually, wow, I was not expecting that");
+                        return true;
+                    }
+                    // if question and answer is the 16th pair
+                    if (q == 16) {
+                        System.out.println("Bruh, that's literally the least common...");
+                        break;
+                    }
+                    // if question and answer is the 17th pair
+                    if (q == 17) {
+                        System.out.println("Wow, look at this coffee connoisseur over here");
+                        return true;
+                    }
+                    // if question and answer is the 18th pair
+                    if (q == 18) {
+                        System.out.println("Hahaha now that was a good one, but I can't give it to you");
+                        break;
+                    }
+                    // if question and answer is the 19th pair
+                    if (q == 19) {
+                        System.out.println("Wow, yes actually, dang, I was not expecting that");
+                        return true;
+                    }
+                    // if question and answer is the 20th pair
+                    if (q == 20) {
+                        System.out.println("Ok, that was a hard one, I'll give you that");
+                        break;
                     }
                 }
                 default: {
