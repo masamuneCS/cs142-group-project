@@ -1,16 +1,23 @@
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 
 public class Game {
+
+    private static Logger logger = Logger.getLogger(Game.class.getName());
+
     public static Scanner userInput = new Scanner(System.in);
     protected static boolean encounterActive = false;
     protected static Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
 
     public static void main(String[] args){
+        logger.setLevel(Level.INFO);
         int gameStage = 0;
         while(true) { //Main game loop
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
@@ -18,9 +25,9 @@ public class Game {
                 Item.genLootTable();
                 Player player;
                 System.out.println("What kind of hero are you? Type a number and press enter.\n" +
-                        "1: Warrior. Can take a lot of hits, and always reduces incoming damage by 2.\n" +
+                        "1: Warrior. Can take a lot of hits.\n" +
                         "2: Rogue. Everything balanced, as it should be.\n" +
-                        "3: Mage. Hits very hard, is made of glass, and always reduces incoming damage by 1.");
+                        "3: Mage. Hits very hard, is made of glass.");
                 while(true) { //input validation loop
                     switch (userInput.nextLine()) {
                         case "1" : {
@@ -278,12 +285,15 @@ public class Game {
             int roll = diceRoll(1, 10); //picking mobType based on int 1-10
             if (roll >= 1 && roll < 6) {
                 encounterMobs[i] = Entity.buildGrunt();
+                logger.log(Level.INFO, "Created " + encounterMobs[i] + " with class " + encounterMobs[i].classType);
             }
             else if (roll >= 6 && roll < 9) {
                 encounterMobs[i] = Entity.buildBrute();
+                logger.log(Level.INFO, "Created " + encounterMobs[i] + " with class " + encounterMobs[i].classType);
             }
             else if (roll >= 9 && roll < 11) {
                 encounterMobs[i] = Entity.buildShaman();
+                logger.log(Level.INFO, "Created " + encounterMobs[i] + " with class " + encounterMobs[i].classType);
             }
             else {
                 throw new IllegalArgumentException("Encounter mob builder received invalid mob type roll");
@@ -297,8 +307,11 @@ public class Game {
         System.out.println("You rolled " + player.getInitiative() + " for initiative!");
         for (Mob mob : encounterMobs){
             mob.setInitiative(diceRoll(1, 20) + mob.initBuff);
+            logger.log(Level.INFO, mob + " initiative roll: " + mob.getInitiative());
         }
+
         //Ordering entities in array by initiative to establish turn order.
+        logger.log(Level.INFO, "encounterAll before sort: " + Arrays.toString(encounterAll));
         for (int i = 1; i < encounterAll.length; i++){
             Entity key = encounterAll[i];
             int j = i - 1;
@@ -309,10 +322,14 @@ public class Game {
             encounterAll[j+1] = key;
 
         }
+        logger.log(Level.INFO, "encounterAll after sort: " + Arrays.toString(encounterAll));
+
         int turn = -2;
         while(true){ // encounter combat turns loop
-            turn++;;
+            turn++;
+            logger.log(Level.INFO, "Turn: " + turn);
             if (isAllMobsDead()){
+                logger.log(Level.INFO, "All mobs show dead");
                 System.out.println("You are victorious over your slain enemies!");
                 encounterActive = false;
                 return true; //all mobs are dead, player has won the encounter
@@ -325,8 +342,10 @@ public class Game {
             }
             if (turn >= encounterAll.length - 1 || turn == -1){
                 turn = 0;
+                logger.log(Level.INFO, "Turn reset to 0" );
             }
             if (encounterAll[turn] instanceof Player){
+                logger.log(Level.INFO, turn + "is player");
                 while(true){
                     try {
                         sleep(1000);
@@ -454,6 +473,7 @@ public class Game {
             }//End player turn options
             //Mob combat logic
             else if (encounterAll[turn] instanceof Mob){
+                logger.log(Level.INFO, turn + " is " + encounterAll[turn] );
                 /*
                 Mobs will attack player until death.
                 Shaman will check to see if any allies are below half health and attempt to heal them or else attack player.
