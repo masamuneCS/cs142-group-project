@@ -145,11 +145,13 @@ public class Game {
                     }
                     currentRoom.setRoomSeen(true);
                     while(true){
+                        int choiceCeiling = 2;
                         System.out.println("It seems safe enough here, what would you like to do?\n1. Move on\n2. Open inventory");
                         if (currentRoom.isContainsChest()){
                             System.out.println("3. Open the chest");
+                            choiceCeiling = 3;
                         }
-                        switch(inputValidation(3)){
+                        switch(inputValidation(choiceCeiling)){
                             case 1:{
                                 dungeon0.movePlayer();
                                 break;
