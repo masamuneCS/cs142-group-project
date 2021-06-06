@@ -1,9 +1,11 @@
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
@@ -16,8 +18,18 @@ public class Game {
     protected static boolean encounterActive = false;
     protected static Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
+        System.out.println("Dungeon Crawler production v0_2*");
         logger.setLevel(Level.INFO);
+        //logger.setUseParentHandlers(false);
+        FileHandler handler = new FileHandler("game.log", true);
+        //ConsoleHandler consoleHandler = new ConsoleHandler();
+        SimpleFormatter logFormatter = new SimpleFormatter();
+        //consoleHandler.setLevel(Level.SEVERE);
+        logger.addHandler(handler);
+        //logger.addHandler(consoleHandler);
+        handler.setFormatter(logFormatter);
+
         int gameStage = 0;
         while(true) { //Main game loop
             try { //KEEP ALL GAME CODE INSIDE THE TRY BLOCK PLEASE AND THANK YOU
@@ -29,23 +41,26 @@ public class Game {
                         "2: Rogue. Everything balanced, as it should be.\n" +
                         "3: Mage. Hits very hard, is made of glass.");
                 while(true) { //input validation loop
-                    switch (userInput.nextLine()) {
-                        case "1" : {
+                    switch (inputValidation(3)) {
+                        case 1 : {
                             System.out.println("What should I call you, warrior? Type a name and press enter.");
                             String name = userInput.nextLine();
                             player = Player.buildWarrior(name);
+                            logger.info(player + " created with classType " + player.classType);
                             break;
                         }
-                        case "2" : {
+                        case 2 : {
                             System.out.println("What should I call you, rogue?");
                             String name = userInput.nextLine();
                             player = Player.buildRogue(name);
+                            logger.info(player + " created with classType " + player.classType);
                             break;
                         }
-                        case "3" : {
+                        case 3 : {
                             System.out.println("What should I call you, mage?");
                             String name = userInput.nextLine();
                             player = Player.buildMage(name);
+                            logger.info(player + " created with classType " + player.classType);
                             break;
                         }
                         default : {
@@ -57,6 +72,7 @@ public class Game {
                 }//End input validation loop for character creation switch
                 while(true){ //Dungeon exploration loop
                     Room currentRoom = dungeon0.getCurrentRoom();
+                    logger.info("Player entered " + currentRoom + " at coordinate " + currentRoom.getRoomCoordinate().toString());
                     if (currentRoom.getRoomCoordinate().equals(Dungeon.victoryCoord)){
                         System.out.println("There are monsters here, but you feel a breeze. You may be close to escape!");
                         encounter(player, gameStage);
@@ -107,6 +123,7 @@ public class Game {
                     if (!currentRoom.isRoomSeen()){
                         int encounterChanceRoll = diceRoll(1,20);
                         if (encounterChanceRoll < 11){
+                            logger.info("Encounter rolled combat");
                             System.out.println("Monsters crawl forth from the shadows to attack!");
                             if (encounter(player, gameStage)){
                                 System.out.println("You've defeated the monsters! Perhaps they carried something valuable?");
@@ -117,13 +134,16 @@ public class Game {
                             boolean wonMiniGame;
                             System.out.println("A strange sound is quickly growing closer! Is that... the theme of a game show?");
                             if (encounterChanceRoll == 11 || encounterChanceRoll == 12){
+                                logger.info("Encounter rolled blackjack");
                                 wonMiniGame = MiniGame.blackJack();
 
                             }
                             else if(encounterChanceRoll == 13 || encounterChanceRoll == 14){
+                                logger.info("Encounter rolled priceIsRight");
                                 wonMiniGame = MiniGame.priceIsRightGame();
                             }
                             else{
+                                logger.info("Encounter rolled trivia");
                                 wonMiniGame = MiniGame.triviaGame();
                             }
                             if (wonMiniGame){
@@ -287,15 +307,15 @@ public class Game {
             int roll = diceRoll(1, 10); //picking mobType based on int 1-10
             if (roll >= 1 && roll < 6) {
                 encounterMobs[i] = Entity.buildGrunt();
-                logger.log(Level.INFO, "Created " + encounterMobs[i] + " with class " + encounterMobs[i].classType);
+                logger.info("Created " + encounterMobs[i] + " with class " + encounterMobs[i].classType);
             }
             else if (roll >= 6 && roll < 9) {
                 encounterMobs[i] = Entity.buildBrute();
-                logger.log(Level.INFO, "Created " + encounterMobs[i] + " with class " + encounterMobs[i].classType);
+                logger.info("Created " + encounterMobs[i] + " with class " + encounterMobs[i].classType);
             }
             else if (roll >= 9 && roll < 11) {
                 encounterMobs[i] = Entity.buildShaman();
-                logger.log(Level.INFO, "Created " + encounterMobs[i] + " with class " + encounterMobs[i].classType);
+                logger.info("Created " + encounterMobs[i] + " with class " + encounterMobs[i].classType);
             }
             else {
                 throw new IllegalArgumentException("Encounter mob builder received invalid mob type roll");
@@ -309,11 +329,11 @@ public class Game {
         System.out.println("You rolled " + player.getInitiative() + " for initiative!");
         for (Mob mob : encounterMobs){
             mob.setInitiative(diceRoll(1, 20) + mob.initBuff);
-            logger.log(Level.INFO, mob + " initiative roll: " + mob.getInitiative());
+            logger.info(mob + " initiative roll: " + mob.getInitiative());
         }
 
         //Ordering entities in array by initiative to establish turn order.
-        logger.log(Level.INFO, "encounterAll before sort: " + Arrays.toString(encounterAll));
+        logger.info("encounterAll before sort: " + Arrays.toString(encounterAll));
         for (int i = 1; i < encounterAll.length; i++){
             Entity key = encounterAll[i];
             int j = i - 1;
@@ -324,14 +344,14 @@ public class Game {
             encounterAll[j+1] = key;
 
         }
-        logger.log(Level.INFO, "encounterAll after sort: " + Arrays.toString(encounterAll));
+        logger.info("encounterAll after sort: " + Arrays.toString(encounterAll));
 
         int turn = -2;
         while(true){ // encounter combat turns loop
             turn++;
-            logger.log(Level.INFO, "Turn: " + turn);
+            logger.info("Turn: " + turn);
             if (isAllMobsDead()){
-                logger.log(Level.INFO, "All mobs show dead");
+                logger.info("All mobs show dead");
                 System.out.println("You are victorious over your slain enemies!");
                 encounterActive = false;
                 player.resetResist();
@@ -345,10 +365,10 @@ public class Game {
             }
             if (turn >= encounterAll.length - 1 || turn == -1){
                 turn = 0;
-                logger.log(Level.INFO, "Turn reset to 0" );
+                logger.info("Turn reset to 0" );
             }
             if (encounterAll[turn] instanceof Player){
-                logger.log(Level.INFO, turn + " is player");
+                logger.info(turn + " is player");
                 while(true){
                     try {
                         sleep(1000);
@@ -479,14 +499,14 @@ public class Game {
             }//End player turn options
             //Mob combat logic
             else if (encounterAll[turn] instanceof Mob){
-                logger.log(Level.INFO, turn + " is " + encounterAll[turn].getClass() + " " + encounterAll[turn]);
+                logger.info(turn + " is " + encounterAll[turn].getClass() + " " + encounterAll[turn]);
                 /*
                 Mobs will attack player until death.
                 Shaman will check to see if any allies are below half health and attempt to heal them or else attack player.
                  */
                 switch(encounterAll[turn].classType){
                     case "dead": {
-                        logger.log(Level.INFO, encounterAll[turn] + " is dead" );
+                        logger.info(encounterAll[turn] + " is dead" );
                         continue;
                     }
                     case "grunt":
