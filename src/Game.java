@@ -345,7 +345,7 @@ public class Game {
                 logger.log(Level.INFO, "Turn reset to 0" );
             }
             if (encounterAll[turn] instanceof Player){
-                logger.log(Level.INFO, turn + "is player");
+                logger.log(Level.INFO, turn + " is player");
                 while(true){
                     try {
                         sleep(1000);
@@ -473,13 +473,14 @@ public class Game {
             }//End player turn options
             //Mob combat logic
             else if (encounterAll[turn] instanceof Mob){
-                logger.log(Level.INFO, turn + " is " + encounterAll[turn] );
+                logger.log(Level.INFO, turn + " is " + encounterAll[turn].getClass() + " " + encounterAll[turn]);
                 /*
                 Mobs will attack player until death.
                 Shaman will check to see if any allies are below half health and attempt to heal them or else attack player.
                  */
                 switch(encounterAll[turn].classType){
                     case "dead": {
+                        logger.log(Level.INFO, encounterAll[turn] + " is dead" );
                         continue;
                     }
                     case "grunt":
