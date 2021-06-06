@@ -4,7 +4,11 @@ public class MiniGame {
     public static boolean triviaGame(){
 
         // selecting the question and answer used to play
-        int q = Game.diceRoll(1, 20);
+        int q = 0;
+        q++;
+        if (q == 21) {
+            q = 0;
+        }
         String[] gamePiece = NPC.triviaGameQuestionsAndAnswers(q);
         System.out.println("Annnnnd here's your host, Steve Harvey! 'Alright, welcome to trivia! This is a very simple game, I ask you a question, and you answer with one of the provided by each question\n"+
                 "That's right, this is multiple choice. Here we go now.'");
