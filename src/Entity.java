@@ -283,7 +283,7 @@ class Player extends Entity {
      */
     protected String playerName;
     protected int resist; //reduces all incoming damage by resist
-    private final int passiveResist;
+    protected final int passiveResist;
     private static final int maxResist = 4;
     protected Item[] inventory = new Item[4]; //Character can carry max four items
 
@@ -305,6 +305,10 @@ class Player extends Entity {
         else if (this.resist + resists > maxResist){
             resist = maxResist;
         }
+    }
+
+    public void resetResist(){
+        resist = passiveResist;
     }
 
     /**

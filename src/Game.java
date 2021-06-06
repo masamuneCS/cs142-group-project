@@ -137,7 +137,7 @@ public class Game {
                     }//End encounter chance case
                     //chest case
                     if (currentRoom.isContainsChest()){
-                        System.out.println("There is a strange chest in the center of the room, do you open it?\n1: Yes\n2:No");
+                        System.out.println("There is a strange chest in the center of the room, do you open it?\n1: Yes\n2: No");
                         if (inputValidation(2) == 1){
                             openChest(player);
                             currentRoom.setContainsChest(false);
@@ -332,6 +332,7 @@ public class Game {
                 logger.log(Level.INFO, "All mobs show dead");
                 System.out.println("You are victorious over your slain enemies!");
                 encounterActive = false;
+                player.resetResist();
                 return true; //all mobs are dead, player has won the encounter
             }
             mobCount = 0;
