@@ -1,4 +1,5 @@
 import java.util.Locale;
+import java.util.logging.Level;
 
 public class Entity {
     //players and mobs are entities. Call entity methods when you need to do Stuff.
@@ -188,7 +189,8 @@ public class Entity {
             }
         }
         else{
-            System.out.println(classType + " attacked " + ((Player)target).playerName + " for " + dmg + " damage!");
+            System.out.println(classType + " attacked " + ((Player)target).playerName + " for " + (dmg - ((Player) target).resist) + " damage!");
+            Game.logger.log(Level.INFO, this + " attacked player for " + dmg + " raw dmg, player resist is " + ((Player) target).resist);
         }
     }
 //Shaman special ability

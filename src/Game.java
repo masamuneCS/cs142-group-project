@@ -10,7 +10,7 @@ import static java.lang.Thread.sleep;
 
 public class Game {
 
-    private static Logger logger = Logger.getLogger(Game.class.getName());
+    protected static Logger logger = Logger.getLogger(Game.class.getName());
 
     public static Scanner userInput = new Scanner(System.in);
     protected static boolean encounterActive = false;
