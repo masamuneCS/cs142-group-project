@@ -361,8 +361,8 @@ public class Game {
                     }
                     System.out.println("HP: " + player.getHp() + " Mana: " + player.getMana());
                     System.out.println("What would you like to do?\n1: Attack\n2: Special Attack\n3: Use an item from your inventory");
-                    switch(userInput.nextLine()){
-                        case "1": {
+                    switch(inputValidation(3)){
+                        case 1: {
                             System.out.println("Your basic attack deals " + player.atkSize + "d" + player.atkStr + "damage, which enemy would you like to target?");
                             int i = 1;
                             for (Mob mob : encounterMobs) {
@@ -373,7 +373,7 @@ public class Game {
                             System.out.println("or choose 5 to go back.");
                             System.out.print("Choose: ");
                             int input = inputValidation(encounterMobs.length) - 1;
-                            if (input == 5){
+                            if (input == 4){
                                 continue;
                             }
                             if (encounterMobs[input].classType.equals("dead")){
@@ -385,7 +385,7 @@ public class Game {
                             }
                             break;
                         }
-                        case "2": {
+                        case 2: {
                             switch (player.classType) {
                                 case "warrior":
                                     System.out.println(player.playerName + " your special warrior ability is SMASH. SMASH deals 4d" + player.atkStr + " damage and costs 5 mana");
@@ -431,7 +431,7 @@ public class Game {
                             }
                             System.out.println(encounterMobs.length + ": Go back");
                             int input = inputValidation(5) - 1;
-                            if (input == 5){
+                            if (input == 4){
                                 continue;
                             }
                             if (input < 5){
@@ -458,7 +458,7 @@ public class Game {
                             }
                             break;
                         }
-                        case "3": {
+                        case 3: {
                             System.out.println("Using an inventory item does NOT end your turn.");
                             player.accessInventory();
                             if (isAllMobsDead()){
@@ -466,6 +466,9 @@ public class Game {
                                 encounterActive = false;
                                 return true; //all mobs are dead, player has won the encounter
                             }
+                            continue;
+                        }
+                        default:{
                             continue;
                         }
                     }//End switch case
