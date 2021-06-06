@@ -143,8 +143,9 @@ public class Item {
             }
             case "bomb":{
                 int dmg = Game.diceRoll(this.size, this.strength);
+                String targetClass = target.classType;
                 target.dmg(dmg);
-                System.out.println("Your bomb hit a " + target.classType + " for " + dmg + "damage!");
+                System.out.println("Your bomb hit a " + targetClass + " for " + dmg + "damage!");
                 break;
             }
             default:
