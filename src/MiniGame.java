@@ -1,13 +1,15 @@
 import java.util.concurrent.TimeUnit;
 
 public class MiniGame {
+
+    public static int q;
     public static boolean triviaGame(){
 
         // selecting the question and answer used to play
-        int q = 0;
         q++;
+        // looping back to the beginning in case they reach all 20 questions in gameplay
         if (q == 21) {
-            q = 0;
+            q = 1;
         }
         String[] gamePiece = NPC.triviaGameQuestionsAndAnswers(q);
         System.out.println("Annnnnd here's your host, Steve Harvey! 'Alright, welcome to trivia! This is a very simple game, I ask you a question, and you answer with one of the provided by each question\n"+
@@ -840,7 +842,7 @@ public class MiniGame {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
-            System.out.println("Steeve: YES! Sorry, that was very rude of me. I'm just not use to winning in these games\n" +
+            System.out.println("Steve: YES! Sorry, that was very rude of me. I'm just not use to winning in these games\n" +
                     "Until next time.");
             return false;
         }
