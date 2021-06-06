@@ -124,6 +124,7 @@ public class Entity {
                 hp -= (dmg - ((Player) this).resist);
             }
             else{
+                System.out.println("You were attacked for " + dmg + " and it killed you.");
                 Game.gameOver((Player) this);
             }
         }
