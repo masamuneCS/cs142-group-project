@@ -2,7 +2,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MiniGame {
 
-    public static int q;
+    public static int q = Game.diceRoll(1,20);
     public static boolean triviaGame(){
 
         // selecting the question and answer used to play
