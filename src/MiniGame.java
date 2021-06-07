@@ -1,5 +1,7 @@
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
+
 public class MiniGame {
 
     public static int q = Game.diceRoll(1,20);
@@ -12,6 +14,11 @@ public class MiniGame {
             q = 1;
         }
         String[] gamePiece = NPC.triviaGameQuestionsAndAnswers(q);
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         System.out.println("Annnnnd here's your host, Steve Harvey! 'Alright, welcome to trivia! This is a very simple game, I ask you a question, and you answer with one of the provided by each question\n"+
                 "That's right, this is multiple choice. Here we go now.'");
 
@@ -20,11 +27,21 @@ public class MiniGame {
         String answers = gamePiece[1];
         System.out.println(question);
         System.out.println(answers);
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         System.out.print("You have your question, you have your options, now we need your answer, whatcha got for me; ");
 
         // loop for gameplay
         while (true) {
             // taking in user input
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                System.err.println("Slept thread was interrupted");
+            }
             switch (Game.userInput.nextLine()) {
                 // if input is 1
                 case "1": {
@@ -472,8 +489,18 @@ public class MiniGame {
 
         // announcing the rules
         System.out.println("And here's your host.... Steve Harvey!");
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         System.out.println("You are now playing the price is right.");
         System.out.println("The goal is to guess a price as close to the actual price as possible without going over.");
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         System.out.println("Use your brain, and good luck.");
         System.out.println(printOut);
 
@@ -515,6 +542,11 @@ public class MiniGame {
             }
         }
         // loop for 1st question and answer
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         while (true) {
             if (j == 1) {
                 mobAnswer = Game.diceRoll(1, 215000);
@@ -548,6 +580,11 @@ public class MiniGame {
             break;
         }
         // loop for 2nd question and answer
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         while (true) {
             if (j == 2) {
                 mobAnswer = Game.diceRoll(1, 165000000);
@@ -581,6 +618,11 @@ public class MiniGame {
             break;
         }
         // loop for 3rd question and answer
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         while (true) {
             if (j == 3) {
                 mobAnswer = Game.diceRoll(1, 15);
@@ -614,6 +656,11 @@ public class MiniGame {
             break;
         }
         // loop for the 4th question and answer
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         while (true) {
             if (j == 4) {
                 mobAnswer = Game.diceRoll(1, 1100);
@@ -646,6 +693,11 @@ public class MiniGame {
             break;
         }
         // loop for the 5th question and answer
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         while (true) {
             if (j == 5) {
                 mobAnswer = Game.diceRoll(1, 630);
@@ -696,17 +748,32 @@ public class MiniGame {
 
         // announcing the rules
         System.out.println("And here's your host.... Steve Harvey!");
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         System.out.println("Steve: You are now playing BlackJack. The goal is to get as close to 21 as possible without going over.");
         System.out.println("You may choose to hit (draw another card) or stay (stop drawing cards for the rest of the game).");
         System.out.println("The dealer (i.e. me) will always choose to hit unless the value of their hand is 17 or over.");
         System.out.println("By the way, I have 1 card whose value will not be revealed until the end.");
         System.out.println("Until the end of the game, the dealer's current hand value will be the value of all their cards minus the hidden card.");
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         System.out.println("There is some strategy involved. Use your brain, and good luck.");
 
         // loop for gameplay
         while (true) {
             if (characterSwitcher == 1) {
                 System.out.println("Your current hand's value is: " + playerHandValue + ".");
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    System.err.println("Slept thread was interrupted");
+                }
                 System.out.print("Would you like to hit or stand? (1 - hit, 2 - stand): ");
                 // if player hits
                 if (Game.inputValidation(2) == 1) {
@@ -786,6 +853,11 @@ public class MiniGame {
                     else if (dealerHandValue >= 17) {
                         System.out.println("The dealer must stand because the value of their hand is/over 17");
                         System.out.println("Your current hand's value is: " + playerHandValue + ".");
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.print("Would you like to hit or stand? (1 - hit, 2 - stand): ");
                         // asking if player would like to hit one more time cuz dealer can't
                         if (Game.inputValidation(2) == 1) {
@@ -820,6 +892,11 @@ public class MiniGame {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                System.err.println("Slept thread was interrupted");
+            }
             System.out.println("Steve: well, looks like I went over, and you won. I've been Steeve Harvey and I will see you later.");
             return true;
         }
@@ -827,6 +904,11 @@ public class MiniGame {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                System.err.println("Slept thread was interrupted");
+            }
             System.out.println("Steve: dang man, I almost feel bad. No one wants to lose like that... \n" +
                     "Glad it ain't me though! See you next time!");
             return false;
@@ -835,6 +917,11 @@ public class MiniGame {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                System.err.println("Slept thread was interrupted");
+            }
             System.out.println("Well, well. Looks like you beat me fair and square. Congratulations, and I will see you later.");
             return true;
         }
@@ -842,7 +929,12 @@ public class MiniGame {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
-            System.out.println("Steve: YES! Sorry, that was very rude of me. I'm just not use to winning in these games\n" +
+            System.out.println("Steve: YES! Sorry, that was very rude of me. I'm just not us" +
+                    "try {\n" +
+                    "                            sleep(1000);\n" +
+                    "                        } catch (InterruptedException e) {\n" +
+                    "                            System.err.println(\"Slept thread was interrupted\");\n" +
+                    "                        }e to winning in these games\n" +
                     "Until next time.");
             return false;
         }
@@ -850,6 +942,11 @@ public class MiniGame {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                System.err.println("Slept thread was interrupted");
+            }
             System.out.println("Huh, looks like you won. I'm not sure how but you did it!\n" +
                     "I'm Steve Harvey and I will see you next time");
             return true;
