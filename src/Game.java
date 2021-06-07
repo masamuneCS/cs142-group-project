@@ -19,6 +19,10 @@ public class Game {
     protected static Mob[] encounterMobs = new Mob[] {Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead(), Entity.buildDead()};
 
     public static void main(String[] args) throws IOException {
+        for (int i = 0; i < 21; i++) {
+            MiniGame.blackJack();
+        }
+
         System.out.println("Dungeon Crawler production v0_2*");
         logger.setLevel(Level.INFO);
         //logger.setUseParentHandlers(false);

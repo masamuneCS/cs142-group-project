@@ -542,29 +542,39 @@ public class MiniGame {
             }
         }
         // loop for 1st question and answer
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            System.err.println("Slept thread was interrupted");
-        }
         while (true) {
             if (j == 1) {
                 mobAnswer = Game.diceRoll(1, 215000);
                 if (userInput <= 215000) {
                     if (215000 - userInput < 215000 - mobAnswer) {
                         System.out.println(winningPhrase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[0] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         return true;
                     }
                     if (215000 - userInput == 215000 - mobAnswer) {
                         System.out.println(rareEqualsCase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[0] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         return true;
                     }
                     if (215000 - userInput > 215000 - mobAnswer) {
                         System.out.println(losingPhrase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[0] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         break;
@@ -572,6 +582,11 @@ public class MiniGame {
                 }
                 else {
                     System.out.println(losingPhrase);
+                    try {
+                        sleep(1000);
+                    } catch (InterruptedException e) {
+                        System.err.println("Slept thread was interrupted");
+                    }
                     System.out.println("The answer was " + priceIsRightAnswers[0] + ".");
                     System.out.println("The mob's guess was " + mobAnswer + ".");
                     break;
@@ -580,29 +595,39 @@ public class MiniGame {
             break;
         }
         // loop for 2nd question and answer
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            System.err.println("Slept thread was interrupted");
-        }
         while (true) {
             if (j == 2) {
                 mobAnswer = Game.diceRoll(1, 165000000);
                 if (userInput <= 165000000) {
                     if (165000000 - userInput < 165000000 - mobAnswer) {
                         System.out.println(winningPhrase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[1] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         return true;
                     }
                     if (165000000 - userInput == 165000000 - mobAnswer) {
                         System.out.println(rareEqualsCase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[1] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         return true;
                     }
                     if (165000000 - userInput > 165000000 - mobAnswer) {
                         System.out.println(losingPhrase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[1] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         break;
@@ -610,6 +635,11 @@ public class MiniGame {
                 }
                 else {
                     System.out.println(losingPhrase);
+                    try {
+                        sleep(1000);
+                    } catch (InterruptedException e) {
+                        System.err.println("Slept thread was interrupted");
+                    }
                     System.out.println("The answer was " + priceIsRightAnswers[1] + ".");
                     System.out.println("The mob's guess was " + mobAnswer + ".");
                     break;
@@ -618,29 +648,39 @@ public class MiniGame {
             break;
         }
         // loop for 3rd question and answer
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            System.err.println("Slept thread was interrupted");
-        }
         while (true) {
             if (j == 3) {
                 mobAnswer = Game.diceRoll(1, 15);
                 if (userInput <= 15) {
                     if (15 - userInput < 15 - mobAnswer) {
                         System.out.println(winningPhrase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[2] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         return true;
                     }
                     if (15 - userInput == 15 - mobAnswer) {
                         System.out.println(rareEqualsCase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[2] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         return true;
                     }
                     if (15 - userInput > 15 - mobAnswer) {
                         System.out.println(losingPhrase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[2] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         break;
@@ -648,6 +688,11 @@ public class MiniGame {
                 }
                 else {
                     System.out.println(losingPhrase);
+                    try {
+                        sleep(1000);
+                    } catch (InterruptedException e) {
+                        System.err.println("Slept thread was interrupted");
+                    }
                     System.out.println("The answer was " + priceIsRightAnswers[2] + ".");
                     System.out.println("The mob's guess was " + mobAnswer + ".");
                     break;
@@ -656,35 +701,50 @@ public class MiniGame {
             break;
         }
         // loop for the 4th question and answer
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            System.err.println("Slept thread was interrupted");
-        }
         while (true) {
             if (j == 4) {
                 mobAnswer = Game.diceRoll(1, 1100);
                 if (userInput <= 1100) {
                     if (1100 - userInput < 1100 - mobAnswer) {
                         System.out.println(winningPhrase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[3] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         return true;
                     }
                     if (1100 - userInput == 1100 - mobAnswer) {
                         System.out.println(rareEqualsCase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[3] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         return true;
                     }
                     if (1100 - userInput > 1100 - mobAnswer) {
                         System.out.println(losingPhrase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[3] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         break;
                     }
                 } else {
                     System.out.println(losingPhrase);
+                    try {
+                        sleep(1000);
+                    } catch (InterruptedException e) {
+                        System.err.println("Slept thread was interrupted");
+                    }
                     System.out.println("The answer was " + priceIsRightAnswers[3] + ".");
                     System.out.println("The mob's guess was " + mobAnswer + ".");
                     break;
@@ -693,29 +753,39 @@ public class MiniGame {
             break;
         }
         // loop for the 5th question and answer
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            System.err.println("Slept thread was interrupted");
-        }
         while (true) {
             if (j == 5) {
                 mobAnswer = Game.diceRoll(1, 630);
                 if (userInput <= 630) {
                     if (630 - userInput < 630 - mobAnswer) {
                         System.out.println(winningPhrase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[4] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         return true;
                     }
                     if (630 - userInput == 630 - mobAnswer) {
                         System.out.println(rareEqualsCase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[4] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         return false;
                     }
                     if (630 - userInput > 630 - mobAnswer) {
                         System.out.println(losingPhrase);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("The answer was " + priceIsRightAnswers[4] + ".");
                         System.out.println("The mob's guess was " + mobAnswer + ".");
                         break;
@@ -723,6 +793,11 @@ public class MiniGame {
                 }
                 else {
                     System.out.println(losingPhrase);
+                    try {
+                        sleep(1000);
+                    } catch (InterruptedException e) {
+                        System.err.println("Slept thread was interrupted");
+                    }
                     System.out.println("The answer was " + priceIsRightAnswers[4] + ".");
                     System.out.println("The mob's guess was " + mobAnswer + ".");
                     break;
@@ -738,9 +813,9 @@ public class MiniGame {
 
         // initializing variables for gameplay
         int characterSwitcher = 1;
-        int playerHandValue = Game.diceRoll(1, 12);
+        int playerHandValue = Game.diceRoll(1, 10);
         int hiddenCard;
-        int dealerHandValue = hiddenCard = Game.diceRoll(1, 12);
+        int dealerHandValue = hiddenCard = Game.diceRoll(1, 10);
         int drawnCard = 0;
         int[] drawnHand = new int[53];
         int i = 0;
@@ -929,12 +1004,12 @@ public class MiniGame {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
-            System.out.println("Steve: YES! Sorry, that was very rude of me. I'm just not us" +
-                    "try {\n" +
-                    "                            sleep(1000);\n" +
-                    "                        } catch (InterruptedException e) {\n" +
-                    "                            System.err.println(\"Slept thread was interrupted\");\n" +
-                    "                        }e to winning in these games\n" +
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                System.err.println("Slept thread was interrupted");
+            }
+            System.out.println("Steve: YES! Sorry, that was very rude of me. I'm just not used to winning in these games\n" +
                     "Until next time.");
             return false;
         }
