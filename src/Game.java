@@ -411,28 +411,18 @@ public class Game {
                             switch (player.classType) {
                                 case "warrior":
                                     System.out.println(player.playerName + " your special warrior ability is SMASH. SMASH deals 4d" + player.atkStr + " damage and costs 5 mana");
-                                    try {
-                                        sleep(500);
-                                    } catch (InterruptedException e) {
-                                        System.err.println("Slept thread was interrupted");
-                                    }
                                     break;
                                 case "rogue":
                                     System.out.println(player.playerName + " your special rogue ability is SNEAK ATTACK. SNEAK ATTACK does damage based on your initiative and costs 5 mana. \nThis encounter it does 2d" + (player.getInitiative() / 2) + " damage.");
-                                    try {
-                                        sleep(500);
-                                    } catch (InterruptedException e) {
-                                        System.err.println("Slept thread was interrupted");
-                                    }
                                     break;
                                 case "mage":
                                     System.out.println(player.playerName + " your special mage ability is FIREBALL. FIREBALL does 2d8 damage and costs 5 mana.");
-                                    try {
-                                        sleep(500);
-                                    } catch (InterruptedException e) {
-                                        System.err.println("Slept thread was interrupted");
-                                    }
                                     break;
+                            }
+                            try {
+                                sleep(500);
+                            } catch (InterruptedException e) {
+                                System.err.println("Slept thread was interrupted");
                             }
                             if (player.getMana() < 5){
                                 System.out.println("You don't have enough mana, maybe try using a potion?");

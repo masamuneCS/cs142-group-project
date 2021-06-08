@@ -1,6 +1,8 @@
 import java.util.Locale;
 import java.util.logging.Level;
 
+import static java.lang.Thread.sleep;
+
 public class Entity {
     //players and mobs are entities. Call entity methods when you need to do Stuff.
     protected String classType;
@@ -385,6 +387,12 @@ class Player extends Entity {
             else{
                 System.out.println("Slot " + (i + 1) + ": " + inventory[i].name);
             }
+        }
+
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
         }
 
         while(true) {
