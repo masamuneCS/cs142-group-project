@@ -1,4 +1,3 @@
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -7,7 +6,6 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.*;
 
-import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 
 public class Game {
