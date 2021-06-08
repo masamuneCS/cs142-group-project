@@ -25,7 +25,17 @@ public class MiniGame {
         // printing out the question and answer
         String question = gamePiece[0];
         String answers = gamePiece[1];
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         System.out.println(question);
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         System.out.println(answers);
         try {
             sleep(1000);
@@ -37,11 +47,6 @@ public class MiniGame {
         // loop for gameplay
         while (true) {
             // taking in user input
-            try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                System.err.println("Slept thread was interrupted");
-            }
             switch (Game.userInput.nextLine()) {
                 // if input is 1
                 case "1": {
@@ -495,7 +500,8 @@ public class MiniGame {
             System.err.println("Slept thread was interrupted");
         }
         System.out.println("You are now playing the price is right.");
-        System.out.println("The goal is to guess a price as close to the actual price as possible without going over.");
+        System.out.println("The goal is to guess a price as close to the actual price as possible without going over, \n" +
+                "and guess a price closer to the actual price than the mob you're playing against.");
         try {
             sleep(1000);
         } catch (InterruptedException e) {
@@ -507,12 +513,12 @@ public class MiniGame {
         // setting phrases to string variables
         String priceGamePrompt = "Steve: Please enter a price (no decimals, commas, or $ sign): ";
         String rareEqualsCase = "Steve: Your answer and the mob's answer were equally close to the real price, so we're just gonna give you the win. Congrats.";
-        String winningPhrase = "Steve: Way to go bud, you won over that... i don't even know what that is some kinda goblin? anyway, congratulations";
+        String winningPhrase = "Steve: Way to go bud, you won over that... I don't even know what that is some kinda goblin? Anyway, congratulations";
         String losingPhrase = "Steve: Sometimes ya win, and uh, sorry man but this ain't one of those times.";
         String freePhrase = "Steve: What the hell man, you know full well that 'Free' isn't the right answer. since when have you *ever* gotten a free anything!";
         String negativePhrase = "Steve: What? You think they're gonna pay YOU to buy their product???";
         String invalidInput = "Steve: That was not a valid answer. Please try again.";
-        String goodByeStatement = "Well anyway, ive been your host, and i will see you later.";
+        String goodByeStatement = "Well anyway, I've been your host, and I will see you later.";
 
         // initializing variables
         int userInput;
@@ -831,6 +837,11 @@ public class MiniGame {
         System.out.println("Steve: You are now playing BlackJack. The goal is to get as close to 21 as possible without going over.");
         System.out.println("You may choose to hit (draw another card) or stay (stop drawing cards for the rest of the game).");
         System.out.println("The dealer (i.e. me) will always choose to hit unless the value of their hand is 17 or over.");
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         System.out.println("By the way, I have 1 card whose value will not be revealed until the end.");
         System.out.println("Until the end of the game, the dealer's current hand value will be the value of all their cards minus the hidden card.");
         try {
@@ -841,8 +852,18 @@ public class MiniGame {
         System.out.println("There is some strategy involved. Use your brain, and good luck.");
 
         // loop for gameplay
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         while (true) {
             if (characterSwitcher == 1) {
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    System.err.println("Slept thread was interrupted");
+                }
                 System.out.println("Your current hand's value is: " + playerHandValue + ".");
                 try {
                     sleep(1000);
@@ -876,6 +897,11 @@ public class MiniGame {
                     }
                 }
                 else { //Player chose to stay
+                    try {
+                        sleep(850);
+                    } catch (InterruptedException e) {
+                        System.err.println("Slept thread was interrupted");
+                    }
                     System.out.println("Dealer's current hand's value is: " + (dealerHandValue - hiddenCard) + ".");
                     while (true) {
                         drawnCard = Game.diceRoll(1, 10);
@@ -918,6 +944,11 @@ public class MiniGame {
                             i++;
                             characterSwitcher = 1;
                             dealerHandValue += drawnCard;
+                            try {
+                                sleep(850);
+                            } catch (InterruptedException e) {
+                                System.err.println("Slept thread was interrupted");
+                            }
                             System.out.println("Dealer's current hand's value is: " + (dealerHandValue - hiddenCard) + ".");
                             break;
                         }
@@ -927,6 +958,11 @@ public class MiniGame {
                     }
                     else if (dealerHandValue >= 17) {
                         System.out.println("The dealer must stand because the value of their hand is/over 17");
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.err.println("Slept thread was interrupted");
+                        }
                         System.out.println("Your current hand's value is: " + playerHandValue + ".");
                         try {
                             sleep(1000);
@@ -963,27 +999,22 @@ public class MiniGame {
                 }
             }
         }
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            System.err.println("Slept thread was interrupted");
+        }
         if (dealerHandValue > 21) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
-            try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                System.err.println("Slept thread was interrupted");
-            }
-            System.out.println("Steve: well, looks like I went over, and you won. I've been Steeve Harvey and I will see you later.");
+            System.out.println("Steve: well, looks like I went over, and you won. I've been Steve Harvey and I will see you later.");
             return true;
         }
         else if (playerHandValue > 21) {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
-            try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                System.err.println("Slept thread was interrupted");
-            }
             System.out.println("Steve: dang man, I almost feel bad. No one wants to lose like that... \n" +
                     "Glad it ain't me though! See you next time!");
             return false;
@@ -992,11 +1023,6 @@ public class MiniGame {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
-            try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                System.err.println("Slept thread was interrupted");
-            }
             System.out.println("Well, well. Looks like you beat me fair and square. Congratulations, and I will see you later.");
             return true;
         }
@@ -1004,11 +1030,6 @@ public class MiniGame {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
-            try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                System.err.println("Slept thread was interrupted");
-            }
             System.out.println("Steve: YES! Sorry, that was very rude of me. I'm just not used to winning in these games\n" +
                     "Until next time.");
             return false;
@@ -1017,11 +1038,6 @@ public class MiniGame {
             System.out.println("Your hand value was " + playerHandValue + ".");
             System.out.println("The dealer's hand value was " + dealerHandValue + ". ");
             System.out.println("The dealer's hidden card's value was " + hiddenCard + ".");
-            try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                System.err.println("Slept thread was interrupted");
-            }
             System.out.println("Huh, looks like you won. I'm not sure how but you did it!\n" +
                     "I'm Steve Harvey and I will see you next time");
             return true;
