@@ -281,9 +281,8 @@ public class Entity {
 }
 
 class Player extends Entity {
-    public static boolean position;
     /**
-     * Character class defines the player character stats and methods for adjusting stats and inventory
+     * Player class defines the player character stats and methods for adjusting stats and inventory
      */
     protected String playerName;
     protected int resist; //reduces all incoming damage by resist
