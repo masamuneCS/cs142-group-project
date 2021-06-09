@@ -120,13 +120,13 @@ public class Item {
         switch(this.itemType){
             case "plusHealth":{
                 int heals = Game.diceRoll(this.size, this.strength);
-                ((Player) target).heal(heals);
+                target.heal(heals);
                 System.out.println("Your potion healed you for " + heals + " HP.");
                 break;
             }
             case "plusMana":{
                 int manas = Game.diceRoll(this.size, this.strength);
-                ((Player) target).changeMana(manas);
+                target.changeMana(manas);
                 System.out.println("Your potion restored " + manas + " mana.");
                 break;
             }
