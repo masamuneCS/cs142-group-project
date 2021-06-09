@@ -256,23 +256,29 @@ public class Game {
      * @return int input
      */
     public static int inputValidation (int ceiling){
-        while (true){
-            if (userInput.hasNextInt()){
-                int input = userInput.nextInt();
-                if (input <= ceiling && input > 0){
-                    userInput.nextLine();
-                    return input;
+        int modifiedUserInput = 0;
+        while (true) {
+            String inputChecker = userInput.nextLine();
+
+            // seeing if string is an int and if string contains just one int
+            try {
+                modifiedUserInput = Integer.parseInt(inputChecker);
+                if ((modifiedUserInput >= 1 && modifiedUserInput <= ceiling)) {
+                    break;
                 }
-                else{
-                    userInput.nextLine();
-                    System.out.println("Enter a number between 1 and " + ceiling + " to choose.");
+                // telling user that their input was invalid because their input was out of bounds
+                else {
+                    System.out.println("Enter a number between 1 and " + ceiling + ".");
+                    continue;
                 }
             }
-            else{
-                userInput.nextLine();
-                System.out.println("Enter a number between 1 and " + ceiling + " to choose.");
+            // telling user that their input was invalid because their input didn't meet 1 of the 2 requirements mentioned above try
+            catch (NumberFormatException e) {
+                System.out.println("Enter a number between 1 and " + ceiling + ".");
+                continue;
             }
         }
+        return modifiedUserInput;
     }
 
     private static void openChest(Player player) {

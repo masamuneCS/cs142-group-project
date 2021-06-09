@@ -957,7 +957,7 @@ public class MiniGame {
                         }
                     }
                     else if (dealerHandValue >= 17) {
-                        System.out.println("The dealer must stand because the value of their hand is/over 17");
+                        System.out.println("The dealer must stand because the value of their hand (with the hidden card) is or is over 17");
                         try {
                             sleep(1000);
                         } catch (InterruptedException e) {
