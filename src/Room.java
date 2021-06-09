@@ -14,9 +14,10 @@ public final class Room {
     private Point roomCoordinate;
 
     protected static Room[] whichRoom = new Room[16]; //whichRoom works with Dungeon.roomCoords to match rooms to coordinates in the Dungeon constructor
-    protected static String[] roomDescription = {"Mysterious yells can be heard from another part of the dungeon...","As you enter the room, several bats shriek as they fly past you...",
+    protected static String[] roomDescription = {"Mysterious yells can be heard from another part of the dungeon...", "As you enter the room, several bats shriek as they fly past you...",
             "A strange regality adorns this room with limestone walls...", "The tiles in this room show signs of wear...", "A seemingly endless abyss lies underneath the rope bridge adjoining the room before you to the one ahead...",
-            "Candles have been set up around some sort of magic circle on the ground."};
+            "Candles have been set up around some sort of magic circle on the ground...", "A crude beastman-like crest is carved into the wall...", "Murky water coalesced into various puddles on the floor...",
+            "A blissful room with light seeping through cracks in the ceiling warms the spirit...", "A foul stench strangles the air as you step inside..."};
 
     private Room(String description, boolean roomSeen, boolean canMoveNorth, boolean canMoveSouth, boolean canMoveEast, boolean canMoveWest, boolean containsShrine, boolean containsChest, Point roomCoordinate) {
         this.description = description;

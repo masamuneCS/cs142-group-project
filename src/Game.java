@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.logging.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import static java.lang.Thread.sleep;
 

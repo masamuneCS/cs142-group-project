@@ -1,0 +1,382 @@
+Jun 06, 2021 2:32:25 PM Game main
+INFO: Player@2d98a335 created with classType warrior
+Jun 06, 2021 2:32:25 PM Game main
+INFO: Player entered Room@4f3f5b24 at coordinate java.awt.Point[x=0,y=0]
+Jun 06, 2021 2:32:34 PM Game main
+INFO: Player entered Room@15aeb7ab at coordinate java.awt.Point[x=1,y=0]
+Jun 06, 2021 2:32:39 PM Game main
+INFO: Player entered Room@7b23ec81 at coordinate java.awt.Point[x=2,y=0]
+Jun 06, 2021 2:32:39 PM Game main
+INFO: Encounter rolled priceIsRight
+Jun 06, 2021 2:32:49 PM Game main
+INFO: Player entered Room@6acbcfc0 at coordinate java.awt.Point[x=3,y=0]
+Jun 06, 2021 2:32:53 PM Game main
+INFO: Player entered Room@7b23ec81 at coordinate java.awt.Point[x=2,y=0]
+Jun 06, 2021 2:32:54 PM Game main
+INFO: Player entered Room@5f184fc6 at coordinate java.awt.Point[x=2,y=1]
+Jun 06, 2021 2:32:55 PM Game main
+INFO: Encounter rolled blackjack
+Jun 06, 2021 2:33:03 PM Game main
+INFO: Player entered Room@3feba861 at coordinate java.awt.Point[x=3,y=1]
+Jun 06, 2021 2:33:03 PM Game main
+INFO: Encounter rolled combat
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: Created Mob@5b480cf9 with class grunt
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: Created Mob@6f496d9f with class brute
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: Created Mob@723279cf with class grunt
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: Mob@5b480cf9 initiative roll: 13
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: Mob@6f496d9f initiative roll: 4
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: Mob@723279cf initiative roll: 16
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: Mob@10f87f48 initiative roll: -15
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: Mob@b4c966a initiative roll: -19
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: encounterAll before sort: [Player@2d98a335, Mob@5b480cf9, Mob@6f496d9f, Mob@723279cf, Mob@10f87f48, Mob@b4c966a]
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: encounterAll after sort: [Mob@723279cf, Mob@5b480cf9, Player@2d98a335, Mob@6f496d9f, Mob@10f87f48, Mob@b4c966a]
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: Turn: -1
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:33:03 PM Game encounter
+INFO: 0 is class Mob Mob@723279cf
+Jun 06, 2021 2:33:04 PM Entity basicAttack
+INFO: Mob@723279cf attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:33:04 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:33:04 PM Game encounter
+INFO: 1 is class Mob Mob@5b480cf9
+Jun 06, 2021 2:33:05 PM Entity basicAttack
+INFO: Mob@5b480cf9 attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:33:05 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:33:05 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:33:10 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:33:10 PM Game encounter
+INFO: 3 is class Mob Mob@6f496d9f
+Jun 06, 2021 2:33:11 PM Entity basicAttack
+INFO: Mob@6f496d9f attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:33:11 PM Game encounter
+INFO: Turn: 4
+Jun 06, 2021 2:33:11 PM Game encounter
+INFO: 4 is class Mob Mob@10f87f48
+Jun 06, 2021 2:33:11 PM Game encounter
+INFO: Mob@10f87f48 is dead
+Jun 06, 2021 2:33:11 PM Game encounter
+INFO: Turn: 5
+Jun 06, 2021 2:33:11 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:33:11 PM Game encounter
+INFO: 0 is class Mob Mob@723279cf
+Jun 06, 2021 2:33:12 PM Entity basicAttack
+INFO: Mob@723279cf attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:33:12 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:33:12 PM Game encounter
+INFO: 1 is class Mob Mob@5b480cf9
+Jun 06, 2021 2:33:12 PM Game encounter
+INFO: Mob@5b480cf9 is dead
+Jun 06, 2021 2:33:12 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:33:12 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:33:17 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:33:17 PM Game encounter
+INFO: 3 is class Mob Mob@6f496d9f
+Jun 06, 2021 2:33:18 PM Entity basicAttack
+INFO: Mob@6f496d9f attacked player for 6 raw dmg, player resist is 2
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: Turn: 4
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: 4 is class Mob Mob@10f87f48
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: Mob@10f87f48 is dead
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: Turn: 5
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: 0 is class Mob Mob@723279cf
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: Mob@723279cf is dead
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: 1 is class Mob Mob@5b480cf9
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: Mob@5b480cf9 is dead
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:33:18 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:33:21 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:33:21 PM Game encounter
+INFO: 3 is class Mob Mob@6f496d9f
+Jun 06, 2021 2:33:22 PM Entity basicAttack
+INFO: Mob@6f496d9f attacked player for 7 raw dmg, player resist is 2
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: Turn: 4
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: 4 is class Mob Mob@10f87f48
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: Mob@10f87f48 is dead
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: Turn: 5
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: 0 is class Mob Mob@723279cf
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: Mob@723279cf is dead
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: 1 is class Mob Mob@5b480cf9
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: Mob@5b480cf9 is dead
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:33:22 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:33:24 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:33:24 PM Game encounter
+INFO: 3 is class Mob Mob@6f496d9f
+Jun 06, 2021 2:33:25 PM Entity basicAttack
+INFO: Mob@6f496d9f attacked player for 5 raw dmg, player resist is 2
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: Turn: 4
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: 4 is class Mob Mob@10f87f48
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: Mob@10f87f48 is dead
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: Turn: 5
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: 0 is class Mob Mob@723279cf
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: Mob@723279cf is dead
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: 1 is class Mob Mob@5b480cf9
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: Mob@5b480cf9 is dead
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:33:25 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:33:28 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:33:28 PM Game encounter
+INFO: All mobs show dead
+Jun 06, 2021 2:33:51 PM Game main
+INFO: Player entered Room@2f4d3709 at coordinate java.awt.Point[x=3,y=2]
+Jun 06, 2021 2:33:51 PM Game main
+INFO: Encounter rolled blackjack
+Jun 06, 2021 2:34:02 PM Game main
+INFO: Player entered Room@4e50df2e at coordinate java.awt.Point[x=3,y=3]
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: Created Mob@1d81eb93 with class grunt
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: Created Mob@7291c18f with class grunt
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: Created Mob@34a245ab with class brute
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: Mob@1d81eb93 initiative roll: 20
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: Mob@7291c18f initiative roll: 21
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: Mob@34a245ab initiative roll: 5
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: Mob@10f87f48 initiative roll: -18
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: Mob@b4c966a initiative roll: -15
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: encounterAll before sort: [Player@2d98a335, Mob@1d81eb93, Mob@7291c18f, Mob@34a245ab, Mob@10f87f48, Mob@b4c966a]
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: encounterAll after sort: [Mob@7291c18f, Mob@1d81eb93, Player@2d98a335, Mob@34a245ab, Mob@b4c966a, Mob@10f87f48]
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: Turn: -1
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:34:02 PM Game encounter
+INFO: 0 is class Mob Mob@7291c18f
+Jun 06, 2021 2:34:03 PM Entity basicAttack
+INFO: Mob@7291c18f attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:34:03 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:34:03 PM Game encounter
+INFO: 1 is class Mob Mob@1d81eb93
+Jun 06, 2021 2:34:04 PM Entity basicAttack
+INFO: Mob@1d81eb93 attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:34:04 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:34:04 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:34:08 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:34:08 PM Game encounter
+INFO: 3 is class Mob Mob@34a245ab
+Jun 06, 2021 2:34:09 PM Entity basicAttack
+INFO: Mob@34a245ab attacked player for 7 raw dmg, player resist is 2
+Jun 06, 2021 2:34:09 PM Game encounter
+INFO: Turn: 4
+Jun 06, 2021 2:34:09 PM Game encounter
+INFO: 4 is class Mob Mob@b4c966a
+Jun 06, 2021 2:34:09 PM Game encounter
+INFO: Mob@b4c966a is dead
+Jun 06, 2021 2:34:09 PM Game encounter
+INFO: Turn: 5
+Jun 06, 2021 2:34:09 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:34:09 PM Game encounter
+INFO: 0 is class Mob Mob@7291c18f
+Jun 06, 2021 2:34:10 PM Entity basicAttack
+INFO: Mob@7291c18f attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:34:10 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:34:10 PM Game encounter
+INFO: 1 is class Mob Mob@1d81eb93
+Jun 06, 2021 2:34:11 PM Entity basicAttack
+INFO: Mob@1d81eb93 attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:34:11 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:34:11 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:34:15 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:34:15 PM Game encounter
+INFO: 3 is class Mob Mob@34a245ab
+Jun 06, 2021 2:34:15 PM Game encounter
+INFO: Mob@34a245ab is dead
+Jun 06, 2021 2:34:15 PM Game encounter
+INFO: Turn: 4
+Jun 06, 2021 2:34:15 PM Game encounter
+INFO: 4 is class Mob Mob@b4c966a
+Jun 06, 2021 2:34:15 PM Game encounter
+INFO: Mob@b4c966a is dead
+Jun 06, 2021 2:34:15 PM Game encounter
+INFO: Turn: 5
+Jun 06, 2021 2:34:15 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:34:15 PM Game encounter
+INFO: 0 is class Mob Mob@7291c18f
+Jun 06, 2021 2:34:16 PM Entity basicAttack
+INFO: Mob@7291c18f attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:34:16 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:34:16 PM Game encounter
+INFO: 1 is class Mob Mob@1d81eb93
+Jun 06, 2021 2:34:17 PM Entity basicAttack
+INFO: Mob@1d81eb93 attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:34:17 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:34:17 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:34:28 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:34:28 PM Game encounter
+INFO: 3 is class Mob Mob@34a245ab
+Jun 06, 2021 2:34:28 PM Game encounter
+INFO: Mob@34a245ab is dead
+Jun 06, 2021 2:34:28 PM Game encounter
+INFO: Turn: 4
+Jun 06, 2021 2:34:28 PM Game encounter
+INFO: 4 is class Mob Mob@b4c966a
+Jun 06, 2021 2:34:28 PM Game encounter
+INFO: Mob@b4c966a is dead
+Jun 06, 2021 2:34:28 PM Game encounter
+INFO: Turn: 5
+Jun 06, 2021 2:34:28 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:34:28 PM Game encounter
+INFO: 0 is class Mob Mob@7291c18f
+Jun 06, 2021 2:34:29 PM Entity basicAttack
+INFO: Mob@7291c18f attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:34:29 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:34:29 PM Game encounter
+INFO: 1 is class Mob Mob@1d81eb93
+Jun 06, 2021 2:34:30 PM Entity basicAttack
+INFO: Mob@1d81eb93 attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:34:30 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:34:30 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:34:33 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:34:33 PM Game encounter
+INFO: 3 is class Mob Mob@34a245ab
+Jun 06, 2021 2:34:33 PM Game encounter
+INFO: Mob@34a245ab is dead
+Jun 06, 2021 2:34:33 PM Game encounter
+INFO: Turn: 4
+Jun 06, 2021 2:34:33 PM Game encounter
+INFO: 4 is class Mob Mob@b4c966a
+Jun 06, 2021 2:34:33 PM Game encounter
+INFO: Mob@b4c966a is dead
+Jun 06, 2021 2:34:33 PM Game encounter
+INFO: Turn: 5
+Jun 06, 2021 2:34:33 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:34:33 PM Game encounter
+INFO: 0 is class Mob Mob@7291c18f
+Jun 06, 2021 2:34:34 PM Entity basicAttack
+INFO: Mob@7291c18f attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:34:34 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:34:34 PM Game encounter
+INFO: 1 is class Mob Mob@1d81eb93
+Jun 06, 2021 2:34:34 PM Game encounter
+INFO: Mob@1d81eb93 is dead
+Jun 06, 2021 2:34:34 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:34:34 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:34:36 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:34:36 PM Game encounter
+INFO: 3 is class Mob Mob@34a245ab
+Jun 06, 2021 2:34:36 PM Game encounter
+INFO: Mob@34a245ab is dead
+Jun 06, 2021 2:34:36 PM Game encounter
+INFO: Turn: 4
+Jun 06, 2021 2:34:36 PM Game encounter
+INFO: 4 is class Mob Mob@b4c966a
+Jun 06, 2021 2:34:36 PM Game encounter
+INFO: Mob@b4c966a is dead
+Jun 06, 2021 2:34:36 PM Game encounter
+INFO: Turn: 5
+Jun 06, 2021 2:34:36 PM Game encounter
+INFO: Turn reset to 0
+Jun 06, 2021 2:34:36 PM Game encounter
+INFO: 0 is class Mob Mob@7291c18f
+Jun 06, 2021 2:34:37 PM Entity basicAttack
+INFO: Mob@7291c18f attacked player for 4 raw dmg, player resist is 2
+Jun 06, 2021 2:34:37 PM Game encounter
+INFO: Turn: 1
+Jun 06, 2021 2:34:37 PM Game encounter
+INFO: 1 is class Mob Mob@1d81eb93
+Jun 06, 2021 2:34:37 PM Game encounter
+INFO: Mob@1d81eb93 is dead
+Jun 06, 2021 2:34:37 PM Game encounter
+INFO: Turn: 2
+Jun 06, 2021 2:34:37 PM Game encounter
+INFO: 2 is player
+Jun 06, 2021 2:34:39 PM Game encounter
+INFO: Turn: 3
+Jun 06, 2021 2:34:39 PM Game encounter
+INFO: All mobs show dead
